@@ -1,1 +1,1 @@
-# A1-prog-7wonders
+# A1-prog-seven-wonders-architect
