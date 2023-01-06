@@ -11,7 +11,7 @@ public class RedCard extends Card
     // Constructor
     public RedCard(int horns)
     {
-        super("red");
+        super(Color.RED);
         this.horns = horns;
     }
 }

@@ -12,7 +12,7 @@ public class BlueCard extends Card
     // Constructor
     public BlueCard(int victoryPoints, boolean cat)
     {
-        super("blue");
+        super(Color.BLUE);
         this.victoryPoints = victoryPoints;
         this.cat = cat;
     }

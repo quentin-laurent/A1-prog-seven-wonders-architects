@@ -11,7 +11,7 @@ public class GreenCard extends Card
     // Constructor
     public GreenCard(String scienceSymbol)
     {
-        super("green");
+        super(Color.GREEN);
         this.scienceSymbol = scienceSymbol;
     }
 }

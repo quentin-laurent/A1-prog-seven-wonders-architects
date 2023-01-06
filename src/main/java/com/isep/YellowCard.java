@@ -8,6 +8,6 @@ public class YellowCard extends Card
     // Constructor
     public YellowCard()
     {
-        super("yellow");
+        super(Color.YELLOW);
     }
 }

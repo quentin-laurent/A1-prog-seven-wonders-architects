@@ -5,11 +5,20 @@ package com.isep;
  */
 public abstract class Card
 {
+    enum Color
+    {
+        GREY,
+        YELLOW,
+        BLUE,
+        GREEN,
+        RED
+    }
+
     // Attributes
-    protected String color;
+    protected Color color;
 
     // Constructor
-    public Card(String color)
+    public Card(Color color)
     {
         this.color = color;
     }

@@ -5,13 +5,21 @@ package com.isep;
  */
 public class GreyCard extends Card
 {
+    enum Material
+    {
+        WOOD,
+        STONE,
+        BRICK,
+        PAPYRUS,
+        GLASS
+    }
     // Attributes
-    private String material;
+    private Material material;
 
     // Constructor
-    public GreyCard(String material)
+    public GreyCard(Material material)
     {
-        super("grey");
+        super(Color.GREY);
         this.material = material;
     }
 }
