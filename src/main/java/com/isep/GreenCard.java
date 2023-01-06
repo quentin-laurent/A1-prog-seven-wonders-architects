@@ -5,11 +5,17 @@ package com.isep;
  */
 public class GreenCard extends Card
 {
+    enum ScienceSymbol
+    {
+        COMPASS,
+        GEAR,
+        TABLET
+    }
     // Attributes
-    private String scienceSymbol;
+    private ScienceSymbol scienceSymbol;
 
     // Constructor
-    public GreenCard(String scienceSymbol)
+    public GreenCard(ScienceSymbol scienceSymbol)
     {
         super(Color.GREEN);
         this.scienceSymbol = scienceSymbol;
