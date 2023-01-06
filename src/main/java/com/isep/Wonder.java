@@ -25,4 +25,9 @@ public abstract class Wonder
     {
         return this.stages;
     }
+
+    public Deck getDeck()
+    {
+        return this.deck;
+    }
 }
