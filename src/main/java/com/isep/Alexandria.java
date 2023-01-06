@@ -15,6 +15,7 @@ public class Alexandria extends Wonder
             add(new Stage(7, 4, false, false, false, 5));
         }}, new Deck());
         this.buildDeck();
+        this.deck.shuffle();
     }
 
     /**

@@ -15,6 +15,7 @@ public class Halicarnassus extends Wonder
             add(new Stage(7, 4, false, false, false, 4));
         }}, new Deck());
         this.buildDeck();
+        this.deck.shuffle();
     }
 
     /**

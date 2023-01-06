@@ -15,6 +15,7 @@ public class Ephesus extends Wonder
             add(new Stage(7, 4, false, false, false, 3));
         }}, new Deck());
         this.buildDeck();
+        this.deck.shuffle();
     }
 
     /**

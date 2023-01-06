@@ -15,6 +15,7 @@ public class Giza extends Wonder
             add(new Stage(8, 4, false, false, false, 5));
         }}, new Deck());
         this.buildDeck();
+        this.deck.shuffle();
     }
 
     /**

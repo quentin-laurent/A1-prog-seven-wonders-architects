@@ -1,6 +1,7 @@
 package com.isep;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,7 +24,6 @@ public class Deck
     }
 
     // Methods
-
     /**
      * Adds a new {@link Card} to this {@link Deck}.
      * @param card The {@link Card} to add.
@@ -32,5 +32,10 @@ public class Deck
     public void addCard(Card card)
     {
         this.cards.add(card);
+    }
+
+    public void shuffle()
+    {
+        Collections.shuffle(this.cards);
     }
 }
