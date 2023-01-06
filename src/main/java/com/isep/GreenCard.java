@@ -20,4 +20,11 @@ public class GreenCard extends Card
         super(Color.GREEN);
         this.scienceSymbol = scienceSymbol;
     }
+
+    // Methods
+    @Override
+    public String toString()
+    {
+        return String.format("[%s] %s", this.color, this.scienceSymbol);
+    }
 }

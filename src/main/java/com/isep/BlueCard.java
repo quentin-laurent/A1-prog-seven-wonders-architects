@@ -16,4 +16,14 @@ public class BlueCard extends Card
         this.victoryPoints = victoryPoints;
         this.cat = cat;
     }
+
+    // Methods
+    @Override
+    public String toString()
+    {
+        if(this.cat)
+            return String.format("[%s] %d Victory points, [CAT]", this.color, this.victoryPoints);
+        else
+            return String.format("[%s] %d Victory points", this.color, this.victoryPoints);
+    }
 }

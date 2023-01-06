@@ -10,4 +10,11 @@ public class YellowCard extends Card
     {
         super(Color.YELLOW);
     }
+
+    // Methods
+    @Override
+    public String toString()
+    {
+        return String.format("[%s] Gold", this.color);
+    }
 }

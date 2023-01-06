@@ -14,4 +14,11 @@ public class RedCard extends Card
         super(Color.RED);
         this.horns = horns;
     }
+
+    // Methods
+    @Override
+    public String toString()
+    {
+        return String.format("[%s] %d Horns", this.color, this.horns);
+    }
 }

@@ -22,4 +22,11 @@ public class GreyCard extends Card
         super(Color.GREY);
         this.material = material;
     }
+
+    // Methods
+    @Override
+    public String toString()
+    {
+        return String.format("[%s] %s", this.color, this.material);
+    }
 }
