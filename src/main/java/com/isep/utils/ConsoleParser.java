@@ -48,7 +48,7 @@ public class ConsoleParser implements InputParser
         do {
             try
             {
-                value = this.sc.nextInt();
+                value = this.scanner.nextInt();
                 // Consuming the \n char so it doesn't break the next call for nextLine()
                 this.scanner.nextLine();
                 validInput = true;
@@ -78,7 +78,7 @@ public class ConsoleParser implements InputParser
         do {
             try
             {
-                s = this.sc.nextLine();
+                s = this.scanner.nextLine();
                 validInput = true;
             }
             catch (InputMismatchException e)
