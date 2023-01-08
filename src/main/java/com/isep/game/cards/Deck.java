@@ -1,4 +1,4 @@
-package com.isep;
+package com.isep.game.cards;
 
 import java.util.ArrayList;
 import java.util.Collections;

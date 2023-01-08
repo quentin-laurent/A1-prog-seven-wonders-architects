@@ -1,5 +1,6 @@
-package com.isep;
+package com.isep.game;
 
+import com.isep.game.cards.*;
 import com.isep.utils.InputParser;
 import jdk.jshell.spi.ExecutionControl;
 

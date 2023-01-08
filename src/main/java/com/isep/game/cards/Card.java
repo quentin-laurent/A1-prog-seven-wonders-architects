@@ -1,11 +1,11 @@
-package com.isep;
+package com.isep.game.cards;
 
 /**
  * An abstract class representing a game card.
  */
 public abstract class Card
 {
-    enum Color
+    public enum Color
     {
         GREY,
         YELLOW,

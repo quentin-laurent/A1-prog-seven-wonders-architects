@@ -1,4 +1,4 @@
-package com.isep;
+package com.isep.game.cards;
 
 /**
  * A class representing a progress token.

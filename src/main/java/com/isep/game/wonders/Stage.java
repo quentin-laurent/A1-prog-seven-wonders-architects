@@ -1,4 +1,4 @@
-package com.isep;
+package com.isep.game.wonders;
 
 /**
  * An abstract class representing a stage.

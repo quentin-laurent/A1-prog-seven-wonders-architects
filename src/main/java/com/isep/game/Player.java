@@ -1,4 +1,8 @@
-package com.isep;
+package com.isep.game;
+
+import com.isep.game.cards.Deck;
+import com.isep.game.cards.Hand;
+import com.isep.game.wonders.Wonder;
 
 import java.time.LocalTime;
 

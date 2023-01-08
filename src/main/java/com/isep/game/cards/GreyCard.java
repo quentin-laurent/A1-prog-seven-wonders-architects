@@ -1,11 +1,11 @@
-package com.isep;
+package com.isep.game.cards;
 
 /**
  * A class representing a grey card.
  */
 public class GreyCard extends Card
 {
-    enum Material
+    public enum Material
     {
         WOOD,
         STONE,

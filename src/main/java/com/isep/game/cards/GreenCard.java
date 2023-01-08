@@ -1,11 +1,11 @@
-package com.isep;
+package com.isep.game.cards;
 
 /**
  * A class representing a green card.
  */
 public class GreenCard extends Card
 {
-    enum ScienceSymbol
+    public enum ScienceSymbol
     {
         COMPASS,
         GEAR,

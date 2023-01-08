@@ -1,4 +1,7 @@
-package com.isep;
+package com.isep.game;
+
+import com.isep.game.wonders.Alexandria;
+import com.isep.game.wonders.Stage;
 
 import java.util.List;
 

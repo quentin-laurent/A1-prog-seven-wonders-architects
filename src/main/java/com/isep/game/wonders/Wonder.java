@@ -1,4 +1,6 @@
-package com.isep;
+package com.isep.game.wonders;
+
+import com.isep.game.cards.Deck;
 
 import java.util.List;
 
