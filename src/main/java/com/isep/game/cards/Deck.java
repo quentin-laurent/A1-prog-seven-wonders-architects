@@ -15,7 +15,7 @@ public class Deck
 
     // Constructor
     /**
-     * Creates a new empty {@link Deck}
+     * Creates a new empty {@link Deck}.
      * @author Quentin LAURENT
      */
     public Deck()
@@ -37,6 +37,29 @@ public class Deck
     public void shuffle()
     {
         Collections.shuffle(this.cards);
+    }
+
+    /**
+     * Picks the {@link Card} on top of this {@link Deck}
+     * @return The picked {@link Card}.
+     * @author Quentin LAURENT
+     */
+    public Card pickCard()
+    {
+        Card card = this.cards.get(0);
+        this.cards.remove(0);
+
+        return card;
+    }
+
+    /**
+     * Indicates if this {@link Deck} doesn't contain any {@link Card}.
+     * @return true if this {@link Deck} is empty.
+     * @author Quentin LAURENT
+     */
+    public boolean isEmpty()
+    {
+        return this.cards.isEmpty();
     }
 
     @Override
