@@ -1,0 +1,50 @@
+@startuml
+skinparam groupInheritance 4
+
+package com.isep.utils {
+interface "InputParser"
+InputParser <|.. ConsoleParser
+InputParser <|.. GUIParser
+}
+
+package com.isep.game {
+class "Game"
+class "Player"
+
+package com.isep.game.cards {
+abstract class "Card"
+Card <|-- GreyCard
+Card <|-- YellowCard
+Card <|-- BlueCard
+Card <|-- GreenCard
+Card <|-- RedCard
+class "Deck"
+Deck o-- Card
+class "Hand"
+Hand o-- Card
+class "ProgressToken"
+}
+
+package com.isep.game.wonders {
+abstract class "Wonder"
+Wonder <|-- Alexandria
+Wonder <|-- Babylon
+Wonder <|-- Ephesus
+Wonder <|-- Giza
+Wonder <|-- Halicarnassus
+Wonder <|-- Olympia
+Wonder <|-- Rhodes
+Wonder o-- Deck
+class "Stage"
+Wonder *-right- Stage
+}
+
+Game o-left- InputParser
+Game *-right- Player
+Game o-- ProgressToken
+Game o-- Deck
+Player o-- Wonder
+Player o-- Hand
+}
+
+@enduml
