@@ -34,6 +34,6 @@ public class Player
     public String toString()
     {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return String.format("[PLAYER] %s, %s", this.name, this.birthday.format(dtf));
+        return String.format("[PLAYER] %s, %s, %s", this.name, this.birthday.format(dtf), this.wonder.getName());
     }
 }

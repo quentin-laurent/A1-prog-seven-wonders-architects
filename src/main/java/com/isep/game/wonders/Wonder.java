@@ -23,6 +23,11 @@ public abstract class Wonder
     }
 
     // Getters & Setters
+    public String getName()
+    {
+        return this.name;
+    }
+
     public List<Stage> getStages()
     {
         return this.stages;
