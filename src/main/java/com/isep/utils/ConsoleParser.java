@@ -28,9 +28,12 @@ public class ConsoleParser implements InputParser
         System.out.print("Amount of players: ");
         int playerCount = this.getInt("Amount of players: ");
 
-        while(playerCount < 2)
+        while(playerCount < 2 || playerCount > 7)
         {
-            System.out.println("At least 2 players are required !");
+            if(playerCount < 2)
+                System.out.println("At least 2 players are required !");
+            if(playerCount > 7)
+                System.out.println("There cannot be more than 7 players !");
             System.out.print("Amount of players: ");
             playerCount = this.getInt("Amount of players: ");
         }
