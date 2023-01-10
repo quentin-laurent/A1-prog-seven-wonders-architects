@@ -5,6 +5,8 @@ package com.isep.utils {
 interface "InputParser"
 InputParser <|.. ConsoleParser
 InputParser <|.. GUIParser
+interface "OutputManager"
+OutputManager <|.. ConsoleOutput
 }
 
 package com.isep.game {
@@ -40,6 +42,7 @@ Wonder *-right- Stage
 }
 
 Game o-left- InputParser
+Game o-left- OutputManager
 Game *-right- Player
 Game o-- ProgressToken
 Game o-- Deck
