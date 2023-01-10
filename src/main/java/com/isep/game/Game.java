@@ -8,6 +8,7 @@ import jdk.jshell.spi.ExecutionControl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -53,18 +54,34 @@ public class Game
         this.conflictTokensBattleSide = 0;
     }
 
+    /**
+     * Starts the {@link Game} and stops automatically when a {@link Player}'s {@link Wonder} has been entirely constructed.
+     * @throws ExecutionControl.NotImplementedException
+     * @author Quentin LAURENT
+     */
     public void play() throws ExecutionControl.NotImplementedException
     {
         this.initialize();
 
+        //TODO: while for game loop
         for(Player player: this.players)
-            this.playTurn(player);
+        {
+            // TODO: player turn
+        }
     }
 
+    /**
+     * Initializes the {@link Game}. This creates every {@link Player}, assigns a random {@link Wonder} to all {@link Player}s
+     * and sorts the players list base on their birthday attribute (from the youngest to the oldest).
+     * @author Quentin LAURENT
+     */
     private void initialize()
     {
         int playerCount = this.inputParser.fetchPlayerCount();
         this.initializePlayers(playerCount);
+
+        // Sorts the player list based on the birthday attribute (the youngest player is at the beginning of the list)
+        Collections.sort(this.players);
     }
 
     /**
@@ -104,6 +121,8 @@ public class Game
         }
     }
 
+    //TODO: to delete if not needed
+    @Deprecated
     private void playTurn(Player player) throws ExecutionControl.NotImplementedException
     {
         throw new ExecutionControl.NotImplementedException("TODO");
