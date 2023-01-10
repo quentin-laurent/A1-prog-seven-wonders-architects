@@ -23,6 +23,12 @@ public class Deck
         this.cards = new ArrayList<Card>();
     }
 
+    // Getters & Setters
+    public List<Card> getCards()
+    {
+        return this.cards;
+    }
+
     // Methods
     /**
      * Adds a new {@link Card} to this {@link Deck}.
@@ -77,5 +83,19 @@ public class Deck
         s.replace(length - 1, length, "");
 
         return s.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == null)
+            return false;
+
+        if(!(o instanceof Deck))
+            return false;
+
+        Deck deck = (Deck) o;
+
+        return this.cards.equals(deck.getCards());
     }
 }
