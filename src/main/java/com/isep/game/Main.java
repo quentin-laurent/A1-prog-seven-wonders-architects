@@ -1,17 +1,14 @@
 package com.isep.game;
 
-import com.isep.game.wonders.Alexandria;
-import com.isep.game.wonders.Stage;
-
-import java.util.List;
+import com.isep.utils.ConsoleOutput;
+import com.isep.utils.ConsoleParser;
+import jdk.jshell.spi.ExecutionControl;
 
 public class Main
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws ExecutionControl.NotImplementedException
     {
-        Alexandria alexandria = new Alexandria();
-        List<Stage> stages = alexandria.getStages();
-        for(Stage stage: stages)
-            System.out.println(stage);
+        Game game = new Game(new ConsoleParser(), new ConsoleOutput());
+        game.play();
     }
 }

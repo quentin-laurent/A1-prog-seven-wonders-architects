@@ -1,5 +1,9 @@
 package com.isep.utils;
 
+import java.net.DatagramSocket;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,7 +23,7 @@ public class ConsoleParser implements InputParser
     }
 
     // Methods
-    public int askPlayerCount()
+    public int fetchPlayerCount()
     {
         System.out.print("Amount of players: ");
         int playerCount = this.getInt("Amount of players: ");
@@ -32,6 +36,29 @@ public class ConsoleParser implements InputParser
         }
 
         return playerCount;
+    }
+
+    public String fetchPlayerName()
+    {
+        System.out.print("Player name (15 char max): ");
+        String name = this.getString();
+
+        while(name.length() > 15)
+        {
+            System.out.println("Name must not exceed 15 chars !");
+            System.out.print("Player name: ");
+            name = this.getString();
+        }
+
+        return name;
+    }
+
+    public LocalDate fetchPlayerBirthday()
+    {
+        System.out.print("Player birthday (dd/mm/yyyy): ");
+        LocalDate birthday = this.getLocalDate("Player birthday (dd/mm/yyyy): ");
+
+        return birthday;
     }
 
     /**
@@ -83,11 +110,40 @@ public class ConsoleParser implements InputParser
             }
             catch (InputMismatchException e)
             {
-                System.out.println("/!\\ Invalid value (not a string).\nPlease provide a string:");
+                System.out.print("/!\\ Invalid value (not a string).\nPlease provide a string: ");
                 scanner.nextLine();
             }
         } while(!validInput);
 
         return s;
+    }
+
+    /**
+     * Asks the user to provide a {@link LocalDate} though the standard input.
+     * @return The {@link LocalDate} provided by the user.
+     * @author Quentin LAURENT
+     */
+    private LocalDate getLocalDate(String messageOnError)
+    {
+        boolean validInput = false;
+        String input;
+        LocalDate date = null;
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        do {
+            try
+            {
+                input = this.scanner.nextLine();
+                date = LocalDate.parse(input, dtf);
+                validInput = true;
+            }
+            catch (DateTimeParseException e)
+            {
+                System.out.print(String.format("/!\\ Invalid date format !\n%s\n%s", e.getMessage(), messageOnError));
+            }
+        } while (!validInput);
+
+        return date;
     }
 }
