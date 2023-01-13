@@ -22,4 +22,22 @@ public abstract class Card
     {
         this.color = color;
     }
+
+    // Methods
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == null)
+            return false;
+        if (this.getClass() != o.getClass())
+            return false;
+
+        return (this.color == ((Card) o).color);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.color.hashCode();
+    }
 }

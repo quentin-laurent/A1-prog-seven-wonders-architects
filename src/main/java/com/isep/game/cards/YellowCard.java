@@ -17,4 +17,22 @@ public class YellowCard extends Card
     {
         return String.format("[%s] Gold", this.color);
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == null)
+            return false;
+        if (!(o instanceof YellowCard))
+            return false;
+
+        YellowCard card = (YellowCard) o;
+        return (this.color == card.color);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.color.hashCode();
+    }
 }

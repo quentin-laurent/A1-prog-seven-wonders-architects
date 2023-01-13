@@ -2,11 +2,7 @@ package com.isep.game.cards;
 
 import com.isep.game.wonders.Stage;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
 
 /**
  * A class representing a player's hand.
@@ -15,7 +11,7 @@ import java.util.Stack;
 public class Hand
 {
     // Attributes
-    private List<Card> cards;
+    private HashMap<Card, Integer> cards;
 
     // Constructor
     /**
@@ -24,7 +20,7 @@ public class Hand
      */
     public Hand()
     {
-        this.cards = new ArrayList<Card>();
+        this.cards = new HashMap<Card, Integer>();
     }
 
     // Methods
@@ -36,7 +32,7 @@ public class Hand
      */
     public void addCard(Card card)
     {
-        this.cards.add(card);
+        this.cards.put(card, 1);
     }
 
     /**
@@ -47,6 +43,7 @@ public class Hand
      */
     public boolean canBuildStage(Stage stage)
     {
+        /*
         int requiredResourcesAmount = stage.getRequiredResourcesAmount();
         boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
        // TODO canBuildStage()
@@ -67,15 +64,17 @@ public class Hand
                 //TODO
             }
         }
+        */
+        return false;
     }
 
     @Override
     public String toString()
     {
         StringBuilder s = new StringBuilder(String.format("%d cards:\n", this.cards.size()));
-        for(Card card: this.cards)
+        for(var entry: this.cards.entrySet())
         {
-            s.append(card.toString());
+            s.append(entry.getKey().toString());
             s.append("\n");
         }
 
