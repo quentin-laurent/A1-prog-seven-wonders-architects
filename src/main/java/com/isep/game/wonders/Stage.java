@@ -24,6 +24,17 @@ public class Stage
         this.level = level;
     }
 
+    // Getters & Setters
+    public int getRequiredResourcesAmount()
+    {
+        return this.requiredResourcesAmount;
+    }
+
+    public boolean getResourcesNeedToBeEqual()
+    {
+        return this.resourcesNeedToBeEqual;
+    }
+
     // Methods
     @Override
     public String toString()
