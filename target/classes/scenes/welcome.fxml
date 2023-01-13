@@ -26,17 +26,17 @@
             <Image url="@../imgs/title.png" />
          </image>
       </ImageView>
-      <Button fx:id="beginButton" layoutX="170.0" layoutY="351.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="169.0" style="-fx-background-color: #506E3A;" text="NEW GAME" textFill="WHITE">
+      <Button fx:id="beginButton" layoutX="161.0" layoutY="351.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBeginButton" prefHeight="64.0" prefWidth="186.0" style="-fx-background-color: #506E3A;" text="NEW GAME" textFill="WHITE">
          <font>
             <Font name="Helenium W01 Bold" size="26.0" />
          </font>
       </Button>
-      <Button fx:id="leaveButton" layoutX="170.0" layoutY="435.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="169.0" style="-fx-background-color: #506E3A;" text="LEAVE" textFill="WHITE">
+      <Button fx:id="leaveButton" layoutX="161.0" layoutY="435.0" mnemonicParsing="false" onAction="#onLeaveButton" prefHeight="64.0" prefWidth="187.0" style="-fx-background-color: #506E3A;" text="LEAVE" textFill="WHITE">
          <font>
             <Font name="Helenium W01 Bold" size="26.0" />
          </font>
       </Button>
-      <Button fx:id="sound" layoutX="1152.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSoundButton" prefHeight="97.0" prefWidth="114.0" style="-fx-background-color: #00000000;" text="">
+      <Button fx:id="soundButton" layoutX="1159.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSoundButton" prefHeight="96.0" prefWidth="120.0" style="-fx-background-color: #00000000;" text="">
          <font>
             <Font name="Meslo LG S Regular Nerd Font Complete" size="51.0" />
          </font>
