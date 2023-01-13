@@ -1,5 +1,8 @@
 package com.isep.utils;
 
+import com.isep.game.cards.Card;
+import com.isep.game.cards.Deck;
+
 import java.time.LocalDate;
 
 /**
@@ -13,4 +16,6 @@ public interface InputParser
     String fetchPlayerName();
 
     LocalDate fetchPlayerBirthday();
+
+    Card fetchCardFromDeck(Deck leftDeck, Deck rightDeck, Deck centralDeck);
 }

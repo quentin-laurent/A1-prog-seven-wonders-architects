@@ -38,6 +38,7 @@ public class Game
      * The amount of conflict tokens that have their battle-side up.
      */
     private int conflictTokensBattleSide;
+    private boolean onePlayerBuiltItsWonder;
 
     // Constructor
     public Game(InputParser inputParser, OutputManager outputManager)
@@ -52,6 +53,7 @@ public class Game
         // TODO: set this value depending on the amount of players
         this.conflictTokensAmount = 0;
         this.conflictTokensBattleSide = 0;
+        this.onePlayerBuiltItsWonder = false;
     }
 
     /**
@@ -63,10 +65,22 @@ public class Game
     {
         this.initialize();
 
-        //TODO: while for game loop
-        for(Player player: this.players)
+        while(!this.onePlayerBuiltItsWonder)
         {
-            // TODO: player turn
+            for(Player player: this.players)
+            {
+                this.outputManager.displayPlayerTurn(player);
+
+                // Pick a card from one of the three available decks
+                int nextPlayerIndex = this.players.indexOf(player) + 1;
+                if(nextPlayerIndex >= this.players.size())
+                    nextPlayerIndex = 0;
+                player.getHand().addCard(this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck));
+
+                this.outputManager.displayPlayerHand(player);
+
+                // Check if the player can build its wonder
+            }
         }
     }
 

@@ -1,7 +1,10 @@
 package com.isep.game.cards;
 
+import com.isep.game.wonders.Stage;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * A class representing a player's hand.
@@ -33,4 +36,22 @@ public class Hand
     {
         this.cards.add(card);
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder s = new StringBuilder(String.format("%d cards:\n", this.cards.size()));
+        for(Card card: this.cards)
+        {
+            s.append(card.toString());
+            s.append("\n");
+        }
+
+        // Removing the last \n char
+        int length = s.length();
+        s.replace(length - 1, length, "");
+
+        return s.toString();
+    }
+
 }

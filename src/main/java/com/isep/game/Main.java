@@ -11,12 +11,6 @@ public class Main
     public static void main(String[] args) throws ExecutionControl.NotImplementedException
     {
         Game game = new Game(new ConsoleParser(), new ConsoleOutput());
-        //game.play();
-        Alexandria alexandria = new Alexandria();
-        Deck deck = alexandria.getDeck();
-        System.out.println(deck);
-        System.out.println();
-        deck.pickCard();
-        System.out.println(deck);
+        game.play();
     }
 }

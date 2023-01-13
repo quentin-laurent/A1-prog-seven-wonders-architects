@@ -1,9 +1,14 @@
 package com.isep.utils;
 
+import com.isep.game.cards.Card;
+import com.isep.game.cards.Deck;
+
+import javax.sound.midi.Soundbank;
 import java.net.DatagramSocket;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -62,6 +67,32 @@ public class ConsoleParser implements InputParser
         LocalDate birthday = this.getLocalDate("Player birthday (dd/mm/yyyy): ");
 
         return birthday;
+    }
+
+    public Card fetchCardFromDeck(Deck leftDeck, Deck rightDeck, Deck middleDeck)
+    {
+        ArrayList<Deck> deckList = new ArrayList<>();
+        deckList.add(leftDeck);
+        deckList.add(rightDeck);
+        deckList.add(middleDeck);
+
+        StringBuilder s = new StringBuilder("Decks available:\n");
+        s.append(String.format("[0] Left Deck: %s%n", leftDeck.getTopCard()));
+        s.append(String.format("[1] Right Deck: %s%n", rightDeck.getTopCard()));
+        s.append(String.format("[2] Middle Deck: ?%n"));
+        s.append("Choose a deck to pick a card from: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a deck to pick a card from: ");
+
+        while(index < 0 || index > 2)
+        {
+            System.out.println("You must select a valid deck (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a deck to pick a card from: ");
+        }
+
+        return deckList.get(index).pickCard();
     }
 
     /**

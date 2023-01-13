@@ -59,6 +59,16 @@ public class Deck
     }
 
     /**
+     * Returns the {@link Card} on top of this {@link Deck}.
+     * @return The first {@link Card} of this {@link Deck}.
+     * @author Quentin LAURENT
+     */
+    public Card getTopCard()
+    {
+        return this.cards.get(0);
+    }
+
+    /**
      * Indicates if this {@link Deck} doesn't contain any {@link Card}.
      * @return true if this {@link Deck} is empty.
      * @author Quentin LAURENT

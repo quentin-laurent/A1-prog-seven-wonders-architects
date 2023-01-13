@@ -30,9 +30,24 @@ public class Player implements Comparable<Player>
     }
 
     // Getters & Setters
+    public String getName()
+    {
+        return this.name;
+    }
+
     public LocalDate getBirthday()
     {
         return this.birthday;
+    }
+
+    public Deck getDeck()
+    {
+        return this.deck;
+    }
+
+    public Hand getHand()
+    {
+        return this.hand;
     }
 
     // Methods
