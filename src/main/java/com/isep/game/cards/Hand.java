@@ -43,29 +43,28 @@ public class Hand
      */
     public boolean canBuildStage(Stage stage)
     {
-        /*
         int requiredResourcesAmount = stage.getRequiredResourcesAmount();
         boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
-       // TODO canBuildStage()
+
         if(resourcesNeedToBeEqual)
         {
-            HashMap<GreyCard, Integer> greyCards = new HashMap<GreyCard, Integer>();
-            for(Card card: this.cards)
+            for(var entry: this.cards.entrySet())
             {
-                if(card instanceof GreyCard)
-                {
-                    int amount = greyCards.get((GreyCard) card);
-                    if(amount == 0)
-                        greyCards.put((GreyCard) card, 1);
-                    else
-                        greyCards.put((GreyCard) card, amount + 1);
-                }
-
-                //TODO
+                if(entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                    return true;
             }
+            return false;
         }
-        */
-        return false;
+        else
+        {
+            int differentResourcesAvailable = 0;
+            for(var entry: this.cards.entrySet())
+            {
+                if(entry.getKey() instanceof GreyCard)
+                    differentResourcesAvailable++;
+            }
+            return differentResourcesAvailable >= requiredResourcesAmount;
+        }
     }
 
     @Override
