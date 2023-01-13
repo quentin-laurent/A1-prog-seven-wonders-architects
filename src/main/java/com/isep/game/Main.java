@@ -6,6 +6,7 @@ import com.isep.utils.ConsoleOutput;
 import com.isep.utils.ConsoleParser;
 import jdk.jshell.spi.ExecutionControl;
 
+import com.isep.utils.*;
 public class Main
 {
     public static void main(String[] args) throws ExecutionControl.NotImplementedException
@@ -18,5 +19,7 @@ public class Main
         System.out.println();
         deck.pickCard();
         System.out.println(deck);
+        GUIParser parser = new GUIParser();
+        parser.launchInterface();
     }
 }
