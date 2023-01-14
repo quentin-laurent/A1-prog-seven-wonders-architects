@@ -3,6 +3,7 @@ package com.isep.game.cards;
 import com.isep.game.wonders.Stage;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * A class representing a player's hand.
@@ -66,35 +67,39 @@ public class Hand
     }
 
     /**
-     * Indicates if this {@link Hand} contains the {@link Card}s required to build a specific {@link Stage}.
-     * @param stage The {@link Stage} to verify.
-     * @return True if the specified {@link Stage} can be built using {@link Card}s from this {@link Hand}.
+     * Indicates if this {@link Hand} contains the {@link Card}s required to build specific {@link Stage}s.
+     * @param stages The {@link Stage}s to verify.
+     * @return True if at least one the specified{@link Stage}s can be built using {@link Card}s from this {@link Hand}.
      * @author Quentin LAURENT
      */
-    public boolean canBuildStage(Stage stage)
+    public boolean canBuildStage(List<Stage> stages)
     {
-        int requiredResourcesAmount = stage.getRequiredResourcesAmount();
-        boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+        for(Stage stage: stages)
+        {
+            int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+            boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
 
-        if(resourcesNeedToBeEqual)
-        {
-            for(var entry: this.cards.entrySet())
+            if (resourcesNeedToBeEqual)
             {
-                if(entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
-                    return true;
+                for (var entry : this.cards.entrySet())
+                {
+                    if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                        return true;
+                }
+                return false;
             }
-            return false;
-        }
-        else
-        {
-            int differentResourcesAvailable = 0;
-            for(var entry: this.cards.entrySet())
+            else
             {
-                if(entry.getKey() instanceof GreyCard)
-                    differentResourcesAvailable++;
+                int differentResourcesAvailable = 0;
+                for (var entry : this.cards.entrySet())
+                {
+                    if (entry.getKey() instanceof GreyCard)
+                        differentResourcesAvailable++;
+                }
+                return differentResourcesAvailable >= requiredResourcesAmount;
             }
-            return differentResourcesAvailable >= requiredResourcesAmount;
         }
+        return false;
     }
 
     @Override

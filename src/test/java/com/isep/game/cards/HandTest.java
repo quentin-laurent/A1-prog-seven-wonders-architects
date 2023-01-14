@@ -4,6 +4,8 @@ import com.isep.game.wonders.Alexandria;
 import com.isep.game.wonders.Stage;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class HandTest
@@ -99,7 +101,9 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
 
-        assertTrue(hand.canBuildStage(stage1));
+        ArrayList<Stage> stages = new ArrayList<>();
+        stages.add(stage1);
+        assertTrue(hand.canBuildStage(stages));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -110,7 +114,9 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
 
-        assertTrue(hand.canBuildStage(stage4));
+        stages.clear();
+        stages.add(stage4);
+        assertTrue(hand.canBuildStage(stages));
     }
 
     @Test
@@ -124,7 +130,9 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new YellowCard());
 
-        assertTrue(hand.canBuildStage(stage1));
+        ArrayList<Stage> stages = new ArrayList<>();
+        stages.add(stage1);
+        assertTrue(hand.canBuildStage(stages));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -135,7 +143,9 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand.addCard(new YellowCard());
 
-        assertTrue(hand.canBuildStage(stage4));
+        stages.clear();
+        stages.add(stage4);
+        assertTrue(hand.canBuildStage(stages));
     }
 
     @Test
@@ -148,7 +158,9 @@ class HandTest
         hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
 
-        assertFalse(hand.canBuildStage(stage1));
+        ArrayList<Stage> stages = new ArrayList<>();
+        stages.add(stage1);
+        assertFalse(hand.canBuildStage(stages));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -159,7 +171,9 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
 
-        assertFalse(hand.canBuildStage(stage4));
+        stages.clear();
+        stages.add(stage4);
+        assertFalse(hand.canBuildStage(stages));
     }
 
     @Test
