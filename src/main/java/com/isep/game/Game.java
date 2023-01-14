@@ -79,7 +79,14 @@ public class Game
 
                 this.outputManager.displayPlayerHand(player);
 
-                // Check if the player can build its wonder
+                // Checks if the player can build a Stage of its Wonder
+                // If possible, it builds the first available Stage that can be built
+                if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild()))
+                {
+                    List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
+                    // TODO: add the ability to let the Player chose the Stage to build if multiple are available
+                    player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand());
+                }
             }
         }
     }

@@ -29,6 +29,23 @@ public class Player implements Comparable<Player>
         this.hand = new Hand();
     }
 
+    /**
+     * Creates a new {@link Player} with a pre-constructed {@link Hand}.
+     * @param name The name of the {@link Player}.
+     * @param birthday The birthday date of the {@link Player}.
+     * @param wonder The {@link Wonder} assigned to the {@link Player}.
+     * @param hand The {@link Hand} assigned to the {@link Player}.
+     * @author Quentin LAURENT
+     */
+    public Player(String name, LocalDate birthday, Wonder wonder, Hand hand)
+    {
+        this.name = name;
+        this.birthday = birthday;
+        this.wonder = wonder;
+        this.deck = this.wonder.getDeck();
+        this.hand = hand;
+    }
+
     // Getters & Setters
     public String getName()
     {
@@ -38,6 +55,11 @@ public class Player implements Comparable<Player>
     public LocalDate getBirthday()
     {
         return this.birthday;
+    }
+
+    public Wonder getWonder()
+    {
+        return this.wonder;
     }
 
     public Deck getDeck()

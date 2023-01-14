@@ -1,9 +1,12 @@
 package com.isep.game.wonders;
 
+import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
+import com.isep.game.cards.Hand;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An abstract class representing a wonder.
@@ -66,5 +69,26 @@ public abstract class Wonder
             }
         }
         return nextStagesToBuild;
+    }
+
+    /**
+     * Builds the specified {@link Stage} with {@link Card}s from the provided {@link  Hand}.
+     * @param stage The {@link Stage} to build.
+     * @param hand The {@link Hand} to use the {@link Card}s from.
+     * @author Quentin LAURENT
+     */
+    public void buildStage(Stage stage, Hand hand)
+    {
+        Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage);
+
+        // Removing the Cards from the provided Hand
+        for(var entry: cardsRequired.entrySet())
+        {
+            for(int i = 0; i < entry.getValue(); i++)
+                hand.removeCard(entry.getKey());
+        }
+
+        // Updating the 'constructed' attribute of the Stage
+        stage.setConstructed(true);
     }
 }

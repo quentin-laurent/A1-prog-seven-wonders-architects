@@ -6,6 +6,7 @@ import com.isep.game.wonders.Wonder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class representing a player's hand.
@@ -139,6 +140,48 @@ public class Hand
             }
         }
         return stagesReadyToBuild;
+    }
+
+    /**
+     * Returns a {@link Map} containing the {@link Card}s required to build the provided {@link Stage}.
+     * @param stage The {@link Stage} to build.
+     * @return A {@link Map} containing the {@link Card}s required.
+     * @author Quentin LAURENT
+     */
+    public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage)
+    {
+        HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
+        int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+        boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+
+        if (resourcesNeedToBeEqual)
+        {
+            for (var entry : this.cards.entrySet())
+            {
+                if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                    requiredCards.put(entry.getKey(), requiredResourcesAmount);
+            }
+            if(requiredCards.isEmpty())
+                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+        }
+        else
+        {
+            HashMap<Card, Integer> differentResources = new HashMap<Card, Integer>();
+            int differentResourcesAvailable = 0;
+            for (var entry : this.cards.entrySet())
+            {
+                if (entry.getKey() instanceof GreyCard)
+                {
+                    differentResources.put(entry.getKey(), 1);
+                    differentResourcesAvailable++;
+                }
+            }
+            if(differentResourcesAvailable >= requiredResourcesAmount)
+                requiredCards.putAll(differentResources);
+            else
+                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+        }
+        return requiredCards;
     }
 
     @Override
