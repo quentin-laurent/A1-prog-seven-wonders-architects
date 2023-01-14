@@ -87,6 +87,7 @@ public class Game
                     List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
                     // TODO: add the ability to let the Player chose the Stage to build if multiple are available
                     player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand());
+                    this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
                 }
             }
         }

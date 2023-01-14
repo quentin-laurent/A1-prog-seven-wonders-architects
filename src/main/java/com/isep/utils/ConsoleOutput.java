@@ -1,6 +1,8 @@
 package com.isep.utils;
 
 import com.isep.game.Player;
+import com.isep.game.wonders.Stage;
+import com.isep.game.wonders.Wonder;
 
 /**
  * An implementation of the {@link OutputManager} interface that uses the standard output (a.k.a console or terminal)
@@ -28,5 +30,10 @@ public class ConsoleOutput implements OutputManager
         s.append("=".repeat(sLength));
         System.out.println(s);
         System.out.println();
+    }
+
+    public void displayStageBuilt(Player player, Stage stage, Wonder wonder)
+    {
+        System.out.printf("%s built a part of %s ! [%d/%d]%n%n", player.getName(), wonder.getName(), wonder.getNumberOfStagesBuilt(), wonder.getNumberOfStages());
     }
 }

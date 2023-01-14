@@ -1,6 +1,8 @@
 package com.isep.utils;
 
 import com.isep.game.Player;
+import com.isep.game.wonders.Stage;
+import com.isep.game.wonders.Wonder;
 
 /**
  * An interface used to display information about the actions happening in the Game.
@@ -13,4 +15,6 @@ public interface OutputManager
     void displayPlayerTurn(Player player);
 
     void displayPlayerHand(Player player);
+
+    void displayStageBuilt(Player player, Stage stage, Wonder wonder);
 }

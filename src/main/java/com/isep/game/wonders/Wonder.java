@@ -91,4 +91,29 @@ public abstract class Wonder
         // Updating the 'constructed' attribute of the Stage
         stage.setConstructed(true);
     }
+
+    /**
+     * Returns the number of {@link Stage}s that have been built.
+     * @return The number of {@link Stage}s that have been built.
+     * @author Quentin LAURENT
+     */
+    public int getNumberOfStagesBuilt()
+    {
+        int numberOfStagesBuilt = 0;
+        for(Stage stage: this.stages)
+            if(stage.isConstructed())
+                numberOfStagesBuilt++;
+
+        return numberOfStagesBuilt;
+    }
+
+    /**
+     * Returns the total number of {@link Stage}s to build.
+     * @return The total number of {@link Stage}s to build.
+     * @author Quentin LAURENT
+     */
+    public int getNumberOfStages()
+    {
+        return this.stages.size();
+    }
 }
