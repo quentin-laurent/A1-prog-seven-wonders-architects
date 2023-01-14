@@ -17,14 +17,15 @@ class GameTest
     {
         // Checking if the player can build the Stage
         Alexandria alexandria = new Alexandria();
-        Hand hand = new Hand();
+
+        Player player = new Player("bob", LocalDate.of(1999, 1, 1), alexandria);
+        Hand hand = player.getHand();
+
         hand.addCard(new BlueCard(3, false));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand.addCard(new RedCard(0));
-
-        Player player = new Player("bob", LocalDate.of(1999, 1, 1), alexandria, hand);
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(alexandria.getStages().get(0));
@@ -50,14 +51,15 @@ class GameTest
     {
         // Checking if the player can build the Stage
         Alexandria alexandria = new Alexandria();
-        Hand hand = new Hand();
+
+        Player player = new Player("bob", LocalDate.of(1999, 1, 1), alexandria);
+        Hand hand = player.getHand();
+
         hand.addCard(new BlueCard(3, false));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new YellowCard());
         hand.addCard(new RedCard(0));
-
-        Player player = new Player("bob", LocalDate.of(1999, 1, 1), alexandria, hand);
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(alexandria.getStages().get(0));
