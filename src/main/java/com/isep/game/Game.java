@@ -48,6 +48,7 @@ public class Game
         this.players = new ArrayList<Player>();
         this.centralDeck = new Deck();
         this.buildDeck();
+        this.centralDeck.shuffle();
         this.discard = new Deck();
         this.progressTokens = new ArrayList<ProgressToken>();
         // TODO: set this value depending on the amount of players
