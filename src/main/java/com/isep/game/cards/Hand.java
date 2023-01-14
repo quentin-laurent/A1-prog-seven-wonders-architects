@@ -2,6 +2,7 @@ package com.isep.game.cards;
 
 import com.isep.game.wonders.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -117,6 +118,17 @@ public class Hand
         s.replace(length - 1, length, "");
 
         return s.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof Hand))
+            return false;
+
+        Hand hand = (Hand) o;
+
+        return(this.cards.equals(hand.getCards()));
     }
 
 }
