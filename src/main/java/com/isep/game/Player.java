@@ -83,11 +83,13 @@ public class Player implements Comparable<Player>
     @Override
     public int compareTo(Player player)
     {
-        if(this.birthday.isBefore(player.getBirthday()))
+        // player1 < player2 if player 1 is younger than player2
+        if(this.birthday.isAfter(player.getBirthday()))
             return -1;
         if(this.birthday.isEqual(player.getBirthday()))
             return 0;
-        if(this.birthday.isAfter(player.getBirthday()))
+        // player1 > player2 if player 1 is older than player2
+        if(this.birthday.isBefore(player.getBirthday()))
             return 1;
         throw new RuntimeException(String.format("Failed to compare birthday dates between players [%s] and [%s].", this, player));
     }
