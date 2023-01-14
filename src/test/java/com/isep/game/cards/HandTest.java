@@ -6,6 +6,7 @@ import com.isep.game.wonders.Stage;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -294,5 +295,72 @@ class HandTest
         stagesReadyToBuild.add(babylon.getStages().get(4));
 
         assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+    }
+
+    @Test
+    void getCardsRequiredToBuildStageShouldReturnCardsRequiredToBuildStage()
+    {
+        // Stage 1 of Alexandria requires two different resources
+        Stage stage1 = new Alexandria().getStages().get(0);
+
+        Hand hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand.addCard(new RedCard(0));
+
+        HashMap<Card, Integer> cardsRequired = new HashMap<Card, Integer>();
+        cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 1);
+        cardsRequired.put(new GreyCard(GreyCard.Material.STONE), 1);
+
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage1));
+
+        // Stage 4 of Alexandria requires three identical resources
+        Stage stage4 = new Alexandria().getStages().get(3);
+
+        hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new RedCard(0));
+
+        cardsRequired.clear();
+        cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 3);
+
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage4));
+    }
+
+    @Test
+    void getCardsRequiredToBuildStageShouldThrowRuntimeExceptionIfStageCannotBeBuilt()
+    {
+        // Stage 1 of Alexandria requires two different resources
+        Stage stage1 = new Alexandria().getStages().get(0);
+
+        final Hand hand1 = new Hand();
+        hand1.addCard(new BlueCard(3, false));
+        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand1.addCard(new RedCard(0));
+
+        assertThrows(RuntimeException.class, () -> hand1.getCardsRequiredToBuildStage(stage1));
+
+        // Stage 4 of Alexandria requires three identical resources
+        Stage stage4 = new Alexandria().getStages().get(3);
+
+        final Hand hand2 = new Hand();
+        hand2.addCard(new BlueCard(3, false));
+        hand2.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand2.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand2.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand2.addCard(new GreyCard(GreyCard.Material.GLASS));
+        hand2.addCard(new RedCard(0));
+
+        assertThrows(RuntimeException.class, () -> hand2.getCardsRequiredToBuildStage(stage4));
     }
 }
