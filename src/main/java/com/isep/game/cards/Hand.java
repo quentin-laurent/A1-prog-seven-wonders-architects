@@ -1,6 +1,7 @@
 package com.isep.game.cards;
 
 import com.isep.game.wonders.Stage;
+import com.isep.game.wonders.Wonder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,6 +102,43 @@ public class Hand
             }
         }
         return false;
+    }
+
+    /**
+     * Returns a {@link List<Stage>} containing the next {@link Stage}s that can be built using {@link Card}s from this {@link Hand}.
+     * @return A {@link List<Stage>} containing the next {@link Stage}s that can be built.
+     * @author Quentin LAURENT
+     */
+    public List<Stage> getStagesReadyToBuild(List<Stage> stages)
+    {
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<>();
+
+        for(Stage stage: stages)
+        {
+            int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+            boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+
+            if (resourcesNeedToBeEqual)
+            {
+                for (var entry : this.cards.entrySet())
+                {
+                    if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                        stagesReadyToBuild.add(stage);
+                }
+            }
+            else
+            {
+                int differentResourcesAvailable = 0;
+                for (var entry : this.cards.entrySet())
+                {
+                    if (entry.getKey() instanceof GreyCard)
+                        differentResourcesAvailable++;
+                }
+                if(differentResourcesAvailable >= requiredResourcesAmount)
+                    stagesReadyToBuild.add(stage);
+            }
+        }
+        return stagesReadyToBuild;
     }
 
     @Override
