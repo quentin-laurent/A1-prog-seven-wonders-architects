@@ -35,6 +35,21 @@ public class Stage
         return this.resourcesNeedToBeEqual;
     }
 
+    public boolean isConstructed()
+    {
+        return this.constructed;
+    }
+
+    public int getLevel()
+    {
+        return this.level;
+    }
+
+    public void setConstructed(boolean constructed)
+    {
+        this.constructed = constructed;
+    }
+
     // Methods
     @Override
     public String toString()
@@ -48,5 +63,20 @@ public class Stage
         s.append(String.format("Level: %d%n", this.level));
 
         return s.toString();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(!(o instanceof Stage))
+            return false;
+        Stage stage = (Stage) o;
+
+        return (this.victoryPoints == stage.victoryPoints
+                && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
+                && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
+                && this.hasEffect == stage.hasEffect
+                && this.constructed == stage.constructed
+                && this.level == stage.level);
     }
 }
