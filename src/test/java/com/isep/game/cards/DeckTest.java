@@ -1,8 +1,10 @@
 package com.isep.game.cards;
 
 import com.isep.game.wonders.Alexandria;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 class DeckTest
@@ -35,10 +37,14 @@ class DeckTest
     }
 
     @Test
-    @Disabled
     void pickCardShouldRemoveTheFirstCardOfTheDeck()
     {
-        //TODO pickCardShouldRemoveTheFirstCardOfTheDeck
+        Deck deck = new Alexandria().getDeck();
+        List<Card> expectedCards = deck.getCards();
+        expectedCards.remove(0);
+        deck.pickCard();
+
+        assertEquals(expectedCards, deck.getCards());
     }
 
     @Test
@@ -49,17 +55,20 @@ class DeckTest
     }
 
     @Test
-    @Disabled
     void deckEqualsShouldBeSymmetric()
     {
-        //TODO: deckEqualsShouldBeSymmetric
+        Alexandria alexandria = new Alexandria();
+        Deck deck1 = alexandria.getDeck();
+        Deck deck2 = alexandria.getDeck();
+
+        assertTrue(deck1.equals(deck2) && deck2.equals(deck1));
     }
 
-    @Test
-    @Disabled
+    @RepeatedTest(100)
     void deckEqualsShouldBeConsistent()
     {
-        //TODO: deckEqualsShouldBeConsistent
+        Deck deck = new Alexandria().getDeck();
+        assertEquals(deck, deck);
     }
 
     @Test
