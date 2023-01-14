@@ -16,7 +16,7 @@ public class ConsoleOutput implements OutputManager
 
     public void displayPlayerTurn(Player player)
     {
-        System.out.printf("==== NOW PLAYING: %s ====%n", player.getName());
+        System.out.printf("==== NOW PLAYING: %s (%s) ====%n", player.getName(), player.getWonder().getName());
     }
 
     public void displayPlayerHand(Player player)
