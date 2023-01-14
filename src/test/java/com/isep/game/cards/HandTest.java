@@ -1,6 +1,7 @@
 package com.isep.game.cards;
 
 import com.isep.game.wonders.Alexandria;
+import com.isep.game.wonders.Babylon;
 import com.isep.game.wonders.Stage;
 import org.junit.jupiter.api.Test;
 
@@ -197,5 +198,101 @@ class HandTest
         expectedString.replace(length - 1, length, "");
 
         assertEquals(expectedString.toString(), hand.toString());
+    }
+
+    @Test
+    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuilt()
+    {
+        Babylon babylon = new Babylon();
+        babylon.getStages().get(0).setConstructed(true);
+        babylon.getStages().get(1).setConstructed(true);
+        babylon.getStages().get(2).setConstructed(true);
+
+        // This hand can build Stage 4 of Babylon (but not Stage 5, which is at the same level (4) )
+        Hand hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new RedCard(0));
+
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
+        stagesReadyToBuild.add(babylon.getStages().get(3));
+
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+    }
+
+    @Test
+    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailable()
+    {
+        Babylon babylon = new Babylon();
+        babylon.getStages().get(0).setConstructed(true);
+        babylon.getStages().get(1).setConstructed(true);
+        babylon.getStages().get(2).setConstructed(true);
+
+        // This hand can build Stages 4 and 5 of Babylon
+        Hand hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.BRICK));
+        hand.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand.addCard(new RedCard(0));
+
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
+        stagesReadyToBuild.add(babylon.getStages().get(3));
+        stagesReadyToBuild.add(babylon.getStages().get(4));
+
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+    }
+
+    @Test
+    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWithYellowCards()
+    {
+        Babylon babylon = new Babylon();
+        babylon.getStages().get(0).setConstructed(true);
+        babylon.getStages().get(1).setConstructed(true);
+        babylon.getStages().get(2).setConstructed(true);
+
+        // This hand can build Stage 4 of Babylon (but not Stage 5, which is at the same level (4) )
+        Hand hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new YellowCard());
+        hand.addCard(new RedCard(0));
+
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
+        stagesReadyToBuild.add(babylon.getStages().get(3));
+
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+    }
+
+    @Test
+    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCards()
+    {
+        Babylon babylon = new Babylon();
+        babylon.getStages().get(0).setConstructed(true);
+        babylon.getStages().get(1).setConstructed(true);
+        babylon.getStages().get(2).setConstructed(true);
+
+        // This hand can build Stages 4 and 5 of Babylon
+        Hand hand = new Hand();
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new YellowCard());
+        hand.addCard(new YellowCard());
+        hand.addCard(new YellowCard());
+        hand.addCard(new GreyCard(GreyCard.Material.BRICK));
+        hand.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand.addCard(new RedCard(0));
+
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
+        stagesReadyToBuild.add(babylon.getStages().get(3));
+        stagesReadyToBuild.add(babylon.getStages().get(4));
+
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
     }
 }
