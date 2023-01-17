@@ -51,8 +51,6 @@ public class Game
         this.centralDeck.shuffle();
         this.discard = new Deck();
         this.progressTokens = new ArrayList<ProgressToken>();
-        // TODO: set this value depending on the amount of players
-        this.conflictTokensAmount = 0;
         this.conflictTokensBattleSide = 0;
         this.onePlayerBuiltItsWonder = false;
     }
@@ -102,6 +100,7 @@ public class Game
     {
         int playerCount = this.inputParser.fetchPlayerCount();
         this.initializePlayers(playerCount);
+        this.initializeConflictTokens();
 
         // Sorts the player list based on the birthday attribute (the youngest player is at the beginning of the list)
         Collections.sort(this.players);
@@ -191,5 +190,25 @@ public class Game
             this.centralDeck.addCard(new RedCard(1));
         for(int i = 1 ; i <= 4; i++)
             this.centralDeck.addCard(new RedCard(2));
+    }
+
+    /**
+     * Initializes the amount of conflict tokens depending on the amount of {@link Player}s.
+     * @author Quentin LAURENT
+     */
+    private void initializeConflictTokens()
+    {
+        int playerCount = this.players.size();
+
+        if(playerCount >= 6)
+            this.conflictTokensAmount = 6;
+        else if(playerCount >= 5)
+            this.conflictTokensAmount = 5;
+        else if(playerCount >= 4)
+            this.conflictTokensAmount = 4;
+        else if(playerCount >= 2)
+            this.conflictTokensAmount = 3;
+        else
+            throw new RuntimeException("Could not initialize conflict tokens amount: playerCount out of range [2-7].");
     }
 }
