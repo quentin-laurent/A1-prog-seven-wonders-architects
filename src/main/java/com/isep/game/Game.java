@@ -1,6 +1,8 @@
 package com.isep.game;
 
 import com.isep.game.cards.*;
+import com.isep.game.tokens.ProgressToken;
+import com.isep.game.tokens.ProgressTokenStack;
 import com.isep.game.wonders.*;
 import com.isep.utils.InputParser;
 import com.isep.utils.OutputManager;
@@ -27,9 +29,9 @@ public class Game
      */
     private Deck discard;
     /**
-     * The {@link ProgressToken}s of this {@link Game}.
+     * The {@link ProgressTokenStack} in which every {@link Player} can pick a {@link ProgressToken} when possible..
      */
-    private List<ProgressToken> progressTokens;
+    private ProgressTokenStack progressTokenStack;
     /**
      * The total amount of conflict tokens of this {@link Game}.
      */
@@ -50,7 +52,8 @@ public class Game
         this.buildDeck();
         this.centralDeck.shuffle();
         this.discard = new Deck();
-        this.progressTokens = new ArrayList<ProgressToken>();
+        this.progressTokenStack = new ProgressTokenStack();
+        this.buildProgressTokenStack();
         this.conflictTokensBattleSide = 0;
         this.onePlayerBuiltItsWonder = false;
     }
@@ -223,5 +226,27 @@ public class Game
             this.conflictTokensAmount = 3;
         else
             throw new RuntimeException("Could not initialize conflict tokens amount: playerCount out of range [2-7].");
+    }
+
+    /**
+     * Creates the {@link ProgressTokenStack} associated to this {@link Game}.
+     * @author Quentin LAURENT
+     */
+    private void buildProgressTokenStack()
+    {
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.URBANISM));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.CRAFTS));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.JEWELLERY));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.SCIENCE));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.PROPAGANDA));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.ARCHITECTURE));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.ECONOMY));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.ENGINEERING));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.TACTICS));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.DECOR));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.POLITICS));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.STRATEGY));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.EDUCATION));
+        this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.CULTURE), 2);
     }
 }
