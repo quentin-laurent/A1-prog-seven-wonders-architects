@@ -71,10 +71,12 @@ public class Game
                 this.outputManager.displayPlayerTurn(player);
 
                 // Pick a card from one of the three available decks
+                // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
                 int nextPlayerIndex = this.players.indexOf(player) + 1;
                 if(nextPlayerIndex >= this.players.size())
                     nextPlayerIndex = 0;
-                player.getHand().addCard(this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck));
+                Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
+                player.getHand().addCard(pickedCard);
 
                 this.outputManager.displayPlayerHand(player);
 
@@ -86,6 +88,17 @@ public class Game
                     // TODO: add the ability to let the Player chose the Stage to build if multiple are available
                     player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand());
                     this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
+                }
+
+                if(pickedCard instanceof BlueCard)
+                {
+                    if(((BlueCard) pickedCard).getCat())
+                    {
+                        for(Player p: this.players)
+                            p.setHasCat(false);
+                        player.setHasCat(true);
+                        player.addVictoryPoint(((BlueCard) pickedCard).getVictoryPoints());
+                    }
                 }
             }
         }

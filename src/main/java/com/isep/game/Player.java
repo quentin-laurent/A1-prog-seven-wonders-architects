@@ -18,6 +18,8 @@ public class Player implements Comparable<Player>
     private Wonder wonder;
     private Deck deck;
     private Hand hand;
+    private int victoryPoints;
+    private boolean hasCat;
 
     // Constructor
     public Player(String name, LocalDate birthday, Wonder wonder)
@@ -27,6 +29,8 @@ public class Player implements Comparable<Player>
         this.wonder = wonder;
         this.deck = this.wonder.getDeck();
         this.hand = new Hand();
+        this.victoryPoints = 0;
+        this.hasCat = false;
     }
 
     // Getters & Setters
@@ -55,7 +59,22 @@ public class Player implements Comparable<Player>
         return this.hand;
     }
 
+    public boolean hasCat()
+    {
+        return this.hasCat;
+    }
+
+    public void setHasCat(boolean hasCat)
+    {
+        this.hasCat = hasCat;
+    }
+
     // Methods
+    public void addVictoryPoint(int victoryPoints)
+    {
+        this.victoryPoints += victoryPoints;
+    }
+
     @Override
     public String toString()
     {
