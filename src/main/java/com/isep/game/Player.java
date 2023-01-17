@@ -64,6 +64,11 @@ public class Player implements Comparable<Player>
         return this.hand;
     }
 
+    public List<ProgressToken> getProgressTokens()
+    {
+        return this.progressTokens;
+    }
+
     public boolean hasCat()
     {
         return this.hasCat;

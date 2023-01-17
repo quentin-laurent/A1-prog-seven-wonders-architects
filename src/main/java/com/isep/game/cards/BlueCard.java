@@ -20,7 +20,7 @@ public class BlueCard extends Card
     // Getters & Setters
     public int getVictoryPoints()
     {
-        return this.getVictoryPoints();
+        return this.victoryPoints;
     }
 
     public boolean getCat()

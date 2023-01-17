@@ -54,6 +54,7 @@ public class Game
         this.discard = new Deck();
         this.progressTokenStack = new ProgressTokenStack();
         this.buildProgressTokenStack();
+        this.progressTokenStack.shuffle();
         this.conflictTokensBattleSide = 0;
         this.onePlayerBuiltItsWonder = false;
     }
@@ -100,8 +101,13 @@ public class Game
                         for(Player p: this.players)
                             p.setHasCat(false);
                         player.setHasCat(true);
-                        player.addVictoryPoint(((BlueCard) pickedCard).getVictoryPoints());
+                        player.addVictoryPoints(((BlueCard) pickedCard).getVictoryPoints());
                     }
+                }
+                else if(pickedCard instanceof GreenCard)
+                {
+                    if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
+                        player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
                 }
             }
         }

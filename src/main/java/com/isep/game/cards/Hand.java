@@ -1,7 +1,6 @@
 package com.isep.game.cards;
 
 import com.isep.game.wonders.Stage;
-import com.isep.game.wonders.Wonder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -182,6 +181,39 @@ public class Hand
                 throw new RuntimeException("The current does not have the cards required to build the provided stage !");
         }
         return requiredCards;
+    }
+
+    /**
+     * Returns true if this {@link Hand} contains two {@link GreenCard}s with the same scientific symbol.
+     * @return True if this {@link Hand} contains two identical scientific symbols.
+     * @author Quentin LAURENT
+     */
+    public boolean containsTwoIdenticalScienceSymbols()
+    {
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof GreenCard && entry.getValue() >= 2)
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns true if this {@link Hand} contains three {@link GreenCard}s with the different scientific symbols.
+     * @return True if this {@link Hand} contains three different scientific symbols.
+     * @author Quentin LAURENT
+     */
+    public boolean containsThreeDifferentScienceSymbols()
+    {
+        int uniqueGreenCardsAmount = 0;
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof GreenCard)
+                uniqueGreenCardsAmount++;
+        }
+
+        return (uniqueGreenCardsAmount >= 3);
     }
 
     @Override

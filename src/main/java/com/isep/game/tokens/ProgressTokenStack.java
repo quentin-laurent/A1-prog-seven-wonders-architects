@@ -4,6 +4,7 @@ import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,11 +15,19 @@ public class ProgressTokenStack
 {
     // Attributes
     private List<ProgressToken> tokens;
+    private List<ProgressToken> revealedTokens;
 
     // Constructor
     public ProgressTokenStack()
     {
         this.tokens = new ArrayList<>();
+        this.revealedTokens = new ArrayList<>();
+    }
+
+    // Getters & Setters
+    public List<ProgressToken> getRevealedTokens()
+    {
+        return this.revealedTokens;
     }
 
     // Methods
@@ -29,7 +38,10 @@ public class ProgressTokenStack
      */
     public void addProgressToken(ProgressToken progressToken)
     {
-        this.tokens.add(progressToken);
+        if(this.revealedTokens.size() < 3)
+            this.revealedTokens.add(progressToken);
+        else
+            this.tokens.add(progressToken);
     }
 
     /**
@@ -45,6 +57,38 @@ public class ProgressTokenStack
 
         for(int i = 0; i < quantity; i++)
             this.tokens.add(progressToken);
+    }
+
+    /**
+     * Picks a {@link ProgressToken} from the three revealed {@link ProgressToken} or the {@link ProgressToken} at the top of this {@link ProgressTokenStack}.
+     * @param index The index representing the {@link ProgressToken} to pick.
+     *              <p>An index from 1 to 3 represents a revealed {@link ProgressToken}.
+     *              <p>An index equal to 4 represents the {@link ProgressToken} at the top of this {@link ProgressTokenStack}.
+     * @return The picked {@link ProgressToken}..
+     * @author Quentin LAURENT
+     */
+    public ProgressToken pickProgressToken(int index)
+    {
+        if(index < 0 || index > 3)
+            throw new RuntimeException("Index out of range [0-3] !");
+
+        if(index == 3)
+            return this.tokens.remove(0);
+        else
+        {
+            ProgressToken pickedToken = this.revealedTokens.remove(index);
+            this.revealedTokens.add(this.tokens.remove(0));
+            return pickedToken;
+        }
+    }
+
+    /**
+     * Shuffles this {@link ProgressTokenStack}.
+     * @author Quentin LAURENT
+     */
+    public void shuffle()
+    {
+        Collections.shuffle(this.tokens);
     }
 
     @Override

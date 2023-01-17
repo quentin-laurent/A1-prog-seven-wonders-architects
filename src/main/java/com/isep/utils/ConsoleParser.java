@@ -2,6 +2,8 @@ package com.isep.utils;
 
 import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
+import com.isep.game.tokens.ProgressToken;
+import com.isep.game.tokens.ProgressTokenStack;
 
 import javax.sound.midi.Soundbank;
 import java.net.DatagramSocket;
@@ -93,6 +95,29 @@ public class ConsoleParser implements InputParser
         }
 
         return deckList.get(index).pickCard();
+    }
+
+    public ProgressToken fetchProgressTokenFromStack(ProgressTokenStack stack)
+    {
+        StringBuilder s = new StringBuilder("Available progress tokens:\n");
+
+        int i = 0;
+        for(; i < stack.getRevealedTokens().size(); i++)
+            s.append(String.format("[%d] %s%n", i, stack.getRevealedTokens().get(i)));
+        s.append(String.format("[%d] ?%n", i));
+        s.append("Choose a progress token: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a progress token: ");
+
+        while(index < 0 || index > 3)
+        {
+            System.out.println("You must select a valid token (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a progress token: ");
+        }
+
+        return stack.pickProgressToken(index);
     }
 
     /**
