@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!-- Font loaded here are taken directly inside the system font librairy, but it doesn't matter because they are loaded directly from
+         ttf file in the controller. it's just to have a good visualisation of the scene inside sceneBuilder -->
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.isep.utils.scenescontrollers.GameMenu">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/bg-menu.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="soundButton" layoutX="1203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSoundButton" prefHeight="63.0" prefWidth="78.0" style="-fx-background-color: #00000000;" text="">
+         <font>
+            <Font name="Meslo LG S Regular Nerd Font Complete" size="34.0" />
+         </font>
+      </Button>
+      <Slider fx:id="slider" blockIncrement="1" layoutX="246.0" layoutY="653.0" majorTickUnit="1" max="7" min="2" minorTickCount="0" prefHeight="41.0" prefWidth="789.0" showTickMarks="true" snapToTicks="true" />
+      <Label fx:id="labelSlider" layoutX="251.0" layoutY="680.0" prefHeight="19.0" prefWidth="790.0" text="2                                                         3                                                        4                                                          5                                                         6                                                        7 " textFill="WHITE">
+         <font>
+            <Font name="Helenium W01 Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTitle" layoutX="432.0" layoutY="15.0" prefHeight="96.0" prefWidth="425.0" text="How MANY PLAYERS ?">
+         <font>
+            <Font name="Helenium W01 Bold" size="39.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text1" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu1" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

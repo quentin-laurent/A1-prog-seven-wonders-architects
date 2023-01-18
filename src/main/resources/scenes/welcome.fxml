@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +22,7 @@
             <Image url="@../imgs/scroll.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="121.0" fitWidth="353.0" layoutX="79.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="121.0" fitWidth="353.0" layoutX="79.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/title.png" />
          </image>
@@ -36,10 +37,15 @@
             <Font name="Helenium W01 Bold" size="26.0" />
          </font>
       </Button>
-      <Button fx:id="soundButton" layoutX="1159.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSoundButton" prefHeight="96.0" prefWidth="120.0" style="-fx-background-color: #00000000;" text="">
+      <Button fx:id="soundButton" layoutX="1159.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSoundButton" prefHeight="96.0" prefWidth="120.0" style="-fx-background-color: #00000000;" text="">
          <font>
             <Font name="Meslo LG S Regular Nerd Font Complete" size="51.0" />
          </font>
       </Button>
+      <Label layoutX="2.0" layoutY="697.0" prefHeight="23.0" prefWidth="1280.0" style="-fx-background-color: #00000099;" text="By Quentin LAURENT - Minae RAFFIN-HOSAKA - Theophile Wemaere                                                                             ISEP 2022-2203" textFill="WHITE">
+         <font>
+            <Font name="Meslo LG S Regular Nerd Font Complete" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
