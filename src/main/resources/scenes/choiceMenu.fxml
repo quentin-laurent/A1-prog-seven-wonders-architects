@@ -55,5 +55,112 @@
             </ChoiceBox>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu3" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu2" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box4" layoutX="386.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text4" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu4" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box5" layoutX="694.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text5" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu5" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box6" layoutX="76.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text6" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu6" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="box7" layoutX="1004.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+         <children>
+            <TextField fx:id="text7" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
+               <font>
+                  <Font name="Helenium W01 Bold" size="12.0" />
+               </font>
+            </TextField>
+            <ChoiceBox fx:id="menu7" layoutX="26.0" layoutY="8.0" prefWidth="150.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ChoiceBox>
+         </children>
+      </AnchorPane>
+      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
+         <font>
+            <Font name="Helenium W01 Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
