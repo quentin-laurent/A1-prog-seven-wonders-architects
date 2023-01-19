@@ -10,8 +10,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.isep.utils.StageLoader;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -19,16 +24,25 @@ public class WelcomeMenu {
 
     @FXML
     private Button soundButton, beginButton, leaveButton;
+    @FXML
+    private MediaView mediaView;
 
     private Clip clip = AudioSystem.getClip();
 
     String button_style = "-fx-background-color: #506E3A;";
     private float coeff_button = 10;
-    private int button_font_size = 26;
+    private int button_font_size = 30;
     public WelcomeMenu() throws LineUnavailableException {
     }
     public void initialize() throws IOException, UnsupportedAudioFileException, LineUnavailableException
     {
+        String file = "../imgs/bg-main.mp4";
+        Media media =  new Media(GUIParser.class.getResource("/imgs/bg-main2.mp4").toExternalForm());//ew Media(new File(file).toURI().toString());
+        MediaPlayer mediaplayer = new MediaPlayer(media);
+        mediaView.setMediaPlayer(mediaplayer);
+        mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaplayer.play();
+
         beginButton.setOnMouseEntered(event -> expendButton(beginButton));
         beginButton.setOnMouseExited(event -> reduceButton(beginButton));
 
