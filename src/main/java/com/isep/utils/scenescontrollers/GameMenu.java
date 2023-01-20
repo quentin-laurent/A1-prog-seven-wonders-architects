@@ -16,6 +16,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.isep.utils.StageLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -27,6 +29,8 @@ public class GameMenu {
 
     @FXML
     private Button soundButton, playButton;
+    @FXML
+    private ImageView image1,image2,image3,image4,image5,image6,image7;
 
     private Clip clip = AudioSystem.getClip();
 
@@ -70,6 +74,14 @@ public class GameMenu {
         menu6.setItems(list);
         menu7.setItems(list);
 
+        menu1.setValue("Alexandrie");
+        menu2.setValue("Ephese");
+        menu3.setValue("Babylone");
+        menu4.setValue("Rhodes");
+        menu5.setValue("Halicarnasse");
+        menu6.setValue("Olympie");
+        menu7.setValue("Gizeh");
+
         box3.setVisible(false);
         box4.setVisible(false);
         box5.setVisible(false);
@@ -91,6 +103,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image1,newValue);
             }
         });
 
@@ -99,6 +112,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image2,newValue);
             }
         });
 
@@ -107,6 +121,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image3,newValue);
             }
         });
 
@@ -115,6 +130,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image4,newValue);
             }
         });
 
@@ -123,6 +139,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image5,newValue);
             }
         });
 
@@ -131,6 +148,8 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image6,newValue);
+
             }
         });
 
@@ -139,6 +158,7 @@ public class GameMenu {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
                 updateBox(oldValue,newValue);
+                updateImage(image7,newValue);
             }
         });
 
@@ -167,6 +187,35 @@ public class GameMenu {
         button.setPrefWidth(button.getPrefWidth()-coeff_button);
         button.setPrefHeight(button.getPrefHeight()-coeff_button);
         button.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), button_font_size));
+    }
+
+    private void updateImage(ImageView image, String wonder)
+    {
+        // "Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh"
+        switch(wonder)
+        {
+            case "Alexandrie":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/alexandrie.png").toExternalForm()));
+                break;
+            case "Ephese":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/ephese.png").toExternalForm()));
+                break;
+            case "Babylone":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/babylone.png").toExternalForm()));
+                break;
+            case "Rhodes":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/rhodes.png").toExternalForm()));
+                break;
+            case "Halicarnasse":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/halicarnas.png").toExternalForm()));
+                break;
+            case "Olympie":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/olympie.png").toExternalForm()));
+                break;
+            case "Gizeh":
+                image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/gizeh.png").toExternalForm()));
+                break;
+        }
     }
 
     private void updateBox(String oldValue, String newValue)

@@ -38,7 +38,7 @@
             <Font name="Helenium W01 Bold" size="39.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box3" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text1" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -53,9 +53,14 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image1" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/alexandrie.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box2" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -70,9 +75,14 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image3" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/babylone.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box1" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -87,6 +97,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image2" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/ephese.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box4" layoutX="386.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -104,6 +119,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image4" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/rhodes.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box5" layoutX="694.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -121,6 +141,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image5" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/halicarnas.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box6" layoutX="76.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -138,6 +163,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image6" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/olympie.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box7" layoutX="1004.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -155,6 +185,11 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ChoiceBox>
+            <ImageView fx:id="image6" fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/wonders/gizeh.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">

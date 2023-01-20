@@ -101,7 +101,7 @@ public class WelcomeMenu {
     @FXML
     protected void onBeginButton() throws IOException
     {
-        StageLoader.loadFXMLScene("test");
+        StageLoader.loadFXMLScene("/scenes/choiceMenu.fxml");
     }
     @FXML
     protected void onLeaveButton()
