@@ -23,6 +23,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class GameMenu {
@@ -44,9 +46,11 @@ public class GameMenu {
     private AnchorPane box1,box2,box3,box4,box5,box6,box7;
     @FXML
     private ChoiceBox menu1,menu2,menu3,menu4,menu5,menu6,menu7;
+
+    private ArrayList<ChoiceBox> menuArray = new ArrayList<>();
     private float coeff_button = 10;
     private int button_font_size = 13;
-    private ObservableList<String> list = FXCollections.observableArrayList("Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh","None");
+    private ObservableList<String> wondersList = FXCollections.observableArrayList("Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh","None");
     public GameMenu() throws LineUnavailableException {
     }
     public void initialize() throws IOException, UnsupportedAudioFileException, LineUnavailableException
@@ -66,23 +70,23 @@ public class GameMenu {
         text6.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), 12));
         text7.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), 12));
 
-        menu1.setItems(list);
-        menu2.setItems(list);
-        menu3.setItems(list);
-        menu4.setItems(list);
-        menu5.setItems(list);
-        menu6.setItems(list);
-        menu7.setItems(list);
+        menu1.setItems(wondersList); menu1.setValue("Alexandrie");
+        menu2.setItems(wondersList); menu2.setValue("Ephese");
+        menu3.setItems(wondersList); menu3.setValue("Babylone");
+        menu4.setItems(wondersList); menu4.setValue("Rhodes");
+        menu5.setItems(wondersList); menu5.setValue("Halicarnasse");
+        menu6.setItems(wondersList); menu6.setValue("Olympie");
+        menu7.setItems(wondersList); menu7.setValue("Gizeh");
 
-        menu1.setValue("Alexandrie");
-        menu2.setValue("Ephese");
-        menu3.setValue("Babylone");
-        menu4.setValue("Rhodes");
-        menu5.setValue("Halicarnasse");
-        menu6.setValue("Olympie");
-        menu7.setValue("Gizeh");
+        menuArray.add(menu1);
+        menuArray.add(menu2);
+        menuArray.add(menu3);
+        menuArray.add(menu4);
+        menuArray.add(menu5);
+        menuArray.add(menu6);
+        menuArray.add(menu7);
 
-        box3.setVisible(false);
+        box1.setVisible(false);
         box4.setVisible(false);
         box5.setVisible(false);
         box6.setVisible(false);
@@ -191,7 +195,6 @@ public class GameMenu {
 
     private void updateImage(ImageView image, String wonder)
     {
-        // "Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh"
         switch(wonder)
         {
             case "Alexandrie":
@@ -220,30 +223,69 @@ public class GameMenu {
 
     private void updateBox(String oldValue, String newValue)
     {
-        list.remove(newValue);
+        wondersList.remove(newValue);
         if(oldValue != null)
-            list.add(oldValue);
+            wondersList.add(oldValue);
     }
 
     private void onSliderMoved()
     {
         int value = (int) slider.getValue();
+        box1.setVisible(false);
+        box2.setVisible(false);
         box3.setVisible(false);
         box4.setVisible(false);
         box5.setVisible(false);
         box6.setVisible(false);
         box7.setVisible(false);
 
-        if(value>2)
-            box3.setVisible(true);
-        if(value>3)
-            box4.setVisible(true);
-        if(value>4)
-            box5.setVisible(true);
-        if(value>5)
-            box6.setVisible(true);
-        if(value>6)
-            box7.setVisible(true);
+        switch(value)
+        {
+            case 2:
+                box2.setVisible(true);
+                box3.setVisible(true);
+            break;
+
+            case 3:
+                box1.setVisible(true);
+                box4.setVisible(true);
+                box5.setVisible(true);
+            break;
+
+            case 4:
+                box2.setVisible(true);
+                box3.setVisible(true);
+                box4.setVisible(true);
+                box5.setVisible(true);
+            break;
+
+            case 5:
+                box1.setVisible(true);
+                box2.setVisible(true);
+                box3.setVisible(true);
+                box4.setVisible(true);
+                box5.setVisible(true);
+            break;
+
+            case 6:
+                box2.setVisible(true);
+                box3.setVisible(true);
+                box4.setVisible(true);
+                box5.setVisible(true);
+                box6.setVisible(true);
+                box7.setVisible(true);
+            break;
+
+            case 7:
+                box1.setVisible(true);
+                box2.setVisible(true);
+                box3.setVisible(true);
+                box4.setVisible(true);
+                box5.setVisible(true);
+                box6.setVisible(true);
+                box7.setVisible(true);
+            break;
+        }
     }
 
     @FXML

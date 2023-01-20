@@ -38,7 +38,7 @@
             <Font name="Helenium W01 Bold" size="39.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="box3" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text1" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -60,7 +60,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box2" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -82,7 +82,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box1" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
