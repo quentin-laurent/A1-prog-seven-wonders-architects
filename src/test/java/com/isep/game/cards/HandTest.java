@@ -401,4 +401,48 @@ class HandTest
 
         assertThrows(RuntimeException.class, () -> hand2.getCardsRequiredToBuildStage(stage4));
     }
+
+    @Test
+    void getNumberOfShieldsShouldReturnTheNumberOfShields()
+    {
+        Hand hand1 = new Hand();
+        hand1.addCard(new RedCard(0));
+        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(2));
+
+        assertEquals(4, hand1.getNumberOfShields());
+
+        Hand hand2 = new Hand();
+
+        assertEquals(0, hand2.getNumberOfShields());
+    }
+
+    @Test
+    void discardRedCardsWithHornsShouldRemoveRedCardsWithHornsFromHand()
+    {
+        final Hand hand1 = new Hand();
+        hand1.addCard(new RedCard(0));
+        hand1.addCard(new RedCard(0));
+        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(2));
+
+        HashMap<Card, Integer> expectedCards = new HashMap<>();
+        expectedCards.put(new RedCard(0), 2);
+
+        hand1.discardRedCardsWithHorns();
+        assertEquals(expectedCards, hand1.getCards());
+
+        final Hand hand2 = new Hand();
+        hand2.addCard(new RedCard(0));
+        hand2.addCard(new RedCard(0));
+        hand2.addCard(new RedCard(0));
+
+        expectedCards.clear();
+        expectedCards.put(new RedCard(0), 3);
+
+        hand2.discardRedCardsWithHorns();
+        assertEquals(expectedCards, hand2.getCards());
+    }
 }
