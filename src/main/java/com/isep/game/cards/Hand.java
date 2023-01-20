@@ -125,13 +125,28 @@ public class Hand
         {
             int requiredResourcesAmount = stage.getRequiredResourcesAmount();
             boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+            int maxAmountOfEqualResources = 0;
+            int yellowCardAmount = 0;
 
             if (resourcesNeedToBeEqual)
             {
                 for (var entry : this.cards.entrySet())
                 {
                     if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                    {
                         stagesReadyToBuild.add(stage);
+                        continue;
+                    }
+                    else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                        maxAmountOfEqualResources = entry.getValue();
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
+
+                    if(maxAmountOfEqualResources + yellowCardAmount >= requiredResourcesAmount)
+                    {
+                        if(!stagesReadyToBuild.contains(stage))
+                            stagesReadyToBuild.add(stage);
+                    }
                 }
             }
             else
@@ -141,9 +156,14 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard)
                         differentResourcesAvailable++;
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                if(differentResourcesAvailable >= requiredResourcesAmount)
-                    stagesReadyToBuild.add(stage);
+                if((differentResourcesAvailable + yellowCardAmount) >= requiredResourcesAmount)
+                {
+                    if(!stagesReadyToBuild.contains(stage))
+                        stagesReadyToBuild.add(stage);
+                }
             }
         }
         return stagesReadyToBuild;
