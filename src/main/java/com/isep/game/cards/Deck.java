@@ -31,13 +31,24 @@ public class Deck
 
     // Methods
     /**
-     * Adds a new {@link Card} to this {@link Deck}.
+     * Adds a single {@link Card} to this {@link Deck}.
      * @param card The {@link Card} to add.
      * @author Quentin LAURENT
      */
     public void addCard(Card card)
     {
         this.cards.add(card);
+    }
+
+    /**
+     * Adds one or more identical {@link Card}(s) to this {@link Deck}.
+     * @param card The {@link Card}(s) to add.
+     * @author Quentin LAURENT
+     */
+    public void addCard(Card card, int quantity)
+    {
+        for(int i = 0; i < quantity; i++)
+            this.cards.add(card);
     }
 
     public void shuffle()
