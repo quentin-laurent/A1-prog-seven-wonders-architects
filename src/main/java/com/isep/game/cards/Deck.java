@@ -47,6 +47,9 @@ public class Deck
      */
     public void addCard(Card card, int quantity)
     {
+        if(quantity < 1)
+            throw new RuntimeException("Quantity to add cannot be less than 1 !");
+
         for(int i = 0; i < quantity; i++)
             this.cards.add(card);
     }
