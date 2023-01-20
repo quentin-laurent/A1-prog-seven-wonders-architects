@@ -180,16 +180,49 @@ public class Hand
         HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
         int requiredResourcesAmount = stage.getRequiredResourcesAmount();
         boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+        int maxAmountOfEqualResources = 0;
+        int yellowCardAmount = 0;
 
         if (resourcesNeedToBeEqual)
         {
+            HashMap<Card, Integer> equalResources = new HashMap<Card, Integer>();
+
             for (var entry : this.cards.entrySet())
             {
+                // Is true if the entry directly contains the required identical resources
                 if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                {
                     requiredCards.put(entry.getKey(), requiredResourcesAmount);
+                    return requiredCards;
+                }
+                // Gets the maximum amount of identical resources
+                else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                    maxAmountOfEqualResources = entry.getValue();
+                else if(entry.getKey() instanceof YellowCard)
+                    yellowCardAmount = entry.getValue();
             }
-            if(requiredCards.isEmpty())
-                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+
+            // We iterate a second time over the Hand to get the GreyCard with the highest amount of resources
+            // i.e. if a Stage requires three identical resources, and the the Hand only contains 2 identical resources at best,
+            // this will get the GreyCard corresponding to these two resources.
+            // This method will then try to complete the missing amount with Yellow cards.
+            for(var entry: this.cards.entrySet())
+            {
+                if(entry.getKey() instanceof GreyCard && entry.getValue() == maxAmountOfEqualResources)
+                    equalResources.put(entry.getKey(), entry.getValue());
+                else if(entry.getKey() instanceof YellowCard && (entry.getValue() + maxAmountOfEqualResources) >= requiredResourcesAmount)
+                    equalResources.put(entry.getKey(), requiredResourcesAmount - maxAmountOfEqualResources);
+            }
+
+            // Checking if the equalResources HashMap contains a combination of Grey and Yellow cards allowing to build the Stage
+            int equalResourcesSum = 0;
+            for(var entry: equalResources.entrySet())
+                equalResourcesSum += entry.getValue();
+
+            if(equalResourcesSum == requiredResourcesAmount)
+                requiredCards.putAll(equalResources);
+            else
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         else
         {
@@ -197,16 +230,25 @@ public class Hand
             int differentResourcesAvailable = 0;
             for (var entry : this.cards.entrySet())
             {
-                if (entry.getKey() instanceof GreyCard)
-                {
+                if(entry.getKey() instanceof GreyCard)
                     differentResources.put(entry.getKey(), 1);
-                    differentResourcesAvailable++;
-                }
+
+                if(entry.getKey() instanceof YellowCard)
+                    differentResources.put(entry.getKey(), entry.getValue());
+
+                differentResourcesAvailable++;
             }
-            if(differentResourcesAvailable >= requiredResourcesAmount)
-                requiredCards.putAll(differentResources);
-            else
-                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+
+            int differentResourcesSum = 0;
+            for(var entry: differentResources.entrySet())
+            {
+                differentResourcesSum += entry.getValue();
+                if(differentResourcesSum <= requiredResourcesAmount)
+                    requiredCards.put(entry.getKey(), entry.getValue());
+            }
+
+            if(differentResourcesSum < requiredResourcesAmount)
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         return requiredCards;
     }
