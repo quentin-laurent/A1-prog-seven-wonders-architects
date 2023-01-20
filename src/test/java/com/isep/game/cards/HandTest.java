@@ -54,8 +54,7 @@ class HandTest
     {
         Hand hand = new Hand();
         Card card = new GreyCard(GreyCard.Material.WOOD);
-        hand.addCard(card);
-        hand.addCard(card);
+        hand.addCard(card, 2);
 
         assertEquals(2, (int) hand.getCards().get(card));
     }
@@ -65,8 +64,7 @@ class HandTest
     {
         Hand hand = new Hand();
         Card card = new GreyCard(GreyCard.Material.WOOD);
-        hand.addCard(card);
-        hand.addCard(card);
+        hand.addCard(card, 2);
         hand.removeCard(card);
 
         assertEquals(1, hand.getCards().get(card));
@@ -170,8 +168,7 @@ class HandTest
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.GLASS));
-        hand.addCard(new GreyCard(GreyCard.Material.GLASS));
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
 
         stages.clear();
         stages.add(stage4);
@@ -183,8 +180,7 @@ class HandTest
     {
         Hand hand = new Hand();
         hand.addCard(new YellowCard());
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new RedCard(0));
         hand.addCard(new BlueCard(3, false));
         hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
@@ -212,9 +208,7 @@ class HandTest
         // This hand can build Stage 4 of Babylon (but not Stage 5, which is at the same level (4) )
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand.addCard(new RedCard(0));
 
         ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
@@ -234,9 +228,7 @@ class HandTest
         // This hand can build Stages 4 and 5 of Babylon
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand.addCard(new GreyCard(GreyCard.Material.BRICK));
         hand.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
@@ -260,8 +252,7 @@ class HandTest
         // This hand can build Stage 4 of Babylon (but not Stage 5, which is at the same level (4) )
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new YellowCard());
         hand.addCard(new RedCard(0));
 
@@ -282,9 +273,7 @@ class HandTest
         // This hand can build Stages 4 and 5 of Babylon
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new YellowCard());
-        hand.addCard(new YellowCard());
-        hand.addCard(new YellowCard());
+        hand.addCard(new YellowCard(), 3);
         hand.addCard(new GreyCard(GreyCard.Material.BRICK));
         hand.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
@@ -305,9 +294,7 @@ class HandTest
 
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
         hand.addCard(new RedCard(0));
 
@@ -322,11 +309,9 @@ class HandTest
 
         hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new RedCard(0));
 
         cardsRequired.clear();
@@ -343,9 +328,7 @@ class HandTest
 
         Hand hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand.addCard(new YellowCard());
         hand.addCard(new RedCard(0));
 
@@ -360,8 +343,7 @@ class HandTest
 
         hand = new Hand();
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
         hand.addCard(new YellowCard());
         hand.addCard(new RedCard(0));
@@ -381,9 +363,7 @@ class HandTest
 
         final Hand hand1 = new Hand();
         hand1.addCard(new BlueCard(3, false));
-        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand1.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand1.addCard(new RedCard(0));
 
         assertThrows(RuntimeException.class, () -> hand1.getCardsRequiredToBuildStage(stage1));
@@ -393,8 +373,7 @@ class HandTest
 
         final Hand hand2 = new Hand();
         hand2.addCard(new BlueCard(3, false));
-        hand2.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand2.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand2.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand2.addCard(new GreyCard(GreyCard.Material.STONE));
         hand2.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand2.addCard(new RedCard(0));
@@ -407,8 +386,7 @@ class HandTest
     {
         Hand hand1 = new Hand();
         hand1.addCard(new RedCard(0));
-        hand1.addCard(new RedCard(1));
-        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(1), 2);
         hand1.addCard(new RedCard(2));
 
         assertEquals(4, hand1.getNumberOfShields());
@@ -422,10 +400,8 @@ class HandTest
     void discardRedCardsWithHornsShouldRemoveRedCardsWithHornsFromHand()
     {
         final Hand hand1 = new Hand();
-        hand1.addCard(new RedCard(0));
-        hand1.addCard(new RedCard(0));
-        hand1.addCard(new RedCard(1));
-        hand1.addCard(new RedCard(1));
+        hand1.addCard(new RedCard(0), 2);
+        hand1.addCard(new RedCard(1), 2);
         hand1.addCard(new RedCard(2));
 
         HashMap<Card, Integer> expectedCards = new HashMap<>();
@@ -435,9 +411,7 @@ class HandTest
         assertEquals(expectedCards, hand1.getCards());
 
         final Hand hand2 = new Hand();
-        hand2.addCard(new RedCard(0));
-        hand2.addCard(new RedCard(0));
-        hand2.addCard(new RedCard(0));
+        hand2.addCard(new RedCard(0), 3);
 
         expectedCards.clear();
         expectedCards.put(new RedCard(0), 3);

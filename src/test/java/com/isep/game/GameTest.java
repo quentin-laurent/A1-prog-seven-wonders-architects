@@ -25,8 +25,7 @@ class GameTest
         Hand hand = player.getHand();
 
         hand.addCard(new BlueCard(3, false));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
         hand.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand.addCard(new RedCard(0));
 
