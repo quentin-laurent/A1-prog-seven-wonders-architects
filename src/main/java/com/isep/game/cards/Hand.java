@@ -286,6 +286,31 @@ public class Hand
         return (uniqueGreenCardsAmount >= 3);
     }
 
+    /**
+     * Returns the number of shields ({@link RedCard}s) of this {@link Hand}.
+     * @return The number of shields contained in this {@link Hand}.
+     */
+    public int getNumberOfShields()
+    {
+        int numberOfShields = 0;
+
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof RedCard)
+                numberOfShields += entry.getValue();
+        }
+
+        return numberOfShields;
+    }
+
+    /**
+     * Discards all the {@link RedCard}s of this {@link Hand} with 1 or more horns.
+     */
+    public void discardRedCardsWithHorns()
+    {
+        this.cards.entrySet().removeIf(entry -> entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0);
+    }
+
     @Override
     public String toString()
     {

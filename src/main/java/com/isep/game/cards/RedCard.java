@@ -15,6 +15,12 @@ public class RedCard extends Card
         this.horns = horns;
     }
 
+    // Getters & Setters
+    public int getHorns()
+    {
+        return this.horns;
+    }
+
     // Methods
     @Override
     public String toString()

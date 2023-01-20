@@ -109,6 +109,13 @@ public class Game
                     if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
                         player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
                 }
+                else if(pickedCard instanceof RedCard)
+                {
+                    this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
+                    // TODO: battle should be started at the end of the Player's turn
+                    if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
+                        this.resolveBattle();
+                }
             }
         }
     }
@@ -163,6 +170,49 @@ public class Game
 
             this.players.add(new Player(playerName, playerBirthday, wonder));
         }
+    }
+
+    /**
+     * Starts a battle as described in the game's rules.
+     * <p> Each player compares his amount of {@link RedCard}s with both neighbors. The one with the most shields (red cards)
+     * wins the battle and earns 1 military victory token (1 victory point) per beaten neighbor. All {@link RedCard} with 1 or 2
+     * horns must be discarded at the end of the battle.
+     */
+    private void resolveBattle()
+    {
+        int leftPlayerIndex;
+        int rightPlayerIndex;
+        Player leftPlayer;
+        Player player;
+        Player rightPlayer;
+
+        for(int i = 0; i < this.players.size(); i++)
+        {
+            leftPlayerIndex = i - 1;
+            rightPlayerIndex = i + 1;
+
+            if (leftPlayerIndex < 0)
+                leftPlayerIndex = this.players.size() - 1;
+            if(rightPlayerIndex >= this.players.size())
+                rightPlayerIndex = 0;
+
+            leftPlayer = this.players.get(leftPlayerIndex);
+            player = this.players.get(i);
+            rightPlayer = this.players.get(rightPlayerIndex);
+
+            // If a draw occurs, no points are awarded.
+            if(player.getHand().getNumberOfShields() > leftPlayer.getHand().getNumberOfShields())
+                player.addVictoryPoints(1);
+            if(player.getHand().getNumberOfShields() > rightPlayer.getHand().getNumberOfShields())
+                player.addVictoryPoints(1);
+
+            this.conflictTokensBattleSide = 0;
+        }
+
+        // Discarding all Red cards with 1 or more horns
+        // TODO: add cards to the Game's discard
+        for(Player p: this.players)
+            p.getHand().discardRedCardsWithHorns();
     }
 
     //TODO: to delete if not needed
