@@ -80,6 +80,8 @@ public class Hand
         {
             int requiredResourcesAmount = stage.getRequiredResourcesAmount();
             boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+            int maxAmountOfEqualResources = 0;
+            int yellowCardAmount = 0;
 
             if (resourcesNeedToBeEqual)
             {
@@ -87,8 +89,12 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
                         return true;
+                    else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                        maxAmountOfEqualResources = entry.getValue();
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                return false;
+                return (maxAmountOfEqualResources + yellowCardAmount) >= requiredResourcesAmount;
             }
             else
             {
@@ -97,8 +103,10 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard)
                         differentResourcesAvailable++;
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                return differentResourcesAvailable >= requiredResourcesAmount;
+                return (differentResourcesAvailable + yellowCardAmount) >= requiredResourcesAmount;
             }
         }
         return false;
