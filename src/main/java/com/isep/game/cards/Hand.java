@@ -39,7 +39,7 @@ public class Hand
     }
 
     /**
-     * Adds a new {@link Card} to this {@link Hand}.
+     * Adds a single {@link Card} to this {@link Hand}.
      * @param card The {@link Card} to add.
      * @author Quentin LAURENT
      */
@@ -49,6 +49,22 @@ public class Hand
             this.cards.put(card, this.cards.get(card) + 1);
         else
             this.cards.put(card, 1);
+    }
+
+    /**
+     * Adds a one or more identical {@link Card}(s) to this {@link Hand}.
+     * @param card The {@link Card}(s) to add.
+     * @author Quentin LAURENT
+     */
+    public void addCard(Card card, int quantity)
+    {
+        if(quantity < 1)
+            throw new RuntimeException("Quantity to add cannot be less than 1 !");
+
+        if(this.cards.containsKey(card))
+            this.cards.put(card, this.cards.get(card) + quantity);
+        else
+            this.cards.put(card, quantity);
     }
 
     /**
