@@ -106,9 +106,10 @@ public class Game
                         this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
                     }
 
-                    // Checking player's bonuses
+                    // Parsing actions depending on the color of the picked card
                     if(pickedCard instanceof GreyCard)
                     {
+                        // Bonuses granted by progress tokens
                         // TODO: display message to player indicating why they got to pick another card
                         if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.WOOD || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.BRICK)
                             pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM);
@@ -119,9 +120,9 @@ public class Game
                     }
                     if(pickedCard instanceof YellowCard)
                     {
+                        // Bonuses granted by progress tokens
                         pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY);
                     }
-
                     if(pickedCard instanceof BlueCard)
                     {
                         if(((BlueCard) pickedCard).getCat())
@@ -134,6 +135,9 @@ public class Game
                     }
                     else if(pickedCard instanceof GreenCard)
                     {
+                        // Bonuses granted by progress tokens
+                        pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.SCIENCE);
+
                         if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
                             player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
                     }
