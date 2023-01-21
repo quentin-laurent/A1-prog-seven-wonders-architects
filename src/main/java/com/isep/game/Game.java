@@ -114,6 +114,12 @@ public class Game
                             pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM);
                         if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.PAPYRUS || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.GLASS)
                             pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.CRAFTS);
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.STONE)
+                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY);
+                    }
+                    if(pickedCard instanceof YellowCard)
+                    {
+                        pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY);
                     }
 
                     if(pickedCard instanceof BlueCard)
