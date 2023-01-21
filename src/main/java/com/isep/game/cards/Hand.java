@@ -428,7 +428,10 @@ public class Hand
             }
         }
 
-        throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
+        if(resourcesRequired > 0)
+            throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
+
+        return requiredCards;
     }
 
     /**
