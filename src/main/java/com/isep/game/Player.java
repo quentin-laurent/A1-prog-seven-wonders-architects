@@ -3,6 +3,7 @@ package com.isep.game;
 import com.isep.game.cards.Deck;
 import com.isep.game.cards.Hand;
 import com.isep.game.tokens.ProgressToken;
+import com.isep.game.tokens.ProgressToken.Effect;
 import com.isep.game.wonders.Wonder;
 
 import java.time.LocalDate;
@@ -98,6 +99,22 @@ public class Player implements Comparable<Player>
     public void addProgressToken(ProgressToken token)
     {
         this.progressTokens.add(token);
+    }
+
+    /**
+     * Returns true if this {@link Player} has a {@link ProgressToken} with the provided {@link Effect}.
+     * @param effect The {@link Effect} to check for.
+     * @return True if this {@link Player} has the provided {@link Effect}.
+     */
+    public boolean hasProgressTokenEffect(ProgressToken.Effect effect)
+    {
+        for(ProgressToken token: this.progressTokens)
+        {
+            if(token.getEffect() == effect)
+                return true;
+        }
+
+        return false;
     }
 
     @Override

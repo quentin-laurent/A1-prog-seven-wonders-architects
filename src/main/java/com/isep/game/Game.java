@@ -29,7 +29,7 @@ public class Game
      */
     private Deck discard;
     /**
-     * The {@link ProgressTokenStack} in which every {@link Player} can pick a {@link ProgressToken} when possible..
+     * The {@link ProgressTokenStack} in which every {@link Player} can pick a {@link ProgressToken} when possible.
      */
     private ProgressTokenStack progressTokenStack;
     /**
@@ -65,6 +65,7 @@ public class Game
         return this.discard;
     }
 
+    // Methods
     /**
      * Starts the {@link Game} and stops automatically when a {@link Player}'s {@link Wonder} has been entirely constructed.
      * @throws ExecutionControl.NotImplementedException
@@ -80,47 +81,63 @@ public class Game
             {
                 this.outputManager.displayPlayerTurn(player);
 
-                // Pick a card from one of the three available decks
-                // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
-                int nextPlayerIndex = this.players.indexOf(player) + 1;
-                if(nextPlayerIndex >= this.players.size())
-                    nextPlayerIndex = 0;
-                Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
-                player.getHand().addCard(pickedCard);
-
-                this.outputManager.displayPlayerHand(player);
-
-                // Checks if the player can build a Stage of its Wonder
-                // If possible, it builds the first available Stage that can be built
-                if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild()))
+                boolean pickAgain = true;
+                while(pickAgain)
                 {
-                    List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
-                    // TODO: add the ability to let the Player chose the Stage to build if multiple are available
-                    player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard);
-                    this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
-                }
+                    pickAgain = false;
 
-                if(pickedCard instanceof BlueCard)
-                {
-                    if(((BlueCard) pickedCard).getCat())
+                    // Pick a card from one of the three available decks
+                    // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
+                    int nextPlayerIndex = this.players.indexOf(player) + 1;
+                    if(nextPlayerIndex >= this.players.size())
+                        nextPlayerIndex = 0;
+                    Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
+                    player.getHand().addCard(pickedCard);
+
+                    this.outputManager.displayPlayerHand(player);
+
+                    // Checks if the player can build a Stage of its Wonder
+                    // If possible, it builds the first available Stage that can be built
+                    if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild()))
                     {
-                        for(Player p: this.players)
-                            p.setHasCat(false);
-                        player.setHasCat(true);
-                        player.addVictoryPoints(((BlueCard) pickedCard).getVictoryPoints());
+                        List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
+                        // TODO: add the ability to let the Player chose the Stage to build if multiple are available
+                        player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard);
+                        this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
                     }
-                }
-                else if(pickedCard instanceof GreenCard)
-                {
-                    if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
-                        player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
-                }
-                else if(pickedCard instanceof RedCard)
-                {
-                    this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
-                    // TODO: battle should be started at the end of the Player's turn
-                    if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
-                        this.resolveBattle();
+
+                    // Checking player's bonuses
+                    if(pickedCard instanceof GreyCard)
+                    {
+                        // TODO: display message to player indicating why they got to pick another card
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.WOOD || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.BRICK)
+                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM);
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.PAPYRUS || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.GLASS)
+                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.CRAFTS);
+                    }
+
+                    if(pickedCard instanceof BlueCard)
+                    {
+                        if(((BlueCard) pickedCard).getCat())
+                        {
+                            for(Player p: this.players)
+                                p.setHasCat(false);
+                            player.setHasCat(true);
+                            player.addVictoryPoints(((BlueCard) pickedCard).getVictoryPoints());
+                        }
+                    }
+                    else if(pickedCard instanceof GreenCard)
+                    {
+                        if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
+                            player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
+                    }
+                    else if(pickedCard instanceof RedCard)
+                    {
+                        this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
+                        // TODO: battle should be started at the end of the Player's turn
+                        if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
+                            this.resolveBattle();
+                    }
                 }
             }
         }
