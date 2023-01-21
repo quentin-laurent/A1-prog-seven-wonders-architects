@@ -32,10 +32,10 @@ class GameTest
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(alexandria.getStages().get(0));
 
-        assertTrue(player.getHand().canBuildStage(stages));
+        assertTrue(player.getHand().canBuildStage(stages, false));
 
         // Checking if the Stage has been built
-        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck());
+        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false);
 
         assertTrue(alexandria.getStages().get(0).isConstructed());
 
@@ -66,10 +66,10 @@ class GameTest
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(alexandria.getStages().get(0));
 
-        assertTrue(player.getHand().canBuildStage(stages));
+        assertTrue(player.getHand().canBuildStage(stages, false));
 
         // Checking if the Stage has been built
-        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck());
+        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false);
 
         assertTrue(alexandria.getStages().get(0).isConstructed());
 

@@ -106,7 +106,7 @@ class HandTest
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(stage1);
-        assertTrue(hand.canBuildStage(stages));
+        assertTrue(hand.canBuildStage(stages, false));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -119,7 +119,7 @@ class HandTest
 
         stages.clear();
         stages.add(stage4);
-        assertTrue(hand.canBuildStage(stages));
+        assertTrue(hand.canBuildStage(stages, false));
     }
 
     @Test
@@ -135,7 +135,7 @@ class HandTest
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(stage1);
-        assertTrue(hand.canBuildStage(stages));
+        assertTrue(hand.canBuildStage(stages, false));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -148,7 +148,7 @@ class HandTest
 
         stages.clear();
         stages.add(stage4);
-        assertTrue(hand.canBuildStage(stages));
+        assertTrue(hand.canBuildStage(stages, false));
     }
 
     @Test
@@ -163,7 +163,7 @@ class HandTest
 
         ArrayList<Stage> stages = new ArrayList<>();
         stages.add(stage1);
-        assertFalse(hand.canBuildStage(stages));
+        assertFalse(hand.canBuildStage(stages, false));
 
         // Stage 4 of Alexandria requires 3 identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -175,7 +175,7 @@ class HandTest
 
         stages.clear();
         stages.add(stage4);
-        assertFalse(hand.canBuildStage(stages));
+        assertFalse(hand.canBuildStage(stages, false));
     }
 
     @Test
@@ -217,7 +217,7 @@ class HandTest
         ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
         stagesReadyToBuild.add(babylon.getStages().get(3));
 
-        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild(), false));
     }
 
     @Test
@@ -241,7 +241,7 @@ class HandTest
         stagesReadyToBuild.add(babylon.getStages().get(3));
         stagesReadyToBuild.add(babylon.getStages().get(4));
 
-        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild(), false));
     }
 
     @Test
@@ -262,7 +262,7 @@ class HandTest
         ArrayList<Stage> stagesReadyToBuild = new ArrayList<Stage>();
         stagesReadyToBuild.add(babylon.getStages().get(3));
 
-        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild(), false));
     }
 
     @Test
@@ -286,7 +286,7 @@ class HandTest
         stagesReadyToBuild.add(babylon.getStages().get(3));
         stagesReadyToBuild.add(babylon.getStages().get(4));
 
-        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild()));
+        assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild(), false));
     }
 
     @Test
@@ -305,7 +305,7 @@ class HandTest
         cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 1);
         cardsRequired.put(new GreyCard(GreyCard.Material.STONE), 1);
 
-        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage1));
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage1, false));
 
         // Stage 4 of Alexandria requires three identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -320,7 +320,7 @@ class HandTest
         cardsRequired.clear();
         cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 3);
 
-        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage4));
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage4, false));
     }
 
     @Test
@@ -339,7 +339,7 @@ class HandTest
         cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 1);
         cardsRequired.put(new YellowCard(), 1);
 
-        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage1));
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage1, false));
 
         // Stage 4 of Alexandria requires three identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -355,7 +355,7 @@ class HandTest
         cardsRequired.put(new GreyCard(GreyCard.Material.WOOD), 2);
         cardsRequired.put(new YellowCard(), 1);
 
-        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage4));
+        assertEquals(cardsRequired, hand.getCardsRequiredToBuildStage(stage4, false));
     }
 
     @Test
@@ -369,7 +369,7 @@ class HandTest
         hand1.addCard(new GreyCard(GreyCard.Material.WOOD), 3);
         hand1.addCard(new RedCard(0));
 
-        assertThrows(RuntimeException.class, () -> hand1.getCardsRequiredToBuildStage(stage1));
+        assertThrows(RuntimeException.class, () -> hand1.getCardsRequiredToBuildStage(stage1, false));
 
         // Stage 4 of Alexandria requires three identical resources
         Stage stage4 = new Alexandria().getStages().get(3);
@@ -381,7 +381,7 @@ class HandTest
         hand2.addCard(new GreyCard(GreyCard.Material.GLASS));
         hand2.addCard(new RedCard(0));
 
-        assertThrows(RuntimeException.class, () -> hand2.getCardsRequiredToBuildStage(stage4));
+        assertThrows(RuntimeException.class, () -> hand2.getCardsRequiredToBuildStage(stage4, false));
     }
 
     @Test

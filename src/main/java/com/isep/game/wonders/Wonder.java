@@ -1,9 +1,11 @@
 package com.isep.game.wonders;
 
+import com.isep.game.Player;
 import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
 import com.isep.game.Game;
 import com.isep.game.cards.Hand;
+import com.isep.game.tokens.ProgressToken;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,11 +79,12 @@ public abstract class Wonder
      * @param stage The {@link Stage} to build.
      * @param hand The {@link Hand} to use the {@link Card}s from.
      * @param discard The {@link Game}'s discard.
+     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @author Quentin LAURENT
      */
-    public void buildStage(Stage stage, Hand hand, Deck discard)
+    public void buildStage(Stage stage, Hand hand, Deck discard, boolean economyEffect)
     {
-        Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage);
+        Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage, economyEffect);
 
         // Removing the Cards from the provided Hand
         for(var entry: cardsRequired.entrySet())
