@@ -230,38 +230,24 @@ public class Game
     private void buildDeck()
     {
         // Yellow cards
-        for(int i = 1 ; i <= 6; i++)
-            this.centralDeck.addCard(new YellowCard());
+        this.centralDeck.addCard(new YellowCard(), 6);
         // Grey cards
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreyCard(GreyCard.Material.STONE));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreyCard(GreyCard.Material.BRICK));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreyCard(GreyCard.Material.WOOD));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreyCard(GreyCard.Material.GLASS));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
+        this.centralDeck.addCard(new GreyCard(GreyCard.Material.STONE), 4);
+        this.centralDeck.addCard(new GreyCard(GreyCard.Material.BRICK), 4);
+        this.centralDeck.addCard(new GreyCard(GreyCard.Material.WOOD), 4);
+        this.centralDeck.addCard(new GreyCard(GreyCard.Material.GLASS), 4);
+        this.centralDeck.addCard(new GreyCard(GreyCard.Material.PAPYRUS), 4);
         // Green cards
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR), 4);
+        this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS),4 );
+        this.centralDeck.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET), 4);
         // Blue cards
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new BlueCard(3, false));
-        for(int i = 1 ; i <= 8; i++)
-            this.centralDeck.addCard(new BlueCard(2, true));
+        this.centralDeck.addCard(new BlueCard(3, false),4 );
+        this.centralDeck.addCard(new BlueCard(2, true), 8);
         // Red cards
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new RedCard(0));
-        for(int i = 1 ; i <= 2; i++)
-            this.centralDeck.addCard(new RedCard(1));
-        for(int i = 1 ; i <= 4; i++)
-            this.centralDeck.addCard(new RedCard(2));
+        this.centralDeck.addCard(new RedCard(0), 4);
+        this.centralDeck.addCard(new RedCard(1), 4);
+        this.centralDeck.addCard(new RedCard(2), 2);
     }
 
     /**
