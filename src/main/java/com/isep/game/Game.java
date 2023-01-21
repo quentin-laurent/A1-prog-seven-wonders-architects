@@ -81,10 +81,10 @@ public class Game
             {
                 this.outputManager.displayPlayerTurn(player);
 
-                boolean pickAgain = true;
-                while(pickAgain)
+                int cardsToPick = 1;
+                while(cardsToPick > 0)
                 {
-                    pickAgain = false;
+                    cardsToPick--;
 
                     // Pick a card from one of the three available decks
                     // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
@@ -112,16 +112,26 @@ public class Game
                         // Bonuses granted by progress tokens
                         // TODO: display message to player indicating why they got to pick another card
                         if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.WOOD || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.BRICK)
-                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM);
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM))
+                                cardsToPick++;
+                        }
                         if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.PAPYRUS || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.GLASS)
-                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.CRAFTS);
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.CRAFTS))
+                                cardsToPick++;
+                        }
                         if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.STONE)
-                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY);
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY))
+                                cardsToPick++;
+                        }
                     }
                     if(pickedCard instanceof YellowCard)
                     {
                         // Bonuses granted by progress tokens
-                        pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY);
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY))
+                            cardsToPick++;
                     }
                     if(pickedCard instanceof BlueCard)
                     {
@@ -136,7 +146,8 @@ public class Game
                     else if(pickedCard instanceof GreenCard)
                     {
                         // Bonuses granted by progress tokens
-                        pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.SCIENCE);
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.SCIENCE))
+                            cardsToPick++;
 
                         if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
                             player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
@@ -145,7 +156,10 @@ public class Game
                     {
                         // Bonuses granted by progress tokens
                         if(((RedCard) pickedCard).getHorns() > 0)
-                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.PROPAGANDA);
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.PROPAGANDA))
+                                cardsToPick++;
+                        }
 
                         this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
                         // TODO: battle should be started at the end of the Player's turn
