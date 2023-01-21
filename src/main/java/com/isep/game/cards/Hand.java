@@ -276,8 +276,10 @@ public class Hand
      * @param stage The {@link Stage} to build.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return A {@link Map} containing the {@link Card}s required.
+     * @deprecated Needs rewriting.
      * @author Quentin LAURENT
      */
+    @Deprecated
     public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage, boolean economyEffect)
     {
         float bonus = (economyEffect) ? 2f : 1f;
