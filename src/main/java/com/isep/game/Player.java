@@ -2,10 +2,13 @@ package com.isep.game;
 
 import com.isep.game.cards.Deck;
 import com.isep.game.cards.Hand;
+import com.isep.game.tokens.ProgressToken;
 import com.isep.game.wonders.Wonder;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class representing a player.
@@ -18,6 +21,9 @@ public class Player implements Comparable<Player>
     private Wonder wonder;
     private Deck deck;
     private Hand hand;
+    private List<ProgressToken> progressTokens;
+    private int victoryPoints;
+    private boolean hasCat;
 
     // Constructor
     public Player(String name, LocalDate birthday, Wonder wonder)
@@ -27,6 +33,9 @@ public class Player implements Comparable<Player>
         this.wonder = wonder;
         this.deck = this.wonder.getDeck();
         this.hand = new Hand();
+        this.progressTokens = new ArrayList<ProgressToken>();
+        this.victoryPoints = 0;
+        this.hasCat = false;
     }
 
     // Getters & Setters
@@ -55,7 +64,42 @@ public class Player implements Comparable<Player>
         return this.hand;
     }
 
+    public List<ProgressToken> getProgressTokens()
+    {
+        return this.progressTokens;
+    }
+
+    public boolean hasCat()
+    {
+        return this.hasCat;
+    }
+
+    public void setHasCat(boolean hasCat)
+    {
+        this.hasCat = hasCat;
+    }
+
     // Methods
+    /**
+     * Increments this {@link Player}'s amount of victory points.
+     * @param victoryPoints The amount of victory points to add.
+     * @author Quentin LAURENT
+     */
+    public void addVictoryPoints(int victoryPoints)
+    {
+        this.victoryPoints += victoryPoints;
+    }
+
+    /**
+     * Adds a single {@link ProgressToken} to this {@link Player}'s list of progress tokens.
+     * @param token The {@link ProgressToken} to add.
+     * @author Quentin LAURENT
+     */
+    public void addProgressToken(ProgressToken token)
+    {
+        this.progressTokens.add(token);
+    }
+
     @Override
     public String toString()
     {

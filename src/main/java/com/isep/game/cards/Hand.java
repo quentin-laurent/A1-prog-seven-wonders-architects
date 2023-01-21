@@ -1,7 +1,6 @@
 package com.isep.game.cards;
 
 import com.isep.game.wonders.Stage;
-import com.isep.game.wonders.Wonder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ public class Hand
     }
 
     /**
-     * Adds a new {@link Card} to this {@link Hand}.
+     * Adds a single {@link Card} to this {@link Hand}.
      * @param card The {@link Card} to add.
      * @author Quentin LAURENT
      */
@@ -50,6 +49,22 @@ public class Hand
             this.cards.put(card, this.cards.get(card) + 1);
         else
             this.cards.put(card, 1);
+    }
+
+    /**
+     * Adds a one or more identical {@link Card}(s) to this {@link Hand}.
+     * @param card The {@link Card}(s) to add.
+     * @author Quentin LAURENT
+     */
+    public void addCard(Card card, int quantity)
+    {
+        if(quantity < 1)
+            throw new RuntimeException("Quantity to add cannot be less than 1 !");
+
+        if(this.cards.containsKey(card))
+            this.cards.put(card, this.cards.get(card) + quantity);
+        else
+            this.cards.put(card, quantity);
     }
 
     /**
@@ -81,6 +96,8 @@ public class Hand
         {
             int requiredResourcesAmount = stage.getRequiredResourcesAmount();
             boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+            int maxAmountOfEqualResources = 0;
+            int yellowCardAmount = 0;
 
             if (resourcesNeedToBeEqual)
             {
@@ -88,8 +105,12 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
                         return true;
+                    else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                        maxAmountOfEqualResources = entry.getValue();
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                return false;
+                return (maxAmountOfEqualResources + yellowCardAmount) >= requiredResourcesAmount;
             }
             else
             {
@@ -98,8 +119,10 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard)
                         differentResourcesAvailable++;
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                return differentResourcesAvailable >= requiredResourcesAmount;
+                return (differentResourcesAvailable + yellowCardAmount) >= requiredResourcesAmount;
             }
         }
         return false;
@@ -118,13 +141,28 @@ public class Hand
         {
             int requiredResourcesAmount = stage.getRequiredResourcesAmount();
             boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+            int maxAmountOfEqualResources = 0;
+            int yellowCardAmount = 0;
 
             if (resourcesNeedToBeEqual)
             {
                 for (var entry : this.cards.entrySet())
                 {
                     if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                    {
                         stagesReadyToBuild.add(stage);
+                        continue;
+                    }
+                    else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                        maxAmountOfEqualResources = entry.getValue();
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
+
+                    if(maxAmountOfEqualResources + yellowCardAmount >= requiredResourcesAmount)
+                    {
+                        if(!stagesReadyToBuild.contains(stage))
+                            stagesReadyToBuild.add(stage);
+                    }
                 }
             }
             else
@@ -134,9 +172,14 @@ public class Hand
                 {
                     if (entry.getKey() instanceof GreyCard)
                         differentResourcesAvailable++;
+                    else if(entry.getKey() instanceof YellowCard)
+                        yellowCardAmount = entry.getValue();
                 }
-                if(differentResourcesAvailable >= requiredResourcesAmount)
-                    stagesReadyToBuild.add(stage);
+                if((differentResourcesAvailable + yellowCardAmount) >= requiredResourcesAmount)
+                {
+                    if(!stagesReadyToBuild.contains(stage))
+                        stagesReadyToBuild.add(stage);
+                }
             }
         }
         return stagesReadyToBuild;
@@ -153,16 +196,49 @@ public class Hand
         HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
         int requiredResourcesAmount = stage.getRequiredResourcesAmount();
         boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+        int maxAmountOfEqualResources = 0;
+        int yellowCardAmount = 0;
 
         if (resourcesNeedToBeEqual)
         {
+            HashMap<Card, Integer> equalResources = new HashMap<Card, Integer>();
+
             for (var entry : this.cards.entrySet())
             {
+                // Is true if the entry directly contains the required identical resources
                 if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                {
                     requiredCards.put(entry.getKey(), requiredResourcesAmount);
+                    return requiredCards;
+                }
+                // Gets the maximum amount of identical resources
+                else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                    maxAmountOfEqualResources = entry.getValue();
+                else if(entry.getKey() instanceof YellowCard)
+                    yellowCardAmount = entry.getValue();
             }
-            if(requiredCards.isEmpty())
-                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+
+            // We iterate a second time over the Hand to get the GreyCard with the highest amount of resources
+            // i.e. if a Stage requires three identical resources, and the the Hand only contains 2 identical resources at best,
+            // this will get the GreyCard corresponding to these two resources.
+            // This method will then try to complete the missing amount with Yellow cards.
+            for(var entry: this.cards.entrySet())
+            {
+                if(entry.getKey() instanceof GreyCard && entry.getValue() == maxAmountOfEqualResources)
+                    equalResources.put(entry.getKey(), entry.getValue());
+                else if(entry.getKey() instanceof YellowCard && (entry.getValue() + maxAmountOfEqualResources) >= requiredResourcesAmount)
+                    equalResources.put(entry.getKey(), requiredResourcesAmount - maxAmountOfEqualResources);
+            }
+
+            // Checking if the equalResources HashMap contains a combination of Grey and Yellow cards allowing to build the Stage
+            int equalResourcesSum = 0;
+            for(var entry: equalResources.entrySet())
+                equalResourcesSum += entry.getValue();
+
+            if(equalResourcesSum == requiredResourcesAmount)
+                requiredCards.putAll(equalResources);
+            else
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         else
         {
@@ -170,18 +246,93 @@ public class Hand
             int differentResourcesAvailable = 0;
             for (var entry : this.cards.entrySet())
             {
-                if (entry.getKey() instanceof GreyCard)
-                {
+                if(entry.getKey() instanceof GreyCard)
                     differentResources.put(entry.getKey(), 1);
-                    differentResourcesAvailable++;
-                }
+
+                if(entry.getKey() instanceof YellowCard)
+                    differentResources.put(entry.getKey(), entry.getValue());
+
+                differentResourcesAvailable++;
             }
-            if(differentResourcesAvailable >= requiredResourcesAmount)
-                requiredCards.putAll(differentResources);
-            else
-                throw new RuntimeException("The current does not have the cards required to build the provided stage !");
+
+            int differentResourcesSum = 0;
+            for(var entry: differentResources.entrySet())
+            {
+                differentResourcesSum += entry.getValue();
+                if(differentResourcesSum <= requiredResourcesAmount)
+                    requiredCards.put(entry.getKey(), entry.getValue());
+            }
+
+            if(differentResourcesSum < requiredResourcesAmount)
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         return requiredCards;
+    }
+
+    /**
+     * Returns true if this {@link Hand} contains two {@link GreenCard}s with the same scientific symbol.
+     * @return True if this {@link Hand} contains two identical scientific symbols.
+     * @author Quentin LAURENT
+     */
+    public boolean containsTwoIdenticalScienceSymbols()
+    {
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof GreenCard && entry.getValue() >= 2)
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns true if this {@link Hand} contains three {@link GreenCard}s with the different scientific symbols.
+     * @return True if this {@link Hand} contains three different scientific symbols.
+     * @author Quentin LAURENT
+     */
+    public boolean containsThreeDifferentScienceSymbols()
+    {
+        int uniqueGreenCardsAmount = 0;
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof GreenCard)
+                uniqueGreenCardsAmount++;
+        }
+
+        return (uniqueGreenCardsAmount >= 3);
+    }
+
+    /**
+     * Returns the number of shields ({@link RedCard}s) of this {@link Hand}.
+     * @return The number of shields contained in this {@link Hand}.
+     */
+    public int getNumberOfShields()
+    {
+        int numberOfShields = 0;
+
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof RedCard)
+                numberOfShields += entry.getValue();
+        }
+
+        return numberOfShields;
+    }
+
+    /**
+     * Discards all the {@link RedCard}s of this {@link Hand} with 1 or more horns.
+     */
+    public void discardRedCardsWithHorns(Deck discard)
+    {
+        // Adding the cards to the Game's discard
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0)
+                discard.addCard(entry.getKey(), entry.getValue());
+        }
+
+        // Removing the cards from the Hand
+        this.cards.entrySet().removeIf(entry -> entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0);
     }
 
     @Override
