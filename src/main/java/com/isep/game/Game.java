@@ -256,10 +256,14 @@ public class Game
             player = this.players.get(i);
             rightPlayer = this.players.get(rightPlayerIndex);
 
+            int additionalShields = 0;
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.TACTICS))
+                additionalShields = 2;
+
             // If a draw occurs, no points are awarded.
-            if(player.getHand().getNumberOfShields() > leftPlayer.getHand().getNumberOfShields())
+            if((player.getHand().getNumberOfShields() + additionalShields) > leftPlayer.getHand().getNumberOfShields())
                 player.addVictoryPoints(1);
-            if(player.getHand().getNumberOfShields() > rightPlayer.getHand().getNumberOfShields())
+            if((player.getHand().getNumberOfShields() + additionalShields) > rightPlayer.getHand().getNumberOfShields())
                 player.addVictoryPoints(1);
 
             this.conflictTokensBattleSide = 0;
