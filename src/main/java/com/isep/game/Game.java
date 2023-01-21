@@ -100,6 +100,10 @@ public class Game
                     // If possible, it builds the first available Stage that can be built
                     if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild()))
                     {
+                        // Bonuses granted by progress tokens
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.ARCHITECTURE))
+                            cardsToPick++;
+
                         List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
                         // TODO: add the ability to let the Player chose the Stage to build if multiple are available
                         player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard);
