@@ -82,7 +82,7 @@ class WonderTest {
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, new Deck());
+        babylon.buildStage(stage1, hand, new Deck(), false, false);
 
         assertTrue(stage1.isConstructed());
     }
@@ -103,7 +103,7 @@ class WonderTest {
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, game.getDiscard());
+        babylon.buildStage(stage1, hand, game.getDiscard(), false, false);
 
         assertEquals(new Hand(), hand);
     }
@@ -124,7 +124,7 @@ class WonderTest {
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, game.getDiscard());
+        babylon.buildStage(stage1, hand, game.getDiscard(), false, false);
 
         assertTrue(game.getDiscard().getCards().containsAll(expectedDiscard.getCards()));
     }

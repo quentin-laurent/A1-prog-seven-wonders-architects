@@ -29,7 +29,7 @@ public class Game
      */
     private Deck discard;
     /**
-     * The {@link ProgressTokenStack} in which every {@link Player} can pick a {@link ProgressToken} when possible..
+     * The {@link ProgressTokenStack} in which every {@link Player} can pick a {@link ProgressToken} when possible.
      */
     private ProgressTokenStack progressTokenStack;
     /**
@@ -65,6 +65,7 @@ public class Game
         return this.discard;
     }
 
+    // Methods
     /**
      * Starts the {@link Game} and stops automatically when a {@link Player}'s {@link Wonder} has been entirely constructed.
      * @throws ExecutionControl.NotImplementedException
@@ -80,50 +81,105 @@ public class Game
             {
                 this.outputManager.displayPlayerTurn(player);
 
-                // Pick a card from one of the three available decks
-                // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
-                int nextPlayerIndex = this.players.indexOf(player) + 1;
-                if(nextPlayerIndex >= this.players.size())
-                    nextPlayerIndex = 0;
-                Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
-                player.getHand().addCard(pickedCard);
-
-                this.outputManager.displayPlayerHand(player);
-
-                // Checks if the player can build a Stage of its Wonder
-                // If possible, it builds the first available Stage that can be built
-                if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild()))
+                int cardsToPick = 1;
+                while(cardsToPick > 0)
                 {
-                    List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
-                    // TODO: add the ability to let the Player chose the Stage to build if multiple are available
-                    player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard);
-                    this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
-                }
+                    cardsToPick--;
 
-                if(pickedCard instanceof BlueCard)
-                {
-                    if(((BlueCard) pickedCard).getCat())
+                    // Pick a card from one of the three available decks
+                    // (the Player's deck (aka the left deck), the next player's deck (aka the right deck) or the central deck
+                    int nextPlayerIndex = this.players.indexOf(player) + 1;
+                    if(nextPlayerIndex >= this.players.size())
+                        nextPlayerIndex = 0;
+                    Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
+                    player.getHand().addCard(pickedCard);
+
+                    this.outputManager.displayPlayerHand(player);
+
+                    // Checks if the player can build a Stage of its Wonder
+                    // If possible, it builds the first available Stage that can be built
+                    if(player.getHand().canBuildStage(player.getWonder().getNextStagesToBuild(), player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING)))
                     {
-                        for(Player p: this.players)
-                            p.setHasCat(false);
-                        player.setHasCat(true);
-                        player.addVictoryPoints(((BlueCard) pickedCard).getVictoryPoints());
+                        // Bonuses granted by progress tokens
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.ARCHITECTURE))
+                            cardsToPick++;
+
+                        List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild(), player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING));
+                        // TODO: add the ability to let the Player chose the Stage to build if multiple are available
+                        player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard, player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING));
+                        player.addVictoryPoints(stagesReadyToBuild.get(0).getVictoryPoints());
+                        this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
+
+                        this.onePlayerBuiltItsWonder = player.getWonder().isConstructed();
                     }
-                }
-                else if(pickedCard instanceof GreenCard)
-                {
-                    if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
-                        player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
-                }
-                else if(pickedCard instanceof RedCard)
-                {
-                    this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
-                    // TODO: battle should be started at the end of the Player's turn
-                    if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
-                        this.resolveBattle();
+
+                    // Parsing actions depending on the color of the picked card
+                    if(pickedCard instanceof GreyCard)
+                    {
+                        // Bonuses granted by progress tokens
+                        // TODO: display message to player indicating why they got to pick another card
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.WOOD || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.BRICK)
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.URBANISM))
+                                cardsToPick++;
+                        }
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.PAPYRUS || ((GreyCard) pickedCard).getMaterial() == GreyCard.Material.GLASS)
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.CRAFTS))
+                                cardsToPick++;
+                        }
+                        if(((GreyCard) pickedCard).getMaterial() == GreyCard.Material.STONE)
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY))
+                                cardsToPick++;
+                        }
+                    }
+                    if(pickedCard instanceof YellowCard)
+                    {
+                        // Bonuses granted by progress tokens
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.JEWELLERY))
+                            cardsToPick++;
+                    }
+                    if(pickedCard instanceof BlueCard)
+                    {
+                        if(((BlueCard) pickedCard).getCat())
+                        {
+                            for(Player p: this.players)
+                                p.setHasCat(false);
+                            player.setHasCat(true);
+                            player.addVictoryPoints(((BlueCard) pickedCard).getVictoryPoints());
+                        }
+                    }
+                    else if(pickedCard instanceof GreenCard)
+                    {
+                        // Bonuses granted by progress tokens
+                        if(player.hasProgressTokenEffect(ProgressToken.Effect.SCIENCE))
+                            cardsToPick++;
+
+                        if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
+                            player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
+                    }
+                    else if(pickedCard instanceof RedCard)
+                    {
+                        // Bonuses granted by progress tokens
+                        if(((RedCard) pickedCard).getHorns() > 0)
+                        {
+                            if(player.hasProgressTokenEffect(ProgressToken.Effect.PROPAGANDA))
+                                cardsToPick++;
+                        }
+
+                        this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
+                        // TODO: battle should be started at the end of the Player's turn
+                        if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
+                            this.resolveBattle();
+                    }
                 }
             }
         }
+
+        this.calculateVictoryPoints();
+        //TODO: display results
+        //this.outputManager.displayResults();
     }
 
     /**
@@ -185,6 +241,7 @@ public class Game
      * wins the battle and earns 1 military victory token (1 victory point) per beaten neighbor. All {@link RedCard} with 1 or 2
      * horns must be discarded at the end of the battle.
      */
+    // TODO: this probably breaks if there are only two players
     private void resolveBattle()
     {
         int leftPlayerIndex;
@@ -207,11 +264,15 @@ public class Game
             player = this.players.get(i);
             rightPlayer = this.players.get(rightPlayerIndex);
 
+            int additionalShields = 0;
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.TACTICS))
+                additionalShields = 2;
+
             // If a draw occurs, no points are awarded.
-            if(player.getHand().getNumberOfShields() > leftPlayer.getHand().getNumberOfShields())
-                player.addVictoryPoints(1);
-            if(player.getHand().getNumberOfShields() > rightPlayer.getHand().getNumberOfShields())
-                player.addVictoryPoints(1);
+            if((player.getHand().getNumberOfShields() + additionalShields) > leftPlayer.getHand().getNumberOfShields())
+                player.addMilitaryVictoryTokens(1);
+            if((player.getHand().getNumberOfShields() + additionalShields) > rightPlayer.getHand().getNumberOfShields())
+                player.addMilitaryVictoryTokens(1);
 
             this.conflictTokensBattleSide = 0;
         }
@@ -296,5 +357,36 @@ public class Game
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.STRATEGY));
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.EDUCATION));
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.CULTURE), 2);
+    }
+
+    /**
+     * Calculates and updates each {@link Player}'s victory points.
+     * This takes {@link ProgressToken} effects into account.
+     */
+    private void calculateVictoryPoints()
+    {
+        for(Player player: this.players)
+        {
+            // Bonuses granted by progress tokens
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.DECOR))
+            {
+                if(player.getWonder().isConstructed())
+                    player.addVictoryPoints(6);
+                else
+                    player.addVictoryPoints(4);
+            }
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.POLITICS))
+                player.addVictoryPoints(player.getHand().getNumberOfCats());
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.STRATEGY))
+                player.addVictoryPoints(player.getMilitaryVictoryTokens() * 2);
+            else
+                player.addVictoryPoints(player.getMilitaryVictoryTokens());
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.EDUCATION))
+                player.addVictoryPoints((player.getProgressTokens().size()) * 2);
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.CULTURE, 1))
+                player.addVictoryPoints(4);
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.CULTURE, 2))
+                player.addVictoryPoints(12);
+        }
     }
 }

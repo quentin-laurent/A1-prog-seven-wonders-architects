@@ -32,6 +32,12 @@ public class ProgressToken
         this.effect = effect;
     }
 
+    // Getters & Setters
+    public Effect getEffect()
+    {
+        return this.effect;
+    }
+
     // Methods
     @Override
     public String toString()
