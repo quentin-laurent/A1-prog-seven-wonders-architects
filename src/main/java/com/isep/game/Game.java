@@ -143,6 +143,10 @@ public class Game
                     }
                     else if(pickedCard instanceof RedCard)
                     {
+                        // Bonuses granted by progress tokens
+                        if(((RedCard) pickedCard).getHorns() > 0)
+                            pickAgain = player.hasProgressTokenEffect(ProgressToken.Effect.PROPAGANDA);
+
                         this.conflictTokensBattleSide += ((RedCard) pickedCard).getHorns();
                         // TODO: battle should be started at the end of the Player's turn
                         if(this.conflictTokensBattleSide >= this.conflictTokensAmount)
