@@ -2,6 +2,7 @@ package com.isep.game.wonders;
 
 import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
+import com.isep.game.Game;
 import com.isep.game.cards.Hand;
 
 import java.util.ArrayList;
@@ -75,9 +76,10 @@ public abstract class Wonder
      * Builds the specified {@link Stage} with {@link Card}s from the provided {@link  Hand}.
      * @param stage The {@link Stage} to build.
      * @param hand The {@link Hand} to use the {@link Card}s from.
+     * @param discard The {@link Game}'s discard.
      * @author Quentin LAURENT
      */
-    public void buildStage(Stage stage, Hand hand)
+    public void buildStage(Stage stage, Hand hand, Deck discard)
     {
         Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage);
 
@@ -85,7 +87,10 @@ public abstract class Wonder
         for(var entry: cardsRequired.entrySet())
         {
             for(int i = 0; i < entry.getValue(); i++)
+            {
+                discard.addCard(entry.getKey());
                 hand.removeCard(entry.getKey());
+            }
         }
 
         // Updating the 'constructed' attribute of the Stage

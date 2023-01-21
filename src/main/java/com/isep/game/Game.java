@@ -59,6 +59,12 @@ public class Game
         this.onePlayerBuiltItsWonder = false;
     }
 
+    // Getters & Setters
+    public Deck getDiscard()
+    {
+        return this.discard;
+    }
+
     /**
      * Starts the {@link Game} and stops automatically when a {@link Player}'s {@link Wonder} has been entirely constructed.
      * @throws ExecutionControl.NotImplementedException
@@ -90,7 +96,7 @@ public class Game
                 {
                     List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild());
                     // TODO: add the ability to let the Player chose the Stage to build if multiple are available
-                    player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand());
+                    player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard);
                     this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
                 }
 
@@ -162,6 +168,7 @@ public class Game
             this.outputManager.displayMessage(String.format("==== Player n°%d ====", i));
             playerName = this.inputParser.fetchPlayerName();
             playerBirthday = this.inputParser.fetchPlayerBirthday();
+            // TODO: let players choose their Wonder
 
             // Assigning a random wonder to the player
             randomIndex = random.nextInt(wonders.size());
@@ -210,9 +217,8 @@ public class Game
         }
 
         // Discarding all Red cards with 1 or more horns
-        // TODO: add cards to the Game's discard
         for(Player p: this.players)
-            p.getHand().discardRedCardsWithHorns();
+            p.getHand().discardRedCardsWithHorns(this.discard);
     }
 
     //TODO: to delete if not needed

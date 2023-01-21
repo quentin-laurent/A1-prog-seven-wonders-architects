@@ -322,8 +322,16 @@ public class Hand
     /**
      * Discards all the {@link RedCard}s of this {@link Hand} with 1 or more horns.
      */
-    public void discardRedCardsWithHorns()
+    public void discardRedCardsWithHorns(Deck discard)
     {
+        // Adding the cards to the Game's discard
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0)
+                discard.addCard(entry.getKey(), entry.getValue());
+        }
+
+        // Removing the cards from the Hand
         this.cards.entrySet().removeIf(entry -> entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0);
     }
 

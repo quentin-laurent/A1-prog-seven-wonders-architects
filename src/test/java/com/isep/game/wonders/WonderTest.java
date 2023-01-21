@@ -1,5 +1,11 @@
 package com.isep.game.wonders;
 
+import com.isep.game.Game;
+import com.isep.game.cards.Deck;
+import com.isep.game.cards.GreyCard;
+import com.isep.game.cards.Hand;
+import com.isep.utils.ConsoleOutput;
+import com.isep.utils.ConsoleParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -64,5 +70,62 @@ class WonderTest {
         ArrayList<Stage> nextStagesToBuild = new ArrayList<>();
 
         assertEquals(nextStagesToBuild, babylon.getNextStagesToBuild());
+    }
+
+    @Test
+    void buildStageShouldUpdateStageConstructedAttribute()
+    {
+        Babylon babylon = new Babylon();
+        Stage stage1 = babylon.getStages().get(0);
+
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+
+        babylon.buildStage(stage1, hand, new Deck());
+
+        assertTrue(stage1.isConstructed());
+    }
+
+    @Test
+    void buildStageShouldRemoveDiscardedCardsFromHand()
+    {
+        Game game = new Game(new ConsoleParser(), new ConsoleOutput());
+
+        Babylon babylon = new Babylon();
+        Stage stage1 = babylon.getStages().get(0);
+
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+
+        Deck expectedDiscard = new Deck();
+        expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
+        expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
+
+        babylon.buildStage(stage1, hand, game.getDiscard());
+
+        assertEquals(new Hand(), hand);
+    }
+
+    @Test
+    void buildStageShouldAddDiscardedCardsToGameDiscard()
+    {
+        Game game = new Game(new ConsoleParser(), new ConsoleOutput());
+
+        Babylon babylon = new Babylon();
+        Stage stage1 = babylon.getStages().get(0);
+
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+
+        Deck expectedDiscard = new Deck();
+        expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
+        expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
+
+        babylon.buildStage(stage1, hand, game.getDiscard());
+
+        assertTrue(game.getDiscard().getCards().containsAll(expectedDiscard.getCards()));
     }
 }

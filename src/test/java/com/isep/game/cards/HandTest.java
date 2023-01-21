@@ -1,8 +1,11 @@
 package com.isep.game.cards;
 
+import com.isep.game.Game;
 import com.isep.game.wonders.Alexandria;
 import com.isep.game.wonders.Babylon;
 import com.isep.game.wonders.Stage;
+import com.isep.utils.ConsoleOutput;
+import com.isep.utils.ConsoleParser;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -399,7 +402,9 @@ class HandTest
     @Test
     void discardRedCardsWithHornsShouldRemoveRedCardsWithHornsFromHand()
     {
-        final Hand hand1 = new Hand();
+        Game game = new Game(new ConsoleParser(), new ConsoleOutput());
+
+        Hand hand1 = new Hand();
         hand1.addCard(new RedCard(0), 2);
         hand1.addCard(new RedCard(1), 2);
         hand1.addCard(new RedCard(2));
@@ -407,16 +412,46 @@ class HandTest
         HashMap<Card, Integer> expectedCards = new HashMap<>();
         expectedCards.put(new RedCard(0), 2);
 
-        hand1.discardRedCardsWithHorns();
+        hand1.discardRedCardsWithHorns(game.getDiscard());
         assertEquals(expectedCards, hand1.getCards());
 
-        final Hand hand2 = new Hand();
+        Hand hand2 = new Hand();
         hand2.addCard(new RedCard(0), 3);
 
         expectedCards.clear();
         expectedCards.put(new RedCard(0), 3);
 
-        hand2.discardRedCardsWithHorns();
+        hand2.discardRedCardsWithHorns(game.getDiscard());
         assertEquals(expectedCards, hand2.getCards());
+    }
+
+    @Test
+    void discardRedCardsWithHornsShouldAddDiscardedCardsToGameDiscard()
+    {
+        Game game1 = new Game(new ConsoleParser(), new ConsoleOutput());
+
+        Hand hand1 = new Hand();
+        hand1.addCard(new RedCard(0), 2);
+        hand1.addCard(new RedCard(1), 2);
+        hand1.addCard(new RedCard(2));
+
+        Deck deck1 = new Deck();
+        deck1.addCard(new RedCard(1), 2);
+        deck1.addCard(new RedCard(2));
+
+        hand1.discardRedCardsWithHorns(game1.getDiscard());
+
+        assertTrue(deck1.getCards().containsAll(game1.getDiscard().getCards()));
+
+        Game game2 = new Game(new ConsoleParser(), new ConsoleOutput());
+
+        Hand hand2 = new Hand();
+        hand2.addCard(new RedCard(0), 3);
+
+        Deck deck2 = new Deck();
+
+        hand2.discardRedCardsWithHorns(game2.getDiscard());
+
+        assertTrue(deck2.getCards().containsAll(game2.getDiscard().getCards()));
     }
 }
