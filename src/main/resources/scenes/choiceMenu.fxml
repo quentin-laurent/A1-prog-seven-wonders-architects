@@ -192,7 +192,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
+      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" onAction="#onPlayButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
          <font>
             <Font name="Helenium W01 Bold" size="13.0" />
          </font>

@@ -26,9 +26,6 @@ public class WelcomeMenu {
     private Button soundButton, beginButton, leaveButton;
     @FXML
     private MediaView mediaView;
-
-    private Clip clip = AudioSystem.getClip();
-
     String button_style = "-fx-background-color: #506E3A;";
     private float coeff_button = 10;
     private int button_font_size = 30;
@@ -53,9 +50,10 @@ public class WelcomeMenu {
         leaveButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), button_font_size));
         beginButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), button_font_size));
 
-        this.clip.open(AudioSystem.getAudioInputStream(Objects.requireNonNull(GUIParser.class.getResourceAsStream("/musics/welcome.wav"))));
+        StageLoader.clip = AudioSystem.getClip();
+        StageLoader.clip.open(AudioSystem.getAudioInputStream(Objects.requireNonNull(GUIParser.class.getResourceAsStream("/musics/welcome.wav"))));
         if(StageLoader.sound)
-            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+            StageLoader.clip.loop(Clip.LOOP_CONTINUOUSLY);
         else
             soundButton.setText("\uF026");
     }
@@ -88,13 +86,13 @@ public class WelcomeMenu {
         {
             StageLoader.sound = false;
             soundButton.setText("\uF026");
-            this.clip.stop();
+            StageLoader.clip.stop();
         }
         else
         {
             StageLoader.sound = true;
             soundButton.setText("\uF028");
-            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+            StageLoader.clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
     }
 

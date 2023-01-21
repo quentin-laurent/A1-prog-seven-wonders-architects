@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 public class StageLoader
 {
     private static Stage primaryStage;
@@ -45,6 +48,7 @@ public class StageLoader
     }
 
     public static boolean sound = true;
+    public static Clip clip;
 
     public static void sleep(int n)
     {

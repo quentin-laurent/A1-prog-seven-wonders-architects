@@ -34,8 +34,6 @@ public class GameMenu {
     @FXML
     private ImageView image1,image2,image3,image4,image5,image6,image7;
 
-    private Clip clip = AudioSystem.getClip();
-
     @FXML
     private Label labelSlider, labelTitle;
     @FXML
@@ -166,10 +164,7 @@ public class GameMenu {
             }
         });
 
-        this.clip.open(AudioSystem.getAudioInputStream(Objects.requireNonNull(GUIParser.class.getResourceAsStream("/musics/welcome.wav"))));
-        if(StageLoader.sound)
-            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
-        else
+        if(!StageLoader.sound)
             soundButton.setText("\uF026");
     }
 
@@ -295,13 +290,19 @@ public class GameMenu {
         {
             StageLoader.sound = false;
             soundButton.setText("\uF026");
-            this.clip.stop();
+            StageLoader.clip.stop();
         }
         else
         {
             StageLoader.sound = true;
             soundButton.setText("\uF028");
-            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+            StageLoader.clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
+    }
+
+    @FXML
+    protected void onPlayButton() throws IOException
+    {
+        StageLoader.loadFXMLScene("/scenes/gameScene.fxml");
     }
 }
