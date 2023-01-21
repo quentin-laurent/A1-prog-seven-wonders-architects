@@ -88,6 +88,7 @@ public class Hand
 
     /**
      * Indicates if this {@link Hand} contains the {@link Card}s required to build specific {@link Stage}s.
+     * <p>This method does NOT account for the ENGINEERING effect.
      * @param stages The {@link Stage}s to verify.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return True if at least one the specified {@link Stage}s can be built using {@link Card}s from this {@link Hand}.
@@ -134,7 +135,45 @@ public class Hand
     }
 
     /**
+     * Indicates if this {@link Hand} contains the {@link Card}s required to build specific {@link Stage}s.
+     * @param stages The {@link Stage}s to verify.
+     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
+     * @param engineeringEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ENGINEERING {@link ProgressToken}.
+     * @return True if at least one the specified {@link Stage}s can be built using {@link Card}s from this {@link Hand}.
+     * @author Quentin LAURENT
+     */
+    public boolean canBuildStage(List<Stage> stages, boolean economyEffect, boolean engineeringEffect)
+    {
+        if(!engineeringEffect)
+            return this.canBuildStage(stages, economyEffect);
+
+        int bonus = (economyEffect) ? 2 : 1;
+
+        // As the ENGINEERING effect ignores the requirement for resources to be identical of different, we only need
+        // to count the amount of Grey and Yellow cards in the Hand.
+        for(Stage stage: stages)
+        {
+            int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+            int totalResourcesAmount = 0;
+
+            for (var entry : this.cards.entrySet())
+            {
+                if(entry.getKey() instanceof GreyCard)
+                    totalResourcesAmount += entry.getValue();
+                else if(entry.getKey() instanceof YellowCard)
+                    totalResourcesAmount += (entry.getValue() * bonus);
+            }
+
+            if(totalResourcesAmount >= requiredResourcesAmount)
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Returns a {@link List<Stage>} containing the next {@link Stage}s that can be built using {@link Card}s from this {@link Hand}.
+     * <p>This method does NOT account for the ENGINEERING effect.
      * @param stages The {@link Stage}s {@link List<Stage>} to check from.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return A {@link List<Stage>} containing the next {@link Stage}s that can be built.
@@ -194,7 +233,46 @@ public class Hand
     }
 
     /**
+     * Returns a {@link List<Stage>} containing the next {@link Stage}s that can be built using {@link Card}s from this {@link Hand}.
+     * @param stages The {@link Stage}s {@link List<Stage>} to check from.
+     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
+     * @param engineeringEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ENGINEERING {@link ProgressToken}.
+     * @return A {@link List<Stage>} containing the next {@link Stage}s that can be built.
+     * @author Quentin LAURENT
+     */
+    public List<Stage> getStagesReadyToBuild(List<Stage> stages, boolean economyEffect, boolean engineeringEffect)
+    {
+        if(!engineeringEffect)
+            return this.getStagesReadyToBuild(stages, economyEffect);
+
+        int bonus = (economyEffect) ? 2 : 1;
+        ArrayList<Stage> stagesReadyToBuild = new ArrayList<>();
+
+        // As the ENGINEERING effect ignores the requirement for resources to be identical of different, we only need
+        // to count the amount of Grey and Yellow cards in the Hand.
+        for(Stage stage: stages)
+        {
+            int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+            int totalResourcesAmount = 0;
+
+            for (var entry : this.cards.entrySet())
+            {
+                if(entry.getKey() instanceof GreyCard)
+                    totalResourcesAmount += entry.getValue();
+                else if(entry.getKey() instanceof YellowCard)
+                    totalResourcesAmount += (entry.getValue() * bonus);
+            }
+
+            if(totalResourcesAmount >= requiredResourcesAmount)
+                stagesReadyToBuild.add(stage);
+        }
+
+        return stagesReadyToBuild;
+    }
+
+    /**
      * Returns a {@link Map} containing the {@link Card}s required to build the provided {@link Stage}.
+     * <p>This method does NOT account for the ENGINEERING effect.
      * @param stage The {@link Stage} to build.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return A {@link Map} containing the {@link Card}s required.
@@ -297,6 +375,60 @@ public class Hand
                 throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         return requiredCards;
+    }
+
+    /**
+     * Returns a {@link Map} containing the {@link Card}s required to build the provided {@link Stage}.
+     * @param stage The {@link Stage} to build.
+     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
+     * @param engineeringEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ENGINEERING {@link ProgressToken}.
+     * @return A {@link Map} containing the {@link Card}s required.
+     * @author Quentin LAURENT
+     */
+    public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage, boolean economyEffect, boolean engineeringEffect)
+    {
+        if(!engineeringEffect)
+            return this.getCardsRequiredToBuildStage(stage, economyEffect);
+
+        float bonus = (economyEffect) ? 2f : 1f;
+        final int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+        HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
+
+        // As the ENGINEERING effect ignores the requirement for resources to be identical of different, we only need
+        // to return a combination of Grey and Yellow cards matching the required resources amount.
+        int resourcesRequired = requiredResourcesAmount;
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof GreyCard)
+            {
+                if(entry.getValue() <= resourcesRequired)
+                {
+                    requiredCards.put(entry.getKey(), entry.getValue());
+                    resourcesRequired -= entry.getValue();
+                }
+                else
+                {
+                    requiredCards.put(entry.getKey(), resourcesRequired);
+                    return requiredCards;
+                }
+            }
+            else if(entry.getKey() instanceof YellowCard)
+            {
+                if((entry.getValue() * bonus) <= resourcesRequired)
+                {
+                    requiredCards.put(entry.getKey(), entry.getValue());
+                    resourcesRequired -= (entry.getValue() * bonus);
+                }
+                else
+                {
+                    int yellowCardsToAdd = (int) Math.ceil(resourcesRequired / bonus);
+                    requiredCards.put(entry.getKey(), yellowCardsToAdd);
+                    return requiredCards;
+                }
+            }
+        }
+
+        throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
     }
 
     /**

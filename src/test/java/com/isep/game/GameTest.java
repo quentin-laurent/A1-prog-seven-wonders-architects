@@ -35,7 +35,7 @@ class GameTest
         assertTrue(player.getHand().canBuildStage(stages, false));
 
         // Checking if the Stage has been built
-        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false);
+        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false, false);
 
         assertTrue(alexandria.getStages().get(0).isConstructed());
 
@@ -69,7 +69,7 @@ class GameTest
         assertTrue(player.getHand().canBuildStage(stages, false));
 
         // Checking if the Stage has been built
-        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false);
+        alexandria.buildStage(alexandria.getStages().get(0), player.getHand(), new Deck(), false, false);
 
         assertTrue(alexandria.getStages().get(0).isConstructed());
 

@@ -80,11 +80,12 @@ public abstract class Wonder
      * @param hand The {@link Hand} to use the {@link Card}s from.
      * @param discard The {@link Game}'s discard.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
+     * @param engineeringEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ENGINEERING {@link ProgressToken}.
      * @author Quentin LAURENT
      */
-    public void buildStage(Stage stage, Hand hand, Deck discard, boolean economyEffect)
+    public void buildStage(Stage stage, Hand hand, Deck discard, boolean economyEffect, boolean engineeringEffect)
     {
-        Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage, economyEffect);
+        Map<Card, Integer> cardsRequired = hand.getCardsRequiredToBuildStage(stage, economyEffect, engineeringEffect);
 
         // Removing the Cards from the provided Hand
         for(var entry: cardsRequired.entrySet())
