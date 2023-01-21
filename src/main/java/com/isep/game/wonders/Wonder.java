@@ -46,6 +46,22 @@ public abstract class Wonder
     }
 
     // Methods
+
+    /**
+     * Returns true if this {@link Wonder} is fully built.
+     * @return True if every {@link Stage} of this {@link Wonder} has been constructed.
+     */
+    public boolean isConstructed()
+    {
+        for(Stage stage: this.stages)
+        {
+            if(!stage.isConstructed())
+                return false;
+        }
+
+        return true;
+    }
+
     /**
      * Returns a {@link List<Stage>} containing the next {@link Stage}s that need to be built.
      * For instance, on a {@link Wonder} with 5 {@link Stage}s, if Stage 1 has been built, this method returns Stage 2.

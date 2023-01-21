@@ -502,6 +502,23 @@ public class Hand
         this.cards.entrySet().removeIf(entry -> entry.getKey() instanceof RedCard && ((RedCard) entry.getKey()).getHorns() > 0);
     }
 
+    /**
+     * Returns the number of cats ({@link BlueCard}s with the Cat symbol) of this {@link Hand}.
+     * @return The number of cats contained in this {@link Hand}.
+     */
+    public int getNumberOfCats()
+    {
+        int numberOfCats = 0;
+
+        for(var entry: this.cards.entrySet())
+        {
+            if(entry.getKey() instanceof BlueCard && ((BlueCard) entry.getKey()).getCat())
+                numberOfCats++;
+        }
+
+        return numberOfCats;
+    }
+
     @Override
     public String toString()
     {

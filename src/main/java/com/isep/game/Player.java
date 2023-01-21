@@ -23,6 +23,7 @@ public class Player implements Comparable<Player>
     private Deck deck;
     private Hand hand;
     private List<ProgressToken> progressTokens;
+    private int militaryVictoryTokens;
     private int victoryPoints;
     private boolean hasCat;
 
@@ -35,6 +36,7 @@ public class Player implements Comparable<Player>
         this.deck = this.wonder.getDeck();
         this.hand = new Hand();
         this.progressTokens = new ArrayList<ProgressToken>();
+        this.militaryVictoryTokens = 0;
         this.victoryPoints = 0;
         this.hasCat = false;
     }
@@ -70,6 +72,11 @@ public class Player implements Comparable<Player>
         return this.progressTokens;
     }
 
+    public int getMilitaryVictoryTokens()
+    {
+        return this.militaryVictoryTokens;
+    }
+
     public boolean hasCat()
     {
         return this.hasCat;
@@ -81,6 +88,16 @@ public class Player implements Comparable<Player>
     }
 
     // Methods
+    /**
+     * Increments this {@link Player}'s amount of military victory tokens.
+     * @param militaryVictoryTokens The amount of military victory tokens points to add.
+     * @author Quentin LAURENT
+     */
+    public void addMilitaryVictoryTokens(int militaryVictoryTokens)
+    {
+        this.militaryVictoryTokens += militaryVictoryTokens;
+    }
+
     /**
      * Increments this {@link Player}'s amount of victory points.
      * @param victoryPoints The amount of victory points to add.
@@ -115,6 +132,25 @@ public class Player implements Comparable<Player>
         }
 
         return false;
+    }
+
+    /**
+     * Returns true if this {@link Player} has the exact quantity of {@link ProgressToken} with the provided {@link Effect}.
+     * @param effect The {@link Effect} to check for.
+     * @param exactQuantity The exact quantity of the provided {@link Effect}.
+     * @return True if this {@link Player} has the exact quantity of the {@link Effect}.
+     */
+    public boolean hasProgressTokenEffect(ProgressToken.Effect effect, int exactQuantity)
+    {
+        int quantity = 0;
+
+        for(ProgressToken token: this.progressTokens)
+        {
+            if(token.getEffect() == effect)
+                quantity++;
+        }
+
+        return (quantity == exactQuantity);
     }
 
     @Override

@@ -25,6 +25,11 @@ public class Stage
     }
 
     // Getters & Setters
+    public int getVictoryPoints()
+    {
+        return this.victoryPoints;
+    }
+
     public int getRequiredResourcesAmount()
     {
         return this.requiredResourcesAmount;

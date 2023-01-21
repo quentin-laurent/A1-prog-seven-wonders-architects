@@ -107,7 +107,10 @@ public class Game
                         List<Stage> stagesReadyToBuild = player.getHand().getStagesReadyToBuild(player.getWonder().getNextStagesToBuild(), player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING));
                         // TODO: add the ability to let the Player chose the Stage to build if multiple are available
                         player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard, player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING));
+                        player.addVictoryPoints(stagesReadyToBuild.get(0).getVictoryPoints());
                         this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
+
+                        this.onePlayerBuiltItsWonder = player.getWonder().isConstructed();
                     }
 
                     // Parsing actions depending on the color of the picked card
@@ -174,7 +177,9 @@ public class Game
             }
         }
 
-        //TODO: calculate points
+        this.calculateVictoryPoints();
+        //TODO: display results
+        //this.outputManager.displayResults();
     }
 
     /**
@@ -236,6 +241,7 @@ public class Game
      * wins the battle and earns 1 military victory token (1 victory point) per beaten neighbor. All {@link RedCard} with 1 or 2
      * horns must be discarded at the end of the battle.
      */
+    // TODO: this probably breaks if there are only two players
     private void resolveBattle()
     {
         int leftPlayerIndex;
@@ -264,9 +270,9 @@ public class Game
 
             // If a draw occurs, no points are awarded.
             if((player.getHand().getNumberOfShields() + additionalShields) > leftPlayer.getHand().getNumberOfShields())
-                player.addVictoryPoints(1);
+                player.addMilitaryVictoryTokens(1);
             if((player.getHand().getNumberOfShields() + additionalShields) > rightPlayer.getHand().getNumberOfShields())
-                player.addVictoryPoints(1);
+                player.addMilitaryVictoryTokens(1);
 
             this.conflictTokensBattleSide = 0;
         }
@@ -351,5 +357,36 @@ public class Game
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.STRATEGY));
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.EDUCATION));
         this.progressTokenStack.addProgressToken(new ProgressToken(ProgressToken.Effect.CULTURE), 2);
+    }
+
+    /**
+     * Calculates and updates each {@link Player}'s victory points.
+     * This takes {@link ProgressToken} effects into account.
+     */
+    private void calculateVictoryPoints()
+    {
+        for(Player player: this.players)
+        {
+            // Bonuses granted by progress tokens
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.DECOR))
+            {
+                if(player.getWonder().isConstructed())
+                    player.addVictoryPoints(6);
+                else
+                    player.addVictoryPoints(4);
+            }
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.POLITICS))
+                player.addVictoryPoints(player.getHand().getNumberOfCats());
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.STRATEGY))
+                player.addVictoryPoints(player.getMilitaryVictoryTokens() * 2);
+            else
+                player.addVictoryPoints(player.getMilitaryVictoryTokens());
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.EDUCATION))
+                player.addVictoryPoints((player.getProgressTokens().size()) * 2);
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.CULTURE, 1))
+                player.addVictoryPoints(4);
+            if(player.hasProgressTokenEffect(ProgressToken.Effect.CULTURE, 2))
+                player.addVictoryPoints(12);
+        }
     }
 }
