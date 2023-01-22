@@ -21,5 +21,214 @@
             <Font name="Meslo LG S Regular Nerd Font Complete" size="34.0" />
          </font>
       </Button>
+      <AnchorPane fx:id="boxTable" layoutX="280.0" prefHeight="720.0" prefWidth="720.0">
+         <children>
+            <AnchorPane fx:id="boxAlexandria" layoutX="276.0" layoutY="494.0" prefHeight="225.0" prefWidth="225.0">
+               <children>
+                  <ImageView fx:id="alexandria1" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/alexandria/wonder_alexandria_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="alexandria2" fitHeight="62.0" fitWidth="118.0" layoutX="53.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/alexandria/wonder_alexandria_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="alexandria3" fitHeight="82.0" fitWidth="94.0" layoutX="61.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/alexandria/wonder_alexandria_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="alexandria4" fitHeight="60.0" fitWidth="65.0" layoutX="76.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/alexandria/wonder_alexandria_4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="alexandria5" fitHeight="93.0" fitWidth="52.0" layoutX="83.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/alexandria/wonder_alexandria_5.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxEphese" layoutX="81.0" layoutY="418.0" prefHeight="225.0" prefWidth="225.0" rotate="-306.0">
+               <children>
+                  <ImageView fx:id="ephese1" fitHeight="62.0" fitWidth="200.0" layoutX="9.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/ephese/wonder_ephese_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ephese2" fitHeight="83.0" fitWidth="47.0" layoutX="30.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/ephese/wonder_ephese_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ephese3" fitHeight="85.0" fitWidth="47.0" layoutX="87.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/ephese/wonder_ephese_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ephese4" fitHeight="85.0" fitWidth="48.0" layoutX="146.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/ephese/wonder_ephese_4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="ephese5" fitHeight="117.0" fitWidth="175.0" layoutX="24.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/ephese/wonder_ephese_5.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxBabylon" layoutX="500.0" layoutY="177.0" prefHeight="225.0" prefWidth="225.0" rotate="-102.0">
+               <children>
+                  <ImageView fx:id="babylon1" fitHeight="62.0" fitWidth="200.0" layoutX="9.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/babylon/wonder_babylon_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="babylon2" fitHeight="43.0" fitWidth="175.0" layoutX="21.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/babylon/wonder_babylon_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="babylon3" fitHeight="71.0" fitWidth="161.0" layoutX="26.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/babylon/wonder_babylon_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="babylon5" fitHeight="48.0" fitWidth="109.0" layoutX="91.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/babylon/wonder_babylon_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="babylon4" fitHeight="62.0" fitWidth="65.0" layoutX="37.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/babylon/wonder_babylon_4.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxGizeh" layoutX="136.0" layoutY="41.0" prefHeight="225.0" prefWidth="225.0" rotate="-204.0">
+               <children>
+                  <ImageView fx:id="gizeh1" fitHeight="62.0" fitWidth="200.0" layoutX="13.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/gizeh/wonder_gizeh_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gizeh2" fitHeight="39.0" fitWidth="161.0" layoutX="32.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/gizeh/wonder_gizeh_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gizeh3" fitHeight="35.0" fitWidth="135.0" layoutX="49.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/gizeh/wonder_gizeh_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gizeh5" fitHeight="48.0" fitWidth="65.0" layoutX="84.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/gizeh/wonder_gizeh_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="gizeh4" fitHeight="42.0" fitWidth="88.0" layoutX="69.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/gizeh/wonder_gizeh_4.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxHalicarnas" layoutX="331.0" layoutY="35.0" prefHeight="225.0" prefWidth="225.0" rotate="-153.0">
+               <children>
+                  <ImageView fx:id="halicarnas1" fitHeight="35.0" fitWidth="175.0" layoutX="36.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/halicarnas/wonder_halicarnas_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="halicarnas2" fitHeight="65.0" fitWidth="139.0" layoutX="44.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/halicarnas/wonder_halicarnas_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="halicarnas3" fitHeight="65.0" fitWidth="75.0" layoutX="39.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/halicarnas/wonder_halicarnas_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="halicarnas5" fitHeight="71.0" fitWidth="124.0" layoutX="46.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/halicarnas/wonder_halicarnas_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="halicarnas4" fitHeight="65.0" fitWidth="72.0" layoutX="111.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/halicarnas/wonder_halicarnas_4.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxRhodes" layoutX="33.0" layoutY="194.0" prefHeight="225.0" prefWidth="225.0" rotate="-255.0">
+               <children>
+                  <ImageView fx:id="rhodes1" fitHeight="38.0" fitWidth="75.0" layoutX="29.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/rhodes/wonder_rhodes_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="rhodes2" fitHeight="39.0" fitWidth="68.0" layoutX="99.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/rhodes/wonder_rhodes_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="rhodes3" fitHeight="63.0" fitWidth="109.0" layoutX="52.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/rhodes/wonder_rhodes_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="rhodes5" fitHeight="57.0" fitWidth="88.0" layoutX="58.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/rhodes/wonder_rhodes_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="rhodes4" fitHeight="50.0" fitWidth="88.0" layoutX="56.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/rhodes/wonder_rhodes_4.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="boxOlympie" layoutX="465.0" layoutY="411.0" prefHeight="225.0" prefWidth="225.0" rotate="-51.0">
+               <children>
+                  <ImageView fx:id="olympie1" fitHeight="63.0" fitWidth="161.0" layoutX="32.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/olympie/wonder_olympie_1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="olympie2" fitHeight="71.0" fitWidth="88.0" layoutX="47.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/olympie/wonder_olympie_2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="olympie3" fitHeight="71.0" fitWidth="72.0" layoutX="108.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/olympie/wonder_olympie_3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="olympie4" fitHeight="57.0" fitWidth="122.0" layoutX="54.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/olympie/wonder_olympie_4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="olympie5" fitHeight="50.0" fitWidth="96.0" layoutX="68.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imgs/game-elements/olympie/wonder_olympie_5.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Button fx:id="button" layoutX="1111.0" layoutY="360.0" mnemonicParsing="false" onAction="#onButton" text="Button" />
+      <Button fx:id="button2" layoutX="1111.0" layoutY="400.0" mnemonicParsing="false" onAction="#onButton2" text="Button" />
    </children>
 </AnchorPane>

@@ -13,7 +13,7 @@ public class GUIParser extends Application {
     {
         // -_-_-_-_-_-_-_-_-_- load the fxml scene -_-_-_-_-_-_-_-_-_-
         StageLoader.setStage(stage);
-        StageLoader.loadFXMLScene("/scenes/welcome.fxml");
+        StageLoader.loadFXMLScene("/scenes/gameScene.fxml");
     }
 
     public void launchInterface()

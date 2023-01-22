@@ -47,7 +47,8 @@ public class StageLoader
         });
     }
 
-    public static boolean sound = true;
+    public static boolean sound = false;
+    public static int numberPlayer = 0;
     public static Clip clip;
 
     public static void sleep(int n)
