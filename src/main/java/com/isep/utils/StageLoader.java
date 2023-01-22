@@ -48,6 +48,7 @@ public class StageLoader
     }
 
     public static boolean sound = false;
+    public static boolean alexandria=false,babylon=false,ephese=false,halicarnas=false,olympie=false,rhodes=false,gizeh=false;
     public static int numberPlayer = 0;
     public static Clip clip;
 

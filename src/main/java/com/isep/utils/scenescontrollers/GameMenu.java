@@ -46,6 +46,7 @@ public class GameMenu {
     private ChoiceBox menu1,menu2,menu3,menu4,menu5,menu6,menu7;
 
     private ArrayList<ChoiceBox> menuArray = new ArrayList<>();
+    private ArrayList<AnchorPane> boxArray = new ArrayList<>();
     private float coeff_button = 10;
     private int button_font_size = 13;
     private ObservableList<String> wondersList = FXCollections.observableArrayList("Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh","None");
@@ -76,13 +77,13 @@ public class GameMenu {
         menu6.setItems(wondersList); menu6.setValue("Olympie");
         menu7.setItems(wondersList); menu7.setValue("Gizeh");
 
-        menuArray.add(menu1);
-        menuArray.add(menu2);
-        menuArray.add(menu3);
-        menuArray.add(menu4);
-        menuArray.add(menu5);
-        menuArray.add(menu6);
-        menuArray.add(menu7);
+        menuArray.add(menu1);boxArray.add(box1);
+        menuArray.add(menu2);boxArray.add(box2);
+        menuArray.add(menu3);boxArray.add(box3);
+        menuArray.add(menu4);boxArray.add(box4);
+        menuArray.add(menu5);boxArray.add(box5);
+        menuArray.add(menu6);boxArray.add(box6);
+        menuArray.add(menu7);boxArray.add(box7);
 
         box1.setVisible(false);
         box4.setVisible(false);
@@ -104,7 +105,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image1,newValue);
             }
         });
@@ -113,7 +113,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image2,newValue);
             }
         });
@@ -122,7 +121,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image3,newValue);
             }
         });
@@ -131,7 +129,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image4,newValue);
             }
         });
@@ -140,7 +137,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image5,newValue);
             }
         });
@@ -149,7 +145,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image6,newValue);
 
             }
@@ -159,7 +154,6 @@ public class GameMenu {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 // Handle the change in the selected item here
-                updateBox(oldValue,newValue);
                 updateImage(image7,newValue);
             }
         });
@@ -214,13 +208,6 @@ public class GameMenu {
                 image.setImage(new Image(GUIParser.class.getResource("/imgs/wonders/gizeh.png").toExternalForm()));
                 break;
         }
-    }
-
-    private void updateBox(String oldValue, String newValue)
-    {
-        wondersList.remove(newValue);
-        if(oldValue != null)
-            wondersList.add(oldValue);
     }
 
     private void onSliderMoved()
@@ -303,6 +290,45 @@ public class GameMenu {
     @FXML
     protected void onPlayButton() throws IOException
     {
+        StageLoader.numberPlayer = (int) slider.getValue();
+        for(int i=0;i<7;i++)
+        {
+            System.out.println(boxArray.get(i).isVisible());
+            if (boxArray.get(i).isVisible())
+            {
+                switch ((String) menuArray.get(i).getValue())
+                {
+                    case "Alexandrie":
+                        System.out.println("Alexandria");
+                        StageLoader.alexandria = true;
+                        break;
+                    case "Ephese":
+                        System.out.println("Ephese");
+                        StageLoader.ephese = true;
+                        break;
+                    case "Babylone":
+                        System.out.println("Babylon");
+                        StageLoader.babylon = true;
+                        break;
+                    case "Rhodes":
+                        System.out.println("Rhodes");
+                        StageLoader.rhodes = true;
+                        break;
+                    case "Halicarnasse":
+                        System.out.println("Halicarnasse");
+                        StageLoader.halicarnas = true;
+                        break;
+                    case "Olympie":
+                        System.out.println("Olympie");
+                        StageLoader.olympie = true;
+                        break;
+                    case "Gizeh":
+                        System.out.println("Gizeh");
+                        StageLoader.gizeh = true;
+                        break;
+                }
+            }
+        }
         StageLoader.loadFXMLScene("/scenes/gameScene.fxml");
     }
 }

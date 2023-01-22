@@ -49,16 +49,109 @@ public class MainScene {
     @FXML
     private ImageView olympie1,olympie2,olympie3,olympie4,olympie5;
     @FXML
-    private AnchorPane boxTable;
+    private AnchorPane boxTable,boxAlexandria,boxOlympie,boxBabylon,boxHalicarnas,boxGizeh,boxRhodes,boxEphese;
     private float coeff_button = 10;
     private int button_font_size = 13;
+
+    private ArrayList<AnchorPane> players = new ArrayList<>();
+    /* (x,y,rotation)
+    0 : 276,494,0
+    1 : 465,411,-51
+    2 : 500,177,-102
+    3 : 331,35,-153
+    4 : 136,41,-204
+    5 : 33,194,-255
+    6 : 81,418,-306
+     */
+    private int[][] coordinates = {
+            {276,494,0},
+            {465,411,-51},
+            {500,177,-102},
+            {331,35,-153},
+            {136,41,-204},
+            {33,194,-255},
+            {81,418,-306}
+    };
+
     public MainScene() throws LineUnavailableException {
     }
     public void initialize() throws IOException, UnsupportedAudioFileException, LineUnavailableException
     {
+        boxAlexandria.setVisible(false);
+        boxEphese.setVisible(false);
+        boxGizeh.setVisible(false);
+        boxOlympie.setVisible(false);
+        boxRhodes.setVisible(false);
+        boxHalicarnas.setVisible(false);
+        boxBabylon.setVisible(false);
+
+        if(StageLoader.alexandria)
+            players.add(boxAlexandria);
+        if(StageLoader.ephese)
+            players.add(boxEphese);
+        if(StageLoader.gizeh)
+            players.add(boxGizeh);
+        if(StageLoader.olympie)
+            players.add(boxOlympie);
+        if(StageLoader.rhodes)
+            players.add(boxRhodes);
+        if(StageLoader.halicarnas)
+            players.add(boxHalicarnas);
+        if(StageLoader.babylon)
+            players.add(boxBabylon);
+
+        switch(StageLoader.numberPlayer)
+        {
+            case 2:
+                players.get(0).setLayoutX(coordinates[0][0]);
+                players.get(0).setLayoutY(coordinates[0][1]);
+                players.get(0).setRotate(coordinates[0][2]);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(276);
+                players.get(1).setLayoutY(0);
+                players.get(1).setRotate(180);
+                players.get(1).setVisible(true);
+                break;
+            case 3:
+                players.get(0).setLayoutX(coordinates[0][0]);
+                players.get(0).setLayoutY(coordinates[0][1]);
+                players.get(0).setRotate(coordinates[0][2]);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(coordinates[2][0]);
+                players.get(1).setLayoutY(coordinates[2][1]);
+                players.get(1).setRotate(coordinates[2][2]);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(coordinates[5][0]);
+                players.get(2).setLayoutY(coordinates[5][1]);
+                players.get(2).setRotate(coordinates[5][2]);
+                players.get(2).setVisible(true);
+                break;
+            case 4:
+                players.get(0).setLayoutX(coordinates[0][0]);
+                players.get(0).setLayoutY(coordinates[0][1]);
+                players.get(0).setRotate(coordinates[0][2]);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(coordinates[2][0]);
+                players.get(1).setLayoutY(coordinates[2][1]);
+                players.get(1).setRotate(coordinates[2][2]);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(coordinates[4][0]);
+                players.get(2).setLayoutY(coordinates[4][1]);
+                players.get(2).setRotate(coordinates[4][2]);
+                players.get(2).setVisible(true);
+                players.get(3).setLayoutX(coordinates[6][0]);
+                players.get(3).setLayoutY(coordinates[6][1]);
+                players.get(3).setRotate(coordinates[6][2]);
+                players.get(3).setVisible(true);
+                break;
+        }
+
+
         soundButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/MesloLGS-NF.ttf"), 34));
         if(!StageLoader.sound)
             soundButton.setText("\uF026");
+
+
     }
 
     boolean switcher = true;
@@ -124,8 +217,9 @@ public class MainScene {
 
         RotateTransition rt = new RotateTransition(Duration.millis(1000), boxTable);
         i++;
-        if(i==7)
-        {
+        if(StageLoader.numberPlayer == 2)
+            rotate = 180;
+        else if(i==7) {
             i = 0;
             rotate = 54;
         }
