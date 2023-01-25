@@ -178,8 +178,7 @@ public class Game
         }
 
         this.calculateVictoryPoints();
-        //TODO: display results
-        //this.outputManager.displayResults();
+        this.outputManager.displayResults(this.players);
     }
 
     /**

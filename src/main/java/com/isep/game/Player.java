@@ -77,6 +77,11 @@ public class Player implements Comparable<Player>
         return this.militaryVictoryTokens;
     }
 
+    public int getVictoryPoints()
+    {
+        return this.victoryPoints;
+    }
+
     public boolean hasCat()
     {
         return this.hasCat;
