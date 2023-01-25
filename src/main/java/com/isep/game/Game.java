@@ -219,19 +219,17 @@ public class Game
 
         String playerName;
         LocalDate playerBirthday;
+        Wonder playerWonder;
         for(int i = 1; i <= playerCount; i++)
         {
             this.outputManager.displayMessage(String.format("==== Player n°%d ====", i));
             playerName = this.inputParser.fetchPlayerName();
             playerBirthday = this.inputParser.fetchPlayerBirthday();
-            // TODO: let players choose their Wonder
+            playerWonder = this.inputParser.fetchPlayerWonder(wonders);
 
-            // Assigning a random wonder to the player
-            randomIndex = random.nextInt(wonders.size());
-            Wonder wonder = wonders.get(randomIndex);
-            wonders.remove(randomIndex);
+            wonders.remove(playerWonder);
 
-            this.players.add(new Player(playerName, playerBirthday, wonder));
+            this.players.add(new Player(playerName, playerBirthday, playerWonder));
         }
     }
 
