@@ -276,11 +276,11 @@ public class Hand
      * @param stage The {@link Stage} to build.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return A {@link Map} containing the {@link Card}s required.
-     * @deprecated Needs rewriting.
+     * @deprecated Does not work correctly. Use {@link Hand#getCardsRequiredToBuildStage(Stage, boolean)} instead.
      * @author Quentin LAURENT
      */
     @Deprecated
-    public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage, boolean economyEffect)
+    public Map<Card, Integer> getCardsRequiredToBuildStage2(Stage stage, boolean economyEffect)
     {
         float bonus = (economyEffect) ? 2f : 1f;
 
@@ -377,6 +377,96 @@ public class Hand
                 throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
         }
         return requiredCards;
+    }
+
+    /**
+     * Returns a {@link Map} containing the {@link Card}s required to build the provided {@link Stage}.
+     * <p>This method does NOT account for the ENGINEERING effect.
+     * @param stage The {@link Stage} to build.
+     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
+     * @return A {@link Map} containing the {@link Card}s required.
+     * @author Quentin LAURENT
+     */
+    public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage, boolean economyEffect)
+    {
+        float bonus = (economyEffect) ? 2f : 1f;
+
+        HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
+        final int requiredResourcesAmount = stage.getRequiredResourcesAmount();
+        int differentResourcesRequiredAmount = requiredResourcesAmount;
+        boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
+        int yellowCardAmount = 0;
+
+        if(resourcesNeedToBeEqual)
+        {
+            GreyCard mostAvailableGreyCard = null;
+            int maxAmountOfEqualResources = 0;
+
+            // Fetches the GreyCard with the most quantity and the amount of YellowCard
+            for(var entry: this.cards.entrySet())
+            {
+                // If there are directly enough GreyCards then they are immediately returned
+                if(entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
+                {
+                    requiredCards.put(entry.getKey(), requiredResourcesAmount);
+                    return requiredCards;
+                }
+                else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
+                {
+                    mostAvailableGreyCard = (GreyCard) entry.getKey();
+                    maxAmountOfEqualResources = entry.getValue();
+                }
+                else if(entry.getKey() instanceof YellowCard)
+                    yellowCardAmount = entry.getValue();
+            }
+
+            if(maxAmountOfEqualResources + (yellowCardAmount * bonus) < requiredResourcesAmount)
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
+
+            // Adds the GreyCards required and completes the missing resources with YellowCards
+            if(mostAvailableGreyCard != null)
+                requiredCards.put(mostAvailableGreyCard, maxAmountOfEqualResources);
+            differentResourcesRequiredAmount -= maxAmountOfEqualResources;
+
+            while(differentResourcesRequiredAmount > 0)
+            {
+                requiredCards.put(new YellowCard(), 1);
+                differentResourcesRequiredAmount -= bonus;
+            }
+
+            return requiredCards;
+        }
+        else
+        {
+            int amountOfDifferentResources = 0;
+
+            for(var entry: this.cards.entrySet())
+            {
+                // Fetches the amount of different GreyCards and the amount of YellowCard
+                // We can also directly add the GreyCards to the returned HashMap
+                if(entry.getKey() instanceof GreyCard)
+                {
+                    requiredCards.put(entry.getKey(), 1);
+                    amountOfDifferentResources++;
+                    differentResourcesRequiredAmount--;
+                }
+
+                else if(entry.getKey() instanceof YellowCard)
+                    yellowCardAmount = entry.getValue();
+            }
+
+            if(amountOfDifferentResources + (yellowCardAmount * bonus) < requiredResourcesAmount)
+                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
+
+            // Completes the missing resources with YellowCards
+            while(differentResourcesRequiredAmount > 0)
+            {
+                requiredCards.put(new YellowCard(), 1);
+                differentResourcesRequiredAmount -= bonus;
+            }
+
+            return requiredCards;
+        }
     }
 
     /**
