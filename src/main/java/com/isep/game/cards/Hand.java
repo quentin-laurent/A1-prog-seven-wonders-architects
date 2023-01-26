@@ -276,115 +276,6 @@ public class Hand
      * @param stage The {@link Stage} to build.
      * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
      * @return A {@link Map} containing the {@link Card}s required.
-     * @deprecated Does not work correctly. Use {@link Hand#getCardsRequiredToBuildStage(Stage, boolean)} instead.
-     * @author Quentin LAURENT
-     */
-    @Deprecated
-    public Map<Card, Integer> getCardsRequiredToBuildStage2(Stage stage, boolean economyEffect)
-    {
-        float bonus = (economyEffect) ? 2f : 1f;
-
-        HashMap<Card, Integer> requiredCards = new HashMap<Card, Integer>();
-        final int requiredResourcesAmount = stage.getRequiredResourcesAmount();
-        boolean resourcesNeedToBeEqual = stage.getResourcesNeedToBeEqual();
-        int maxAmountOfEqualResources = 0;
-        int yellowCardAmount = 0;
-
-        if (resourcesNeedToBeEqual)
-        {
-            HashMap<Card, Integer> equalResources = new HashMap<Card, Integer>();
-
-            for (var entry : this.cards.entrySet())
-            {
-                // Is true if the entry directly contains the required identical resources
-                if (entry.getKey() instanceof GreyCard && entry.getValue() >= requiredResourcesAmount)
-                {
-                    requiredCards.put(entry.getKey(), requiredResourcesAmount);
-                    return requiredCards;
-                }
-                // Gets the maximum amount of identical resources
-                else if(entry.getKey() instanceof GreyCard && entry.getValue() > maxAmountOfEqualResources)
-                    maxAmountOfEqualResources = entry.getValue();
-                else if(entry.getKey() instanceof YellowCard)
-                    yellowCardAmount = entry.getValue();
-            }
-
-            // We iterate a second time over the Hand to get the GreyCard with the highest amount of resources
-            // i.e. if a Stage requires three identical resources, and the Hand only contains 2 identical resources at best,
-            // this will get the GreyCard corresponding to these two resources.
-            // This method will then try to complete the missing amount with Yellow cards.
-            for(var entry: this.cards.entrySet())
-            {
-                if(entry.getKey() instanceof GreyCard && entry.getValue() == maxAmountOfEqualResources)
-                    equalResources.put(entry.getKey(), entry.getValue());
-                else if(entry.getKey() instanceof YellowCard && ((yellowCardAmount * bonus) + maxAmountOfEqualResources) >= requiredResourcesAmount)
-                    equalResources.put(entry.getKey(), requiredResourcesAmount - maxAmountOfEqualResources);
-            }
-
-            // Checking if the equalResources HashMap contains a combination of Grey and Yellow cards allowing to build the Stage
-            int equalResourcesSum = 0;
-            for(var entry: equalResources.entrySet())
-                equalResourcesSum += entry.getValue();
-
-            if(equalResourcesSum == requiredResourcesAmount)
-                requiredCards.putAll(equalResources);
-            else
-                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
-        }
-        else
-        {
-            HashMap<Card, Integer> differentResources = new HashMap<Card, Integer>();
-
-            for (var entry : this.cards.entrySet())
-            {
-                if(entry.getKey() instanceof GreyCard)
-                    differentResources.put(entry.getKey(), 1);
-
-                if(entry.getKey() instanceof YellowCard)
-                    differentResources.put(entry.getKey(), entry.getValue());
-            }
-
-            int differentResourcesAmount = 0;
-            for(var entry: differentResources.entrySet())
-            {
-                if(differentResourcesAmount >= requiredResourcesAmount)
-                    break;
-
-                if(entry.getKey() instanceof YellowCard)
-                {
-                    int resourcesMissing = requiredResourcesAmount - differentResourcesAmount;
-                    if((entry.getValue() * bonus) <= resourcesMissing)
-                    {
-                        requiredCards.put(entry.getKey(), entry.getValue());
-                        differentResourcesAmount += (entry.getValue() * bonus);
-                    }
-                    // If there are more YellowCards than needed, only add the required amount
-                    else
-                    {
-                        int yellowCardsToAdd = (int) Math.ceil(resourcesMissing / bonus);
-                        requiredCards.put(entry.getKey(), yellowCardsToAdd);
-                        differentResourcesAmount += (yellowCardsToAdd * bonus);
-                    }
-                }
-                else
-                {
-                    requiredCards.put(entry.getKey(), entry.getValue());
-                    differentResourcesAmount++;
-                }
-            }
-
-            if(differentResourcesAmount < requiredResourcesAmount)
-                throw new RuntimeException("The current Hand does not have the cards required to build the provided stage !");
-        }
-        return requiredCards;
-    }
-
-    /**
-     * Returns a {@link Map} containing the {@link Card}s required to build the provided {@link Stage}.
-     * <p>This method does NOT account for the ENGINEERING effect.
-     * @param stage The {@link Stage} to build.
-     * @param economyEffect A boolean indicating if the {@link Player} owning this {@link Hand} has the ECONOMY {@link ProgressToken}.
-     * @return A {@link Map} containing the {@link Card}s required.
      * @author Quentin LAURENT
      */
     public Map<Card, Integer> getCardsRequiredToBuildStage(Stage stage, boolean economyEffect)
@@ -603,7 +494,7 @@ public class Hand
         for(var entry: this.cards.entrySet())
         {
             if(entry.getKey() instanceof BlueCard && ((BlueCard) entry.getKey()).getCat())
-                numberOfCats++;
+                numberOfCats += entry.getValue();
         }
 
         return numberOfCats;
@@ -629,6 +520,8 @@ public class Hand
     @Override
     public boolean equals(Object o)
     {
+        if(o == null)
+            return false;
         if(!(o instanceof Hand))
             return false;
 

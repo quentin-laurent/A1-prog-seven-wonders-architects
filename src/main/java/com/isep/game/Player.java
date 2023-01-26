@@ -100,6 +100,8 @@ public class Player implements Comparable<Player>
      */
     public void addMilitaryVictoryTokens(int militaryVictoryTokens)
     {
+        if(militaryVictoryTokens < 1)
+            throw new RuntimeException("The amount of military victory tokens to add needs to be greater than 0 !");
         this.militaryVictoryTokens += militaryVictoryTokens;
     }
 
@@ -110,6 +112,8 @@ public class Player implements Comparable<Player>
      */
     public void addVictoryPoints(int victoryPoints)
     {
+        if(victoryPoints < 1)
+            throw new RuntimeException("The amount of victory points to add needs to be greater than 0 !");
         this.victoryPoints += victoryPoints;
     }
 

@@ -79,7 +79,6 @@ public class Stage
 
         return (this.victoryPoints == stage.victoryPoints
                 && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
-                && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
                 && this.hasEffect == stage.hasEffect
                 && this.constructed == stage.constructed
                 && this.level == stage.level);
