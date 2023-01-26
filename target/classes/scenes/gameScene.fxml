@@ -248,52 +248,52 @@
                      <content>
                         <AnchorPane prefHeight="558.0" prefWidth="182.0">
                            <children>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageStone" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_grey1.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWood" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_grey2.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageClay" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_grey3.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageScroll" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_grey4.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWater" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_grey5.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelStone" layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWood" layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelClay" layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="366.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelScroll" layoutX="91.0" layoutY="366.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="471.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWater" layoutX="91.0" layoutY="471.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
@@ -308,12 +308,12 @@
                <content>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="199.0">
                      <children>
-                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="12.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageGold" fitHeight="106.0" fitWidth="65.0" layoutX="12.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/game-elements/cards/card_yellow.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="89.0" text="0" textFill="WHITE">
+                        <Label fx:id="labelGold" layoutX="95.0" layoutY="89.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
@@ -327,32 +327,32 @@
                      <content>
                         <AnchorPane prefHeight="377.0" prefWidth="182.0">
                            <children>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWar1" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_red1.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWar2" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_red2.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWar3" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_red3.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWar1" layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWar2" layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWar3" layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
@@ -366,22 +366,22 @@
                <content>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="198.0">
                      <children>
-                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageBlue1" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/game-elements/cards/card_blue1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageBlue2" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/game-elements/cards/card_blue2.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                        <Label fx:id="labelBlue1" layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                        <Label fx:id="labelBlue2" layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
@@ -395,32 +395,32 @@
                      <content>
                         <AnchorPane prefHeight="343.0" prefWidth="181.0">
                            <children>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageCompass" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_green1.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageWheel" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_green2.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imageTablet" fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../imgs/game-elements/cards/card_green3.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelCompass" layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelWheel" layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                              <Label fx:id="labelTablet" layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold Italic" size="17.0" />
                                  </font>
@@ -432,5 +432,20 @@
                </content></TitledPane>
         </panes>
       </Accordion>
+      <ImageView fx:id="deckGauche" fitHeight="142.0" fitWidth="103.0" layoutX="226.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/game-elements/cards/card_wonder_gizeh.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="deckDroite" fitHeight="142.0" fitWidth="103.0" layoutX="958.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/game-elements/cards/card_wonder_ephese.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="deckCentral" fitHeight="84.0" fitWidth="65.0" layoutX="610.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/game-elements/cards/card_question.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

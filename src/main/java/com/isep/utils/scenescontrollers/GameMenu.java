@@ -293,7 +293,6 @@ public class GameMenu {
         StageLoader.numberPlayer = (int) slider.getValue();
         for(int i=0;i<7;i++)
         {
-            System.out.println(boxArray.get(i).isVisible());
             if (boxArray.get(i).isVisible())
             {
                 switch ((String) menuArray.get(i).getValue())

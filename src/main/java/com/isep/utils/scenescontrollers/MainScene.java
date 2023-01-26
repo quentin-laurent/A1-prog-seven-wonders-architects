@@ -34,6 +34,8 @@ public class MainScene {
 
     @FXML
     private Button soundButton;
+
+    // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- WONDERS IMAGES -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     @FXML
     private ImageView alexandria1,alexandria2,alexandria3,alexandria4,alexandria5;
     @FXML
@@ -48,24 +50,29 @@ public class MainScene {
     private ImageView rhodes1,rhodes2,rhodes3,rhodes4,rhodes5;
     @FXML
     private ImageView olympie1,olympie2,olympie3,olympie4,olympie5;
+
+    // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- WONDERS TABLES -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
     @FXML
     private AnchorPane boxTable,boxAlexandria,boxOlympie,boxBabylon,boxHalicarnas,boxGizeh,boxRhodes,boxEphese;
+
+    // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- CARDS LABELS AND IMAGES -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+    @FXML
+    private ImageView deckGauche,deckDroite,deckCentral;
+
+    @FXML
+    private Label labelStone,labelWood,labelClay,labelScroll,labelWater,labelGold,labelWar1,labelWar2,labelWar3,labelBlue1,labelBlue2,labelCompass,labelWheel,labelTablet;
+
+    @FXML
+    private ImageView imageStone,imageWood,imageClay,imageScroll,imageWater,imageGold,imageWar1,imageWar2,imageWar3,imageBlue1,imageBlue2,imageCompass,imageWheel,imageTablet;
+
+    // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- GLOBAL VARIABLES -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     private float coeff_button = 10;
     private int button_font_size = 13;
 
     private int rotationValue;
 
     private ArrayList<AnchorPane> players = new ArrayList<>();
-
-    private int[][] coordinates = {
-            {276,494,0},
-            {465,411,-51},
-            {500,177,-102},
-            {331,35,-153},
-            {136,41,-204},
-            {33,194,-255},
-            {81,418,-306}
-    };
 
     public MainScene() throws LineUnavailableException {
     }
@@ -97,11 +104,45 @@ public class MainScene {
 
         setupWonders();
 
+        // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- EVENT FOR MOUSE HOVER -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+        deckCentral.setOnMouseEntered(event -> expendImage(deckCentral));
+        deckCentral.setOnMouseExited(event -> reduceImage(deckCentral));
+        deckGauche.setOnMouseEntered(event -> expendImage(deckGauche));
+        deckGauche.setOnMouseExited(event -> reduceImage(deckGauche));
+        deckDroite.setOnMouseEntered(event -> expendImage(deckDroite));
+        deckDroite.setOnMouseExited(event -> reduceImage(deckDroite));
+        imageStone.setOnMouseEntered(event -> expendImage(imageStone));
+        imageStone.setOnMouseExited(event -> reduceImage(imageStone));
+        imageWood.setOnMouseEntered(event -> expendImage(imageWood));
+        imageWood.setOnMouseExited(event -> reduceImage(imageWood));
+        imageClay.setOnMouseEntered(event -> expendImage(imageClay));
+        imageClay.setOnMouseExited(event -> reduceImage(imageClay));
+        imageScroll.setOnMouseEntered(event -> expendImage(imageScroll));
+        imageScroll.setOnMouseExited(event -> reduceImage(imageScroll));
+        imageWater.setOnMouseEntered(event -> expendImage(imageWater));
+        imageWater.setOnMouseExited(event -> reduceImage(imageWater));
+        imageGold.setOnMouseEntered(event -> expendImage(imageGold));
+        imageGold.setOnMouseExited(event -> reduceImage(imageGold));
+        imageWar1.setOnMouseEntered(event -> expendImage(imageWar1));
+        imageWar1.setOnMouseExited(event -> reduceImage(imageWar1));
+        imageWar2.setOnMouseEntered(event -> expendImage(imageWar2));
+        imageWar2.setOnMouseExited(event -> reduceImage(imageWar2));
+        imageWar3.setOnMouseEntered(event -> expendImage(imageWar3));
+        imageWar3.setOnMouseExited(event -> reduceImage(imageWar3));
+        imageBlue1.setOnMouseEntered(event -> expendImage(imageBlue1));
+        imageBlue1.setOnMouseExited(event -> reduceImage(imageBlue1));
+        imageBlue2.setOnMouseEntered(event -> expendImage(imageBlue2));
+        imageBlue2.setOnMouseExited(event -> reduceImage(imageBlue2));
+        imageCompass.setOnMouseEntered(event -> expendImage(imageCompass));
+        imageCompass.setOnMouseExited(event -> reduceImage(imageCompass));
+        imageWheel.setOnMouseEntered(event -> expendImage(imageWheel));
+        imageWheel.setOnMouseExited(event -> reduceImage(imageWheel));
+        imageTablet.setOnMouseEntered(event -> expendImage(imageTablet));
+        imageTablet.setOnMouseExited(event -> reduceImage(imageTablet));
+
         soundButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/MesloLGS-NF.ttf"), 34));
         if(!StageLoader.sound)
             soundButton.setText("\uF026");
-
-
     }
 
     boolean switcher = true;
@@ -339,6 +380,23 @@ public class MainScene {
         button.setPrefWidth(button.getPrefWidth()-coeff_button);
         button.setPrefHeight(button.getPrefHeight()-coeff_button);
         button.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), button_font_size));
+    }
+
+    private void expendImage(ImageView image)
+    {
+        image.setLayoutX(image.getLayoutX()-coeff_button/2);
+        image.setLayoutY(image.getLayoutY()-coeff_button/2);
+
+        image.setFitWidth(image.getFitWidth()+coeff_button);
+        image.setFitHeight(image.getFitHeight()+coeff_button);
+    }
+    private void reduceImage(ImageView image)
+    {
+        image.setLayoutX(image.getLayoutX()+coeff_button/2);
+        image.setLayoutY(image.getLayoutY()+coeff_button/2);
+
+        image.setFitWidth(image.getFitWidth()-coeff_button);
+        image.setFitHeight(image.getFitHeight()-coeff_button);
     }
 
     @FXML

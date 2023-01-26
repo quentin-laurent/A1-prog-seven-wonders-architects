@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -38,7 +39,7 @@
             <Font name="Helenium W01 Bold" size="39.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text1" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -58,9 +59,10 @@
                   <Image url="@../imgs/wonders/alexandrie.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date1" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -80,9 +82,10 @@
                   <Image url="@../imgs/wonders/babylone.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date3" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -102,9 +105,10 @@
                   <Image url="@../imgs/wonders/ephese.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date2" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box4" layoutX="386.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box4" layoutX="386.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text4" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -124,9 +128,10 @@
                   <Image url="@../imgs/wonders/rhodes.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date4" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box5" layoutX="694.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box5" layoutX="694.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text5" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -146,9 +151,10 @@
                   <Image url="@../imgs/wonders/halicarnas.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date5" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box6" layoutX="76.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box6" layoutX="76.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text6" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -168,9 +174,10 @@
                   <Image url="@../imgs/wonders/olympie.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date6" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="box7" layoutX="1004.0" layoutY="400.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box7" layoutX="1004.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text7" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -190,9 +197,10 @@
                   <Image url="@../imgs/wonders/gizeh.png" />
                </image>
             </ImageView>
+            <DatePicker fx:id="date7" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
-      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" onAction="#onPlayButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
+      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" onAction="#onPlayButton" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
          <font>
             <Font name="Helenium W01 Bold" size="13.0" />
          </font>

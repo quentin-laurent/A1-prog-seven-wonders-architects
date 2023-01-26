@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -38,7 +39,7 @@
             <Font name="Helenium W01 Bold" size="39.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
+      <AnchorPane fx:id="box1" layoutX="540.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
             <TextField fx:id="text1" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
                <effect>
@@ -58,6 +59,7 @@
                   <Image url="@../imgs/wonders/alexandrie.png" />
                </image>
             </ImageView>
+            <DatePicker layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -192,7 +194,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" onAction="#onPlayButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
+      <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" onAction="#onPlayButton" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">
          <font>
             <Font name="Helenium W01 Bold" size="13.0" />
          </font>
