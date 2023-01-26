@@ -4,6 +4,8 @@ import com.isep.game.cards.Deck;
 import com.isep.game.wonders.Alexandria;
 import com.isep.utils.ConsoleOutput;
 import com.isep.utils.ConsoleParser;
+import com.isep.utils.GUIParser;
+import com.isep.utils.InputParser;
 import jdk.jshell.spi.ExecutionControl;
 
 public class Main
@@ -12,6 +14,8 @@ public class Main
     {
         Game game = new Game(new ConsoleParser(), new ConsoleOutput());
         //game.play();
+        GUIParser parser = new GUIParser();
+        parser.launchInterface();
         Alexandria alexandria = new Alexandria();
         Deck deck = alexandria.getDeck();
         System.out.println(deck);

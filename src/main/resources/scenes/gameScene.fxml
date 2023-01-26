@@ -242,7 +242,7 @@
       <Button fx:id="button3" layoutX="1203.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButton3" text="Button3" />
       <Accordion layoutX="60.0" layoutY="48.0" stylesheets="@style.css">
         <panes>
-          <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="201.0" text="Grey Cards">
+          <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="201.0" text="Grey Cards">
                <content>
                   <ScrollPane prefHeight="292.0" prefWidth="199.0">
                      <content>
@@ -304,16 +304,16 @@
                   </ScrollPane>
                </content>
           </TitledPane>
-          <TitledPane animated="false" prefHeight="176.0" prefWidth="200.0" text="Yellow Cards">
+          <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="201.0" text="Yellow Cards">
                <content>
-                  <AnchorPane prefHeight="405.0" prefWidth="199.0">
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="214.0" prefWidth="199.0">
                      <children>
-                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="12.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../imgs/game-elements/cards/card_yellow.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="62.0" text="0" textFill="WHITE">
+                        <Label layoutX="95.0" layoutY="89.0" text="0" textFill="WHITE">
                            <font>
                               <Font name="System Bold Italic" size="17.0" />
                            </font>
@@ -321,11 +321,11 @@
                      </children></AnchorPane>
                </content>
           </TitledPane>
-          <TitledPane animated="false" text="Red Cards">
+          <TitledPane animated="false" prefWidth="201.0" text="Red Cards">
                <content>
-                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="197.0">
+                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="197.0">
                      <content>
-                        <AnchorPane prefHeight="343.0" prefWidth="181.0">
+                        <AnchorPane prefHeight="377.0" prefWidth="182.0">
                            <children>
                               <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
