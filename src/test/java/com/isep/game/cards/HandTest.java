@@ -6,6 +6,7 @@ import com.isep.game.wonders.Babylon;
 import com.isep.game.wonders.Stage;
 import com.isep.utils.ConsoleOutput;
 import com.isep.utils.ConsoleParser;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -60,6 +61,17 @@ class HandTest
         hand.addCard(card, 2);
 
         assertEquals(2, (int) hand.getCards().get(card));
+    }
+
+    @Test
+    void addCardShouldThrowRuntimeExceptionWhenAddingLessThanOneCard()
+    {
+        Hand hand = new Hand();
+        GreyCard card = new GreyCard(GreyCard.Material.WOOD);
+
+        assertThrows(RuntimeException.class, () -> hand.addCard(card, 0));
+        assertThrows(RuntimeException.class, () -> hand.addCard(card, -1));
+        assertThrows(RuntimeException.class, () -> hand.addCard(card, -999));
     }
 
     @Test
@@ -255,29 +267,45 @@ class HandTest
     }
 
     @Test
-    void testToString()
+    void canBuildStageShouldReturnFalseWhenHandDoesntContainsCardsRequiredToBuildStageWithEngineeringEffect()
     {
+        // Stage 1 of Alexandria requires 2 different resources
+        Stage stage1 = new Alexandria().getStages().get(0);
         Hand hand = new Hand();
-        hand.addCard(new YellowCard());
-        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
-        hand.addCard(new RedCard(0));
-        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
 
-        StringBuilder expectedString = new StringBuilder("5 cards:\n");
-        for(var entry: hand.getCards().entrySet())
-        {
-            for(int i = 0; i < entry.getValue(); i++)
-                expectedString.append(entry.getKey().toString()).append('\n');
-        }
-        int length = expectedString.length();
-        expectedString.replace(length - 1, length, "");
+        ArrayList<Stage> stages = new ArrayList<>();
+        stages.add(stage1);
+        assertFalse(hand.canBuildStage(stages, false, true));
 
-        assertEquals(expectedString.toString(), hand.toString());
+        // Stage 4 of Alexandria requires 3 identical resources
+        Stage stage4 = new Alexandria().getStages().get(3);
+        hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+
+        stages.clear();
+        stages.add(stage4);
+        assertFalse(hand.canBuildStage(stages, false, true));
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuilt()
+    void canBuildStageShouldReturnFalseWhenGivenAnEmptyStageList()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+
+        assertFalse(hand.canBuildStage(new ArrayList<Stage>(), false));
+        assertFalse(hand.canBuildStage(new ArrayList<Stage>(), false, false));
+        assertFalse(hand.canBuildStage(new ArrayList<Stage>(), false, true));
+    }
+
+    @Test
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuilt()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -297,7 +325,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWithEngineeringEffect()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWithEngineeringEffect()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -319,7 +347,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailable()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailable()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -343,7 +371,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithEngineeringEffect()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithEngineeringEffect()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -367,7 +395,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWithYellowCards()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWithYellowCards()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -388,7 +416,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWithYellowCardsWithEconomyEffect()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWithYellowCardsWithEconomyEffect()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -409,7 +437,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCards()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCards()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -433,7 +461,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCardsWithEconomyEffect()
+    void getStagesReadyToBuildtShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCardsWithEconomyEffect()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -454,7 +482,7 @@ class HandTest
     }
 
     @Test
-    void getStagesReadyToBeBuiltShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCardsWithEconomyWithEngineeringEffects()
+    void getStagesReadyToBuildShouldReturnAllTheStagesReadyToBeBuiltWhenMultipleAreAvailableWithYellowCardsWithEconomyWithEngineeringEffects()
     {
         Babylon babylon = new Babylon();
         babylon.getStages().get(0).setConstructed(true);
@@ -472,6 +500,26 @@ class HandTest
         stagesReadyToBuild.add(babylon.getStages().get(4));
 
         assertEquals(stagesReadyToBuild, hand.getStagesReadyToBuild(babylon.getNextStagesToBuild(), true, true));
+    }
+
+    @Test
+    void getStagesReadyToBuildShouldReturnEmptyListIfNoStagesCanBeBuilt()
+    {
+        // Stage 5 of Alexandria requires 4 different resources
+        Alexandria alexandria = new Alexandria();
+        alexandria.getStages().get(0).setConstructed(true);
+        alexandria.getStages().get(1).setConstructed(true);
+        alexandria.getStages().get(2).setConstructed(true);
+        alexandria.getStages().get(3).setConstructed(true);
+
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreyCard(GreyCard.Material.STONE));
+        hand.addCard(new RedCard(2));
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS));
+
+        assertEquals(new ArrayList<Stage>(), hand.getStagesReadyToBuild(alexandria.getNextStagesToBuild(), false));
+        assertEquals(new ArrayList<Stage>(), hand.getStagesReadyToBuild(alexandria.getNextStagesToBuild(), false, false));
     }
 
     @Test
@@ -738,6 +786,55 @@ class HandTest
     }
 
     @Test
+    void containsTwoIdenticalScienceSymbolsShouldReturnTrueIfHandContainsTwoIdenticalSymbols()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR), 2);
+        hand.addCard(new YellowCard());
+
+        assertTrue(hand.containsTwoIdenticalScienceSymbols());
+    }
+
+    @Test
+    void containsTwoIdenticalScienceSymbolsShouldReturnFalseIfHandDoesNotContainsTwoIdenticalSymbols()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
+        hand.addCard(new YellowCard());
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS));
+
+        assertFalse(hand.containsTwoIdenticalScienceSymbols());
+    }
+
+    @Test
+    void containsThreeDifferentScienceSymbolsShouldReturnTrueIfHandContainsThreeDifferentSymbols()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
+        hand.addCard(new YellowCard());
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS));
+
+        assertTrue(hand.containsThreeDifferentScienceSymbols());
+    }
+
+    @Test
+    void containsThreeDifferentScienceSymbolsShouldReturnFalseIfHandDoesNotContainsThreeDifferentSymbols()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
+        hand.addCard(new YellowCard());
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET), 2);
+
+        assertFalse(hand.containsThreeDifferentScienceSymbols());
+    }
+
+    @Test
     void getNumberOfShieldsShouldReturnTheNumberOfShields()
     {
         Hand hand1 = new Hand();
@@ -806,5 +903,122 @@ class HandTest
         hand2.discardRedCardsWithHorns(game2.getDiscard());
 
         assertTrue(deck2.getCards().containsAll(game2.getDiscard().getCards()));
+    }
+
+    @Test
+    void getNumberOfCatsShouldReturnTheAmountOfBlueCardsWithACat()
+    {
+        Hand hand1 = new Hand();
+        hand1.addCard(new BlueCard(3, false));
+        hand1.addCard(new BlueCard(4, false));
+
+        assertEquals(0, hand1.getNumberOfCats());
+
+        Hand hand2 = new Hand();
+        hand2.addCard(new BlueCard(3, true), 2);
+        hand2.addCard(new BlueCard(4, false));
+
+        assertEquals(2, hand2.getNumberOfCats());
+    }
+
+    @Test
+    void testToString()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new YellowCard());
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
+        hand.addCard(new RedCard(0));
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+
+        StringBuilder expectedString = new StringBuilder("5 cards:\n");
+        for(var entry: hand.getCards().entrySet())
+        {
+            for(int i = 0; i < entry.getValue(); i++)
+                expectedString.append(entry.getKey().toString()).append('\n');
+        }
+        int length = expectedString.length();
+        expectedString.replace(length - 1, length, "");
+
+        assertEquals(expectedString.toString(), hand.toString());
+    }
+
+    @Test
+    void equalsShouldBeReflective()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new RedCard(2));
+        hand.addCard(new YellowCard());
+
+        assertEquals(hand, hand);
+    }
+
+    @Test
+    void equalsShouldBeSymmetric()
+    {
+        Hand hand1 = new Hand();
+        hand1.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand1.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand1.addCard(new BlueCard(3, false));
+        hand1.addCard(new RedCard(2));
+        hand1.addCard(new YellowCard());
+
+        Hand hand2 = new Hand();
+        hand2.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand2.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand2.addCard(new BlueCard(3, false));
+        hand2.addCard(new RedCard(2));
+        hand2.addCard(new YellowCard());
+
+        assertTrue(hand1.equals(hand2) && hand2.equals(hand1));
+    }
+
+    @RepeatedTest(100)
+    void equalsShouldBeConsistent()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new RedCard(2));
+        hand.addCard(new YellowCard());
+
+        assertEquals(hand, hand);
+    }
+
+    @Test
+    void equalsShouldReturnFalseOnNull()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new RedCard(2));
+        hand.addCard(new YellowCard());
+
+        assertFalse(hand.equals(null));
+    }
+
+    @Test
+    void equalsShoudReturnFalseOnDifferentClass()
+    {
+        Hand hand = new Hand();
+        hand.addCard(new GreyCard(GreyCard.Material.WOOD));
+        hand.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        hand.addCard(new BlueCard(3, false));
+        hand.addCard(new RedCard(2));
+        hand.addCard(new YellowCard());
+
+        Deck deck = new Deck();
+        deck.addCard(new GreyCard(GreyCard.Material.WOOD));
+        deck.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        deck.addCard(new BlueCard(3, false));
+        deck.addCard(new RedCard(2));
+        deck.addCard(new YellowCard());
+
+        assertNotEquals(hand, deck);
     }
 }
