@@ -53,16 +53,10 @@ public class MainScene {
     private float coeff_button = 10;
     private int button_font_size = 13;
 
+    private int rotationValue;
+
     private ArrayList<AnchorPane> players = new ArrayList<>();
-    /* (x,y,rotation)
-    0 : 276,494,0
-    1 : 465,411,-51
-    2 : 500,177,-102
-    3 : 331,35,-153
-    4 : 136,41,-204
-    5 : 33,194,-255
-    6 : 81,418,-306
-     */
+
     private int[][] coordinates = {
             {276,494,0},
             {465,411,-51},
@@ -100,52 +94,8 @@ public class MainScene {
         if(StageLoader.babylon)
             players.add(boxBabylon);
 
-        switch(StageLoader.numberPlayer)
-        {
-            case 2:
-                players.get(0).setLayoutX(coordinates[0][0]);
-                players.get(0).setLayoutY(coordinates[0][1]);
-                players.get(0).setRotate(coordinates[0][2]);
-                players.get(0).setVisible(true);
-                players.get(1).setLayoutX(276);
-                players.get(1).setLayoutY(0);
-                players.get(1).setRotate(180);
-                players.get(1).setVisible(true);
-                break;
-            case 3:
-                players.get(0).setLayoutX(coordinates[0][0]);
-                players.get(0).setLayoutY(coordinates[0][1]);
-                players.get(0).setRotate(coordinates[0][2]);
-                players.get(0).setVisible(true);
-                players.get(1).setLayoutX(coordinates[2][0]);
-                players.get(1).setLayoutY(coordinates[2][1]);
-                players.get(1).setRotate(coordinates[2][2]);
-                players.get(1).setVisible(true);
-                players.get(2).setLayoutX(coordinates[5][0]);
-                players.get(2).setLayoutY(coordinates[5][1]);
-                players.get(2).setRotate(coordinates[5][2]);
-                players.get(2).setVisible(true);
-                break;
-            case 4:
-                players.get(0).setLayoutX(coordinates[0][0]);
-                players.get(0).setLayoutY(coordinates[0][1]);
-                players.get(0).setRotate(coordinates[0][2]);
-                players.get(0).setVisible(true);
-                players.get(1).setLayoutX(coordinates[2][0]);
-                players.get(1).setLayoutY(coordinates[2][1]);
-                players.get(1).setRotate(coordinates[2][2]);
-                players.get(1).setVisible(true);
-                players.get(2).setLayoutX(coordinates[4][0]);
-                players.get(2).setLayoutY(coordinates[4][1]);
-                players.get(2).setRotate(coordinates[4][2]);
-                players.get(2).setVisible(true);
-                players.get(3).setLayoutX(coordinates[6][0]);
-                players.get(3).setLayoutY(coordinates[6][1]);
-                players.get(3).setRotate(coordinates[6][2]);
-                players.get(3).setVisible(true);
-                break;
-        }
 
+        setupWonders();
 
         soundButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/MesloLGS-NF.ttf"), 34));
         if(!StageLoader.sound)
@@ -155,6 +105,139 @@ public class MainScene {
     }
 
     boolean switcher = true;
+
+    private void setupWonders()
+    {
+        switch(StageLoader.numberPlayer)
+        {
+            case 2:
+                rotationValue = 180;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(276);
+                players.get(1).setLayoutY(0);
+                players.get(1).setRotate(180);
+                players.get(1).setVisible(true);
+                break;
+            case 3:
+                rotationValue = 120;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(447);
+                players.get(1).setLayoutY(130);
+                players.get(1).setRotate(-120);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(46);
+                players.get(2).setLayoutY(135);
+                players.get(2).setRotate(-240);
+                players.get(2).setVisible(true);
+                break;
+            case 4:
+                rotationValue = 90;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(501);
+                players.get(1).setLayoutY(248);
+                players.get(1).setRotate(-90);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(276);
+                players.get(2).setLayoutY(28);
+                players.get(2).setRotate(-180);
+                players.get(2).setVisible(true);
+                players.get(3).setLayoutX(37);
+                players.get(3).setLayoutY(252);
+                players.get(3).setRotate(-270);
+                players.get(3).setVisible(true);
+                break;
+            case 5:
+                rotationValue = 72;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(502);
+                players.get(1).setLayoutY(323);
+                players.get(1).setRotate(-72);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(397);
+                players.get(2).setLayoutY(69);
+                players.get(2).setRotate(-144);
+                players.get(2).setVisible(true);
+                players.get(3).setLayoutX(111);
+                players.get(3).setLayoutY(55);
+                players.get(3).setRotate(-216);
+                players.get(3).setVisible(true);
+                players.get(4).setLayoutX(35);
+                players.get(4).setLayoutY(322);
+                players.get(4).setRotate(-288);
+                players.get(4).setVisible(true);
+                break;
+            case 6:
+                rotationValue = 60;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(476);
+                players.get(1).setLayoutY(375);
+                players.get(1).setRotate(-60);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(447);
+                players.get(2).setLayoutY(130);
+                players.get(2).setRotate(-120);
+                players.get(2).setVisible(true);
+                players.get(3).setLayoutX(245);
+                players.get(3).setLayoutY(10);
+                players.get(3).setRotate(-180);
+                players.get(3).setVisible(true);
+                players.get(4).setLayoutX(46);
+                players.get(4).setLayoutY(135);
+                players.get(4).setRotate(-240);
+                players.get(4).setVisible(true);
+                players.get(5).setLayoutX(18);
+                players.get(5).setLayoutY(384);
+                players.get(5).setRotate(-300);
+                players.get(5).setVisible(true);
+                break;
+            case 7:
+                rotationValue = 51;
+                players.get(0).setLayoutX(256);
+                players.get(0).setLayoutY(494);
+                players.get(0).setRotate(0);
+                players.get(0).setVisible(true);
+                players.get(1).setLayoutX(465);
+                players.get(1).setLayoutY(411);
+                players.get(1).setRotate(-51);
+                players.get(1).setVisible(true);
+                players.get(2).setLayoutX(500);
+                players.get(2).setLayoutY(177);
+                players.get(2).setRotate(-102);
+                players.get(2).setVisible(true);
+                players.get(3).setLayoutX(331);
+                players.get(3).setLayoutY(35);
+                players.get(3).setRotate(-153);
+                players.get(3).setVisible(true);
+                players.get(4).setLayoutX(136);
+                players.get(4).setLayoutY(41);
+                players.get(4).setRotate(-204);
+                players.get(4).setVisible(true);
+                players.get(5).setLayoutX(33);
+                players.get(5).setLayoutY(194);
+                players.get(5).setRotate(-255);
+                players.get(5).setVisible(true);
+                players.get(6).setLayoutX(81);
+                players.get(6).setLayoutY(418);
+                players.get(6).setRotate(-306);
+                players.get(6).setVisible(true);
+                break;
+        }
+    }
 
     @FXML
     protected void onButton()
@@ -209,28 +292,33 @@ public class MainScene {
         olympie5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_5" + end).toExternalForm()));
     }
 
-    int rotate = 0,i;
+    int i;
 
     @FXML
     protected void onButton2()
     {
-
-        RotateTransition rt = new RotateTransition(Duration.millis(1000), boxTable);
         i++;
-        if(StageLoader.numberPlayer == 2)
-            rotate = 180;
-        else if(i==7) {
-            i = 0;
-            rotate = 54;
-        }
-        else
-            rotate = 51;
-        System.out.println("-_-_-_-_-");
-        System.out.println(rotate);
-        System.out.println(i);
-        rt.setByAngle(rotate);
-        rt.play();
         System.out.println(boxTable.getRotate());
+        RotateTransition rt = new RotateTransition(Duration.millis(1000), boxTable);
+        if(StageLoader.numberPlayer!= 7  || i<StageLoader.numberPlayer)
+            rt.setByAngle(rotationValue);
+        else
+        {
+            rt.setByAngle(54.0);
+            i= 0;
+        }
+
+        if((int)boxTable.getRotate() == 360)
+        {
+            boxTable.setRotate(0.0);
+            System.out.println(boxTable.getRotate());
+        }
+        rt.play();
+    }
+
+    @FXML
+    protected void onButton3() throws IOException {
+        StageLoader.loadFXMLScene("/scenes/choiceMenu.fxml");
     }
 
     private void expendButton(Button button)
