@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -226,10 +230,207 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/rose.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="button" layoutX="1111.0" layoutY="360.0" mnemonicParsing="false" onAction="#onButton" text="Button" />
-      <Button fx:id="button2" layoutX="1111.0" layoutY="400.0" mnemonicParsing="false" onAction="#onButton2" text="Button" />
-      <Button fx:id="button3" layoutX="1111.0" layoutY="446.0" mnemonicParsing="false" onAction="#onButton3" text="Button" />
+      <Button fx:id="button" layoutX="1203.0" layoutY="50.0" mnemonicParsing="false" onAction="#onButton" text="Button" />
+      <Button fx:id="button2" layoutX="1203.0" layoutY="88.0" mnemonicParsing="false" onAction="#onButton2" text="Button2" />
+      <Button fx:id="button3" layoutX="1203.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButton3" text="Button3" />
+      <Accordion layoutX="60.0" layoutY="48.0" stylesheets="@style.css">
+        <panes>
+          <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="201.0" text="Grey Cards">
+               <content>
+                  <ScrollPane prefHeight="292.0" prefWidth="199.0">
+                     <content>
+                        <AnchorPane prefHeight="558.0" prefWidth="182.0">
+                           <children>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_grey1.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_grey2.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_grey3.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_grey4.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_grey5.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="366.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="471.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content>
+          </TitledPane>
+          <TitledPane animated="false" prefHeight="176.0" prefWidth="200.0" text="Yellow Cards">
+               <content>
+                  <AnchorPane prefHeight="405.0" prefWidth="199.0">
+                     <children>
+                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgs/game-elements/cards/card_yellow.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="95.0" layoutY="62.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Red Cards">
+               <content>
+                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="197.0">
+                     <content>
+                        <AnchorPane prefHeight="343.0" prefWidth="181.0">
+                           <children>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_red1.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_red2.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_red3.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content></TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="64.0" text="Blue Cards">
+               <content>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="198.0">
+                     <children>
+                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgs/game-elements/cards/card_blue1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imgs/game-elements/cards/card_blue2.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </content></TitledPane>
+            <TitledPane animated="false" layoutX="10.0" layoutY="275.0" text="Green Cards">
+               <content>
+                  <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="197.0">
+                     <content>
+                        <AnchorPane prefHeight="343.0" prefWidth="181.0">
+                           <children>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_green1.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_green2.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="106.0" fitWidth="65.0" layoutX="20.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imgs/game-elements/cards/card_green3.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="91.0" layoutY="50.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="153.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="91.0" layoutY="267.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </content></TitledPane>
+        </panes>
+      </Accordion>
    </children>
 </AnchorPane>
