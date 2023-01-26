@@ -4,6 +4,7 @@ import com.isep.game.cards.*;
 import com.isep.game.tokens.ProgressToken;
 import com.isep.game.tokens.ProgressTokenStack;
 import com.isep.game.wonders.*;
+import com.isep.utils.GUIParser;
 import com.isep.utils.InputParser;
 import com.isep.utils.OutputManager;
 import jdk.jshell.spi.ExecutionControl;
@@ -45,6 +46,10 @@ public class Game
     // Constructor
     public Game(InputParser inputParser, OutputManager outputManager)
     {
+        if(inputParser instanceof GUIParser)
+        {
+            ((GUIParser) inputParser).launchInterface();
+        }
         this.inputParser = inputParser;
         this.outputManager = outputManager;
         this.players = new ArrayList<Player>();
@@ -189,6 +194,7 @@ public class Game
     private void initialize()
     {
         int playerCount = this.inputParser.fetchPlayerCount();
+        System.out.println(playerCount);
         this.initializePlayers(playerCount);
         this.initializeConflictTokens();
 

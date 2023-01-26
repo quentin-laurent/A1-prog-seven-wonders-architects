@@ -328,6 +328,7 @@ public class GameMenu {
                 }
             }
         }
+        StageLoader.isActionFinished = true;
         StageLoader.loadFXMLScene("/scenes/gameScene.fxml");
     }
 }
