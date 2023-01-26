@@ -27,37 +27,23 @@ public class Halicarnassus extends Wonder
     private void buildDeck()
     {
         // Yellow cards
-        for(int i = 1 ; i <= 3; i++)
-            this.deck.addCard(new YellowCard());
+        this.deck.addCard(new YellowCard(), 3);
         // Grey cards
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new GreyCard(GreyCard.Material.STONE));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new GreyCard(GreyCard.Material.BRICK));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new GreyCard(GreyCard.Material.WOOD));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new GreyCard(GreyCard.Material.GLASS));
-        for(int i = 1 ; i <= 1; i++)
-            this.deck.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
+        this.deck.addCard(new GreyCard(GreyCard.Material.STONE), 2);
+        this.deck.addCard(new GreyCard(GreyCard.Material.BRICK), 2);
+        this.deck.addCard(new GreyCard(GreyCard.Material.WOOD), 2);
+        this.deck.addCard(new GreyCard(GreyCard.Material.GLASS), 2);
+        this.deck.addCard(new GreyCard(GreyCard.Material.PAPYRUS));
         // Green cards
-        for(int i = 1 ; i <= 1; i++)
-            this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
-        for(int i = 1 ; i <= 1; i++)
-            this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET));
+        this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.GEAR));
+        this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.COMPASS));
+        this.deck.addCard(new GreenCard(GreenCard.ScienceSymbol.TABLET), 2);
         // Blue cards
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new BlueCard(3, false));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new BlueCard(2, true));
+        this.deck.addCard(new BlueCard(3, false), 2);
+        this.deck.addCard(new BlueCard(2, true), 2);
         // Red cards
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new RedCard(0));
-        for(int i = 1 ; i <= 1; i++)
-            this.deck.addCard(new RedCard(1));
-        for(int i = 1 ; i <= 2; i++)
-            this.deck.addCard(new RedCard(2));
+        this.deck.addCard(new RedCard(0), 2);
+        this.deck.addCard(new RedCard(1), 2);
+        this.deck.addCard(new RedCard(2));
     }
 }

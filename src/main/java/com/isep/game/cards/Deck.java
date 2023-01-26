@@ -31,13 +31,27 @@ public class Deck
 
     // Methods
     /**
-     * Adds a new {@link Card} to this {@link Deck}.
+     * Adds a single {@link Card} to this {@link Deck}.
      * @param card The {@link Card} to add.
      * @author Quentin LAURENT
      */
     public void addCard(Card card)
     {
         this.cards.add(card);
+    }
+
+    /**
+     * Adds one or more identical {@link Card}(s) to this {@link Deck}.
+     * @param card The {@link Card}(s) to add.
+     * @author Quentin LAURENT
+     */
+    public void addCard(Card card, int quantity)
+    {
+        if(quantity < 1)
+            throw new RuntimeException("Quantity to add cannot be less than 1 !");
+
+        for(int i = 0; i < quantity; i++)
+            this.cards.add(card);
     }
 
     public void shuffle()
@@ -56,6 +70,16 @@ public class Deck
         this.cards.remove(0);
 
         return card;
+    }
+
+    /**
+     * Returns the {@link Card} on top of this {@link Deck}.
+     * @return The first {@link Card} of this {@link Deck}.
+     * @author Quentin LAURENT
+     */
+    public Card getTopCard()
+    {
+        return this.cards.get(0);
     }
 
     /**

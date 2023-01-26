@@ -27,4 +27,22 @@ public class GreenCard extends Card
     {
         return String.format("[%s] %s", this.color, this.scienceSymbol);
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == null)
+            return false;
+        if (!(o instanceof GreenCard))
+            return false;
+
+        GreenCard card = (GreenCard) o;
+        return (this.color == card.color && this.scienceSymbol == card.scienceSymbol);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return this.color.hashCode() + this.scienceSymbol.hashCode();
+    }
 }

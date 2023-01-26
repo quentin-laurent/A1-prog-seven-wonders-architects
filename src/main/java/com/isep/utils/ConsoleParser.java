@@ -1,10 +1,19 @@
 package com.isep.utils;
 
+import com.isep.game.cards.Card;
+import com.isep.game.cards.Deck;
+import com.isep.game.tokens.ProgressToken;
+import com.isep.game.tokens.ProgressTokenStack;
+import com.isep.game.wonders.Wonder;
+
+import javax.sound.midi.Soundbank;
 import java.net.DatagramSocket;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -62,6 +71,77 @@ public class ConsoleParser implements InputParser
         LocalDate birthday = this.getLocalDate("Player birthday (dd/mm/yyyy): ");
 
         return birthday;
+    }
+
+    public Wonder fetchPlayerWonder(List<Wonder> wonders)
+    {
+        StringBuilder s = new StringBuilder("Wonders available:\n");
+
+        int i = 0;
+        for(; i < wonders.size(); i++)
+            s.append(String.format("[%d] %s%n", i, wonders.get(i).getName()));
+        s.append("Choose a Wonder: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a Wonder: ");
+
+        while(index < 0 || index >= wonders.size())
+        {
+            System.out.println("You must select a valid Wonder (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a Wonder: ");
+        }
+
+        return wonders.get(index);
+    }
+
+    public Card fetchCardFromDeck(Deck leftDeck, Deck rightDeck, Deck middleDeck)
+    {
+        ArrayList<Deck> deckList = new ArrayList<>();
+        deckList.add(leftDeck);
+        deckList.add(rightDeck);
+        deckList.add(middleDeck);
+
+        StringBuilder s = new StringBuilder("Decks available:\n");
+        s.append(String.format("[0] Left Deck: %s%n", leftDeck.getTopCard()));
+        s.append(String.format("[1] Right Deck: %s%n", rightDeck.getTopCard()));
+        s.append(String.format("[2] Middle Deck: ?%n"));
+        s.append("Choose a deck to pick a card from: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a deck to pick a card from: ");
+
+        while(index < 0 || index > 2)
+        {
+            System.out.println("You must select a valid deck (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a deck to pick a card from: ");
+        }
+
+        return deckList.get(index).pickCard();
+    }
+
+    public ProgressToken fetchProgressTokenFromStack(ProgressTokenStack stack)
+    {
+        StringBuilder s = new StringBuilder("Available progress tokens:\n");
+
+        int i = 0;
+        for(; i < stack.getRevealedTokens().size(); i++)
+            s.append(String.format("[%d] %s%n", i, stack.getRevealedTokens().get(i)));
+        s.append(String.format("[%d] ?%n", i));
+        s.append("Choose a progress token: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a progress token: ");
+
+        while(index < 0 || index > 3)
+        {
+            System.out.println("You must select a valid token (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a progress token: ");
+        }
+
+        return stack.pickProgressToken(index);
     }
 
     /**
