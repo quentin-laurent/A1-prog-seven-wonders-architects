@@ -44,4 +44,15 @@ public class ProgressToken
     {
         return String.format("[PROGRESS TOKEN] %s", this.effect);
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == null)
+            return false;
+        if(!(o instanceof ProgressToken))
+            return false;
+
+        return (this.effect == ((ProgressToken) o).getEffect());
+    }
 }
