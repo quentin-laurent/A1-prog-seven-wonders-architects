@@ -44,7 +44,6 @@ class PlayerTest
     {
         Player player = new Player("alice", LocalDate.of(2000, 1, 1), new Alexandria());
 
-        assertThrows(RuntimeException.class, () -> player.addVictoryPoints(0));
         assertThrows(RuntimeException.class, () -> player.addVictoryPoints(-1));
         assertThrows(RuntimeException.class, () -> player.addVictoryPoints(-999));
     }

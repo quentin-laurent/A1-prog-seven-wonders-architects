@@ -1,6 +1,8 @@
 package com.isep.utils;
 
 import com.isep.game.Player;
+import com.isep.game.cards.Card;
+import com.isep.game.tokens.ProgressToken;
 import com.isep.game.wonders.Stage;
 import com.isep.game.wonders.Wonder;
 
@@ -23,11 +25,27 @@ public class ConsoleOutput implements OutputManager
         System.out.printf("==== NOW PLAYING: %s (%s) ====%n", player.getName(), player.getWonder().getName());
     }
 
+    public void displayPickedCard(Card pickedCard)
+    {
+        System.out.printf("Picked card: %s %n", pickedCard);
+    }
+
     public void displayPlayerHand(Player player)
     {
-        int sLength = 4 + 1 + player.getName().length() + 2 + 1 + 4;
+        int sLength = 4 + 1 + player.getName().length() + 2 + 1 + 4 + 1 + 4;
         System.out.printf("==== %s's hand ====%n", player.getName());
         System.out.println(player.getHand());
+        StringBuilder s = new StringBuilder();
+        s.append("=".repeat(sLength));
+        System.out.println(s);
+        System.out.println();
+    }
+
+    public void displayPlayerProgressTokens(Player player)
+    {
+        int sLength = 4 + 1 + player.getName().length() + 2 + 1 + 8 + 1 + 6 + 1 + 4;
+        System.out.printf("==== %s's progress tokens ====%n", player.getName());
+        System.out.println(player.getProgressTokens());
         StringBuilder s = new StringBuilder();
         s.append("=".repeat(sLength));
         System.out.println(s);
@@ -53,6 +71,6 @@ public class ConsoleOutput implements OutputManager
             winner = (player.getVictoryPoints() > winner.getVictoryPoints()) ? player : winner;
         }
 
-        System.out.printf("%n %s wins !%n", winner.getName());
+        System.out.printf("%n%s wins !%n", winner.getName());
     }
 }

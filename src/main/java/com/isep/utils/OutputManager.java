@@ -1,6 +1,8 @@
 package com.isep.utils;
 
 import com.isep.game.Player;
+import com.isep.game.cards.Card;
+import com.isep.game.tokens.ProgressToken;
 import com.isep.game.wonders.Stage;
 import com.isep.game.wonders.Wonder;
 
@@ -16,7 +18,11 @@ public interface OutputManager
 
     void displayPlayerTurn(Player player);
 
+    void displayPickedCard(Card pickedCard);
+
     void displayPlayerHand(Player player);
+
+    void displayPlayerProgressTokens(Player player);
 
     void displayResults(List<Player> players);
 

@@ -94,7 +94,12 @@ public class Game
                     Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
                     player.getHand().addCard(pickedCard);
 
+                    // Displaying information (picked card, player hand and player tokens)
+                    this.outputManager.displayPickedCard(pickedCard);
                     this.outputManager.displayPlayerHand(player);
+                    if(player.getProgressTokens().size() > 0)
+                        this.outputManager.displayPlayerProgressTokens(player);
+
 
                     // Checks if the player can build a Stage of its Wonder
                     // If possible, it builds the first available Stage that can be built
@@ -111,6 +116,8 @@ public class Game
                         this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
 
                         this.onePlayerBuiltItsWonder = player.getWonder().isConstructed();
+                        if(this.onePlayerBuiltItsWonder)
+                            break;
                     }
 
                     // Parsing actions depending on the color of the picked card
