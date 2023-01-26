@@ -494,7 +494,7 @@ public class Hand
         for(var entry: this.cards.entrySet())
         {
             if(entry.getKey() instanceof BlueCard && ((BlueCard) entry.getKey()).getCat())
-                numberOfCats++;
+                numberOfCats += entry.getValue();
         }
 
         return numberOfCats;
