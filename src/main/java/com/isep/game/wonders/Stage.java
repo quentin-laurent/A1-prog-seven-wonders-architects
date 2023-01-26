@@ -25,6 +25,11 @@ public class Stage
     }
 
     // Getters & Setters
+    public int getVictoryPoints()
+    {
+        return this.victoryPoints;
+    }
+
     public int getRequiredResourcesAmount()
     {
         return this.requiredResourcesAmount;
@@ -73,7 +78,6 @@ public class Stage
         Stage stage = (Stage) o;
 
         return (this.victoryPoints == stage.victoryPoints
-                && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
                 && this.resourcesNeedToBeEqual == stage.resourcesNeedToBeEqual
                 && this.hasEffect == stage.hasEffect
                 && this.constructed == stage.constructed

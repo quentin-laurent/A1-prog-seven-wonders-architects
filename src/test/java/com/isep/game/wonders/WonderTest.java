@@ -12,7 +12,32 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WonderTest {
+class WonderTest
+{
+    @Test
+    void isConstructedShouldReturnTrueIfWonderIsConstructed()
+    {
+        Wonder wonder = new Giza();
+        wonder.getStages().get(0).setConstructed(true);
+        wonder.getStages().get(1).setConstructed(true);
+        wonder.getStages().get(2).setConstructed(true);
+        wonder.getStages().get(3).setConstructed(true);
+        wonder.getStages().get(4).setConstructed(true);
+
+        assertTrue(wonder.isConstructed());
+    }
+
+    @Test
+    void isConstructedShouldReturnFalseIfWonderIsNotConstructed()
+    {
+        Wonder wonder = new Halicarnassus();
+        wonder.getStages().get(0).setConstructed(true);
+        wonder.getStages().get(1).setConstructed(true);
+        wonder.getStages().get(2).setConstructed(true);
+        wonder.getStages().get(3).setConstructed(true);
+
+        assertFalse(wonder.isConstructed());
+    }
 
     @Test
     void getNextStagesToBuildShouldReturnTheNextStageToBuild()
@@ -82,7 +107,7 @@ class WonderTest {
         hand.addCard(new GreyCard(GreyCard.Material.WOOD));
         hand.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, new Deck());
+        babylon.buildStage(stage1, hand, new Deck(), false, false);
 
         assertTrue(stage1.isConstructed());
     }
@@ -103,7 +128,7 @@ class WonderTest {
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, game.getDiscard());
+        babylon.buildStage(stage1, hand, game.getDiscard(), false, false);
 
         assertEquals(new Hand(), hand);
     }
@@ -124,8 +149,31 @@ class WonderTest {
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.WOOD));
         expectedDiscard.addCard(new GreyCard(GreyCard.Material.STONE));
 
-        babylon.buildStage(stage1, hand, game.getDiscard());
+        babylon.buildStage(stage1, hand, game.getDiscard(), false, false);
 
         assertTrue(game.getDiscard().getCards().containsAll(expectedDiscard.getCards()));
+    }
+
+    @Test
+    void getNumberOfStagesBuiltShouldReturnTheNumberOfBuiltStages()
+    {
+        Olympia olympia = new Olympia();
+        olympia.getStages().get(0).setConstructed(true);
+        olympia.getStages().get(1).setConstructed(true);
+        olympia.getStages().get(2).setConstructed(true);
+
+        assertEquals(3, olympia.getNumberOfStagesBuilt());
+
+        Rhodes rhodes = new Rhodes();
+
+        assertEquals(0, rhodes.getNumberOfStagesBuilt());
+    }
+
+    @Test
+    void getNumberOfStagesShouldReturnTheNumberOfStages()
+    {
+        Alexandria alexandria = new Alexandria();
+
+        assertEquals(5, alexandria.getNumberOfStages());
     }
 }

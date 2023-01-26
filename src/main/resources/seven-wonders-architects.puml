@@ -24,7 +24,9 @@ class "Deck"
 Deck o-- Card
 class "Hand"
 Hand o-- Card
+class "ProgressTokenStack"
 class "ProgressToken"
+ProgressTokenStack o-right-- ProgressToken
 }
 
 package com.isep.game.wonders {
@@ -44,7 +46,7 @@ Wonder *-right- Stage
 Game o-left- InputParser
 Game o-left- OutputManager
 Game *-right- Player
-Game o-- ProgressToken
+Game o-- ProgressTokenStack
 Game o-- Deck
 Player o-- Wonder
 Player o-- Hand

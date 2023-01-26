@@ -25,6 +25,11 @@ public class ProgressTokenStack
     }
 
     // Getters & Setters
+    public List<ProgressToken> getTokens()
+    {
+        return this.tokens;
+    }
+
     public List<ProgressToken> getRevealedTokens()
     {
         return this.revealedTokens;
@@ -94,7 +99,21 @@ public class ProgressTokenStack
     @Override
     public String toString()
     {
-        StringBuilder s = new StringBuilder(String.format("%d tokens:\n", this.tokens.size()));
+        StringBuilder s = new StringBuilder(String.format("%d tokens:\n",this.revealedTokens.size() + this.tokens.size()));
+        for(ProgressToken token: this.revealedTokens)
+        {
+            s.append(token.toString());
+            s.append("\n");
+        }
+
+        // Removing the last \n char
+        if(this.tokens.size() == 0)
+        {
+            int length = s.length();
+            s.replace(length - 1, length, "");
+            return s.toString();
+        }
+
         for(ProgressToken token: this.tokens)
         {
             s.append(token.toString());

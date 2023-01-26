@@ -23,6 +23,12 @@ public class GreyCard extends Card
         this.material = material;
     }
 
+    // Getters & Setters
+    public Material getMaterial()
+    {
+        return this.material;
+    }
+
     // Methods
     @Override
     public String toString()

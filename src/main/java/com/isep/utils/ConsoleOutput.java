@@ -4,6 +4,8 @@ import com.isep.game.Player;
 import com.isep.game.wonders.Stage;
 import com.isep.game.wonders.Wonder;
 
+import java.util.List;
+
 /**
  * An implementation of the {@link OutputManager} interface that uses the standard output (a.k.a console or terminal)
  * to display information about the actions happening in the Game.
@@ -35,5 +37,22 @@ public class ConsoleOutput implements OutputManager
     public void displayStageBuilt(Player player, Stage stage, Wonder wonder)
     {
         System.out.printf("%s built a part of %s ! [%d/%d]%n%n", player.getName(), wonder.getName(), wonder.getNumberOfStagesBuilt(), wonder.getNumberOfStages());
+    }
+
+    public void displayResults(List<Player> players)
+    {
+        if(players.isEmpty())
+            return;
+
+        System.out.println("===== RESULTS =====");
+        Player winner = players.get(0);
+
+        for(Player player: players)
+        {
+            System.out.printf("%s: %d Victory points%n", player.getName(), player.getVictoryPoints());
+            winner = (player.getVictoryPoints() > winner.getVictoryPoints()) ? player : winner;
+        }
+
+        System.out.printf("%n %s wins !%n", winner.getName());
     }
 }

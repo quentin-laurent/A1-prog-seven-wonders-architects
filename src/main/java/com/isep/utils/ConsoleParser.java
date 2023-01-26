@@ -4,6 +4,7 @@ import com.isep.game.cards.Card;
 import com.isep.game.cards.Deck;
 import com.isep.game.tokens.ProgressToken;
 import com.isep.game.tokens.ProgressTokenStack;
+import com.isep.game.wonders.Wonder;
 
 import javax.sound.midi.Soundbank;
 import java.net.DatagramSocket;
@@ -12,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -69,6 +71,28 @@ public class ConsoleParser implements InputParser
         LocalDate birthday = this.getLocalDate("Player birthday (dd/mm/yyyy): ");
 
         return birthday;
+    }
+
+    public Wonder fetchPlayerWonder(List<Wonder> wonders)
+    {
+        StringBuilder s = new StringBuilder("Wonders available:\n");
+
+        int i = 0;
+        for(; i < wonders.size(); i++)
+            s.append(String.format("[%d] %s%n", i, wonders.get(i).getName()));
+        s.append("Choose a Wonder: ");
+
+        System.out.print(s);
+        int index = this.getInt("Choose a Wonder: ");
+
+        while(index < 0 || index >= wonders.size())
+        {
+            System.out.println("You must select a valid Wonder (use the number between the brackets) !");
+            System.out.print(s);
+            index = this.getInt("Choose a Wonder: ");
+        }
+
+        return wonders.get(index);
     }
 
     public Card fetchCardFromDeck(Deck leftDeck, Deck rightDeck, Deck middleDeck)
