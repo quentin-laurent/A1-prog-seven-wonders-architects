@@ -68,6 +68,7 @@ public class MainScene {
     boolean gameStart = true;
 
     private ArrayList<AnchorPane> playersBox = new ArrayList<>();
+    private ArrayList<Label> labelList = new ArrayList<>();
 
     public MainScene() throws LineUnavailableException {
     }
@@ -103,10 +104,14 @@ public class MainScene {
                 case "Giza":
                     playersBox.add(boxGizeh);
                     break;
+                case "Halicarnassus":
+                    playersBox.add(boxHalicarnas);
+                    break;
             }
         }
         setupWonders();
         setupEvents();
+        setupArrays();
 
         soundButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/MesloLGS-NF.ttf"), 34));
         if(!StageLoader.sound)
@@ -126,6 +131,9 @@ public class MainScene {
                 gameStart = false;
             else
                 rotateTable();
+
+            updateInventory();
+
             String leftCard = getCardType(StageLoader.leftCard);
             String rightCard = getCardType(StageLoader.rightCard);
 
@@ -136,6 +144,91 @@ public class MainScene {
 
             this.thread.interrupt();
         });
+    }
+
+    public void updateInventory()
+    {
+        Hand hand = StageLoader.hand;
+        for(int i=0;i<labelList.size();i++)
+        {
+            labelList.get(i).setText("0");
+        }
+        for(var entry: hand.getCards().entrySet())
+        {
+            Card card = entry.getKey();
+            Label label = null;
+            switch(card.getColor())
+            {
+                case GREY:
+                    switch(((GreyCard) card).getMaterial())
+                    {
+                        case WOOD:
+                            label = labelWood;
+                            break;
+                        case STONE:
+                            label = labelStone;
+                            break;
+                        case BRICK:
+                            label = labelClay;
+                            break;
+                        case PAPYRUS:
+                            label = labelScroll;
+                            break;
+                        case GLASS:
+                            label = labelWater;
+                            break;
+                    }
+                    break;
+
+                case GREEN:
+                    switch(((GreenCard) card).getScienceSymbol())
+                    {
+                        case COMPASS:
+                            label = labelCompass;
+                            break;
+                        case GEAR:
+                            label = labelWheel;
+                            break;
+                        case TABLET:
+                            label = labelTablet;
+                            break;
+                    }
+                    break;
+
+                case BLUE:
+                    switch(((BlueCard) card).getVictoryPoints())
+                    {
+                        case 2:
+                            label = labelBlue1;
+                            break;
+                        case 3:
+                            label = labelBlue2;
+                            break;
+                    }
+                    break;
+
+                case RED:
+                    switch(((RedCard) card).getHorns())
+                    {
+                        case 0:
+                            label = labelWar1;
+                            break;
+                        case 1:
+                            label = labelWar2;
+                            break;
+                        case 2:
+                            label = labelWar3;
+                            break;
+                    }
+                    break;
+
+                case YELLOW:
+                    label = labelGold;
+                    break;
+
+            }
+            label.setText(Integer.toString(entry.getValue()));
+        }
     }
 
     private String getCardType(Card card)
@@ -199,6 +292,23 @@ public class MainScene {
         return null;
     }
 
+    private void setupArrays()
+    {
+        labelList.add(labelWood);
+        labelList.add(labelStone);
+        labelList.add(labelClay);
+        labelList.add(labelWater);
+        labelList.add(labelScroll);
+        labelList.add(labelCompass);
+        labelList.add(labelWheel);
+        labelList.add(labelTablet);
+        labelList.add(labelWar1);
+        labelList.add(labelWar2);
+        labelList.add(labelWar3);
+        labelList.add(labelBlue1);
+        labelList.add(labelBlue2);
+        labelList.add(labelGold);
+    }
     private void setupEvents()
     {
         deckCentral.setOnMouseEntered(event -> expendImage(deckCentral));

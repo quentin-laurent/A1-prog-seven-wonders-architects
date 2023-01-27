@@ -7,6 +7,7 @@ import com.isep.game.wonders.*;
 import com.isep.utils.GUIParser;
 import com.isep.utils.InputParser;
 import com.isep.utils.OutputManager;
+import com.isep.utils.StageLoader;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.time.LocalDate;
@@ -89,7 +90,7 @@ public class Game
             for(Player player: this.players)
             {
                 this.outputManager.displayPlayerTurn(player);
-
+                StageLoader.hand = player.getHand();
                 int cardsToPick = 1;
                 while(cardsToPick > 0)
                 {
@@ -102,6 +103,7 @@ public class Game
                         nextPlayerIndex = 0;
                     Card pickedCard = this.inputParser.fetchCardFromDeck(player.getDeck(), this.players.get(nextPlayerIndex).getDeck(), this.centralDeck);
                     player.getHand().addCard(pickedCard);
+                    StageLoader.hand = player.getHand();
 
                     this.outputManager.displayPlayerHand(player);
 

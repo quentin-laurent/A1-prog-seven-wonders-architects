@@ -5,6 +5,7 @@ import com.isep.game.cards.Hand;
 import com.isep.game.tokens.ProgressToken;
 import com.isep.game.tokens.ProgressToken.Effect;
 import com.isep.game.wonders.Wonder;
+import com.isep.utils.StageLoader;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
