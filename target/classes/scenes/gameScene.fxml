@@ -432,17 +432,17 @@
                </content></TitledPane>
         </panes>
       </Accordion>
-      <ImageView fx:id="deckGauche" fitHeight="142.0" fitWidth="103.0" layoutX="226.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deckGauche" fitHeight="142.0" fitWidth="103.0" layoutX="226.0" layoutY="564.0" onMouseClicked="#onLeftDeck" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/game-elements/cards/card_wonder_gizeh.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="deckDroite" fitHeight="142.0" fitWidth="103.0" layoutX="958.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deckDroite" fitHeight="142.0" fitWidth="103.0" layoutX="958.0" layoutY="564.0" onMouseClicked="#onRightDeck" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/game-elements/cards/card_wonder_ephese.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="deckCentral" fitHeight="84.0" fitWidth="65.0" layoutX="610.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deckCentral" fitHeight="84.0" fitWidth="65.0" layoutX="610.0" layoutY="312.0" onMouseClicked="#onCentralDeck" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/game-elements/cards/card_question.png" />
          </image>

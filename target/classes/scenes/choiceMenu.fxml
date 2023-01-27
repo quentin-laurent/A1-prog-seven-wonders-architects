@@ -59,12 +59,12 @@
                   <Image url="@../imgs/wonders/alexandrie.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date1" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date1" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box3" layoutX="849.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
-            <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+            <TextField fx:id="text3" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;" text="ALICE">
                <effect>
                   <ColorAdjust brightness="1.0" />
                </effect>
@@ -82,12 +82,12 @@
                   <Image url="@../imgs/wonders/babylone.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date3" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date3" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box2" layoutX="231.0" layoutY="134.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
-            <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+            <TextField fx:id="text2" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;" text="BOB">
                <effect>
                   <ColorAdjust brightness="1.0" />
                </effect>
@@ -105,12 +105,12 @@
                   <Image url="@../imgs/wonders/ephese.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date2" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date2" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box4" layoutX="386.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
-            <TextField fx:id="text4" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+            <TextField fx:id="text4" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;" text="Charlie">
                <effect>
                   <ColorAdjust brightness="1.0" />
                </effect>
@@ -128,12 +128,12 @@
                   <Image url="@../imgs/wonders/rhodes.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date4" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date4" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box5" layoutX="694.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
          <children>
-            <TextField fx:id="text5" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;">
+            <TextField fx:id="text5" alignment="CENTER" layoutX="24.0" layoutY="174.0" promptText="Pseudo" style="-fx-background-color: #00000000; -fx-border-color: #FFFFFF;" text="Thierry">
                <effect>
                   <ColorAdjust brightness="1.0" />
                </effect>
@@ -151,7 +151,7 @@
                   <Image url="@../imgs/wonders/halicarnas.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date5" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date5" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box6" layoutX="76.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -174,7 +174,7 @@
                   <Image url="@../imgs/wonders/olympie.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date6" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date6" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="box7" layoutX="1004.0" layoutY="400.0" prefHeight="246.0" prefWidth="200.0" style="-fx-background-color: #00000088;">
@@ -197,7 +197,7 @@
                   <Image url="@../imgs/wonders/gizeh.png" />
                </image>
             </ImageView>
-            <DatePicker fx:id="date7" layoutX="6.0" layoutY="209.0" />
+            <DatePicker fx:id="date7" editable="false" layoutX="6.0" layoutY="209.0" />
          </children>
       </AnchorPane>
       <Button fx:id="playButton" layoutX="1104.0" layoutY="657.0" mnemonicParsing="false" onAction="#onPlayButton" prefHeight="33.0" prefWidth="111.0" style="-fx-background-color: #506E3A; -fx-border-color: #FFFFFF;" text="PLAY &gt;">

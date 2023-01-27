@@ -1,6 +1,8 @@
 package com.isep.utils;
 
 import com.isep.game.Main;
+import com.isep.game.Player;
+import com.isep.game.cards.Card;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,7 +51,12 @@ public class StageLoader
 
     public static boolean sound = false;
     public static boolean isActionFinished = false;
-    public static boolean alexandria=false,babylon=false,ephese=false,halicarnas=false,olympie=false,rhodes=false,gizeh=false;
+    public static int playerCount= 0;
+    public static Card centralCard, leftCard, rightCard;
+    public static int choosedCard;
+    public static ArrayList<Player> playerList = new ArrayList<>();
+
+    //public static boolean alexandria=false,babylon=false,ephese=false,halicarnas=false,olympie=false,rhodes=false,gizeh=false;
     public static int numberPlayer = 0;
     public static Clip clip;
 

@@ -39,20 +39,44 @@ public class GUIParser extends Application implements InputParser{
         return StageLoader.numberPlayer;
     }
 
-    public String fetchPlayerName(){
-        return null;
+    public String fetchPlayerName()    {
+        return StageLoader.playerList.get(StageLoader.playerCount).getName();
     }
 
     public LocalDate fetchPlayerBirthday(){
-        return null;
+        return StageLoader.playerList.get(StageLoader.playerCount).getBirthday();
     }
 
     public Wonder fetchPlayerWonder(List<Wonder> wonders){
-        return null;
+        Wonder wonder = StageLoader.playerList.get(StageLoader.playerCount).getWonder();
+        StageLoader.playerCount++;
+        return wonder;
     }
 
     public Card fetchCardFromDeck(Deck leftDeck, Deck rightDeck, Deck centralDeck){
-        return null;
+        StageLoader.leftCard = leftDeck.getTopCard();
+        StageLoader.rightCard = rightDeck.getTopCard();
+        boolean end = false;
+        while(!end)
+        {
+            StageLoader.sleep(500);
+            end = StageLoader.isActionFinished;
+        }
+        StageLoader.isActionFinished = false;
+        Card choosedCard = null;
+        switch(StageLoader.choosedCard)
+        {
+            case 0:
+                choosedCard = leftDeck.pickCard();
+                break;
+            case 1:
+                choosedCard = centralDeck.pickCard();
+                break;
+            case 2:
+                choosedCard = rightDeck.pickCard();
+                break;
+        }
+        return choosedCard;
     }
 
     public ProgressToken fetchProgressTokenFromStack(ProgressTokenStack stack){

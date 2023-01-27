@@ -1,6 +1,8 @@
 
 package com.isep.utils.scenescontrollers;
 
+import com.isep.game.Player;
+import com.isep.game.wonders.*;
 import com.isep.utils.GUIParser;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -23,9 +24,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
+import java.util.Date;
 
 public class GameMenu {
 
@@ -44,9 +46,13 @@ public class GameMenu {
     private AnchorPane box1,box2,box3,box4,box5,box6,box7;
     @FXML
     private ChoiceBox menu1,menu2,menu3,menu4,menu5,menu6,menu7;
+    @FXML
+    private DatePicker date1,date2,date3,date4,date5,date6,date7;
 
     private ArrayList<ChoiceBox> menuArray = new ArrayList<>();
     private ArrayList<AnchorPane> boxArray = new ArrayList<>();
+    private ArrayList<TextField> pseudoArray = new ArrayList<>();
+    private ArrayList<DatePicker> dateArray = new ArrayList<>();
     private float coeff_button = 10;
     private int button_font_size = 13;
     private ObservableList<String> wondersList = FXCollections.observableArrayList("Alexandrie","Ephese","Babylone","Rhodes","Halicarnasse","Olympie","Gizeh","None");
@@ -77,13 +83,13 @@ public class GameMenu {
         menu6.setItems(wondersList); menu6.setValue("Olympie");
         menu7.setItems(wondersList); menu7.setValue("Gizeh");
 
-        menuArray.add(menu1);boxArray.add(box1);
-        menuArray.add(menu2);boxArray.add(box2);
-        menuArray.add(menu3);boxArray.add(box3);
-        menuArray.add(menu4);boxArray.add(box4);
-        menuArray.add(menu5);boxArray.add(box5);
-        menuArray.add(menu6);boxArray.add(box6);
-        menuArray.add(menu7);boxArray.add(box7);
+        menuArray.add(menu1);boxArray.add(box1);pseudoArray.add(text1);dateArray.add(date1);
+        menuArray.add(menu2);boxArray.add(box2);pseudoArray.add(text2);dateArray.add(date2);
+        menuArray.add(menu3);boxArray.add(box3);pseudoArray.add(text3);dateArray.add(date3);
+        menuArray.add(menu4);boxArray.add(box4);pseudoArray.add(text4);dateArray.add(date4);
+        menuArray.add(menu5);boxArray.add(box5);pseudoArray.add(text5);dateArray.add(date5);
+        menuArray.add(menu6);boxArray.add(box6);pseudoArray.add(text6);dateArray.add(date6);
+        menuArray.add(menu7);boxArray.add(box7);pseudoArray.add(text7);dateArray.add(date7);
 
         box1.setVisible(false);
         box4.setVisible(false);
@@ -295,40 +301,42 @@ public class GameMenu {
         {
             if (boxArray.get(i).isVisible())
             {
+                // there is a player here
+
+                String name = pseudoArray.get(i).getText();
+                Wonder wonder = null;
+                LocalDate birthday = dateArray.get(i).getValue();
+                if(birthday == null)
+                    return;
                 switch ((String) menuArray.get(i).getValue())
                 {
                     case "Alexandrie":
-                        System.out.println("Alexandria");
-                        StageLoader.alexandria = true;
+                        wonder = new Alexandria();
                         break;
                     case "Ephese":
-                        System.out.println("Ephese");
-                        StageLoader.ephese = true;
+                        wonder = new Ephesus();
                         break;
                     case "Babylone":
-                        System.out.println("Babylon");
-                        StageLoader.babylon = true;
+                        wonder = new Babylon();
                         break;
                     case "Rhodes":
-                        System.out.println("Rhodes");
-                        StageLoader.rhodes = true;
+                        wonder = new Rhodes();
                         break;
                     case "Halicarnasse":
-                        System.out.println("Halicarnasse");
-                        StageLoader.halicarnas = true;
+                        wonder = new Halicarnassus();
                         break;
                     case "Olympie":
-                        System.out.println("Olympie");
-                        StageLoader.olympie = true;
+                        wonder = new Olympia();
                         break;
                     case "Gizeh":
-                        System.out.println("Gizeh");
-                        StageLoader.gizeh = true;
+                        wonder = new Giza();
                         break;
                 }
+                StageLoader.playerList.add(new Player(name,birthday,wonder));
             }
         }
         StageLoader.isActionFinished = true;
+        Collections.sort(StageLoader.playerList);
         StageLoader.loadFXMLScene("/scenes/gameScene.fxml");
     }
 }

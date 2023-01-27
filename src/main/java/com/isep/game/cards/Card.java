@@ -35,6 +35,11 @@ public abstract class Card
         return (this.color == ((Card) o).color);
     }
 
+    public Color getColor()
+    {
+        return this.color;
+    }
+
     @Override
     public int hashCode()
     {

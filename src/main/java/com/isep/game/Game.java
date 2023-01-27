@@ -48,7 +48,11 @@ public class Game
     {
         if(inputParser instanceof GUIParser)
         {
-            ((GUIParser) inputParser).launchInterface();
+            (new Thread(){
+                public void run(){
+                    ((GUIParser) inputParser).launchInterface();
+                }
+            }).start();
         }
         this.inputParser = inputParser;
         this.outputManager = outputManager;
@@ -194,7 +198,6 @@ public class Game
     private void initialize()
     {
         int playerCount = this.inputParser.fetchPlayerCount();
-        System.out.println(playerCount);
         this.initializePlayers(playerCount);
         this.initializeConflictTokens();
 

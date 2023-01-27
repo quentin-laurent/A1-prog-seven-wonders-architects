@@ -40,6 +40,10 @@ public class GreenCard extends Card
         return (this.color == card.color && this.scienceSymbol == card.scienceSymbol);
     }
 
+    public ScienceSymbol getScienceSymbol()
+    {
+        return this.scienceSymbol;
+    }
     @Override
     public int hashCode()
     {
