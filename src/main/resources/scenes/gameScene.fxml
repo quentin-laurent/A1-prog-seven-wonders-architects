@@ -238,8 +238,6 @@
          </children>
       </AnchorPane>
       <Button fx:id="button" layoutX="1203.0" layoutY="50.0" mnemonicParsing="false" onAction="#onButton" text="Button" />
-      <Button fx:id="button2" layoutX="1203.0" layoutY="88.0" mnemonicParsing="false" onAction="#onButton2" text="Button2" />
-      <Button fx:id="button3" layoutX="1203.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButton3" text="Button3" />
       <Accordion layoutX="60.0" layoutY="48.0" stylesheets="@style.css">
         <panes>
           <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="201.0" text="Grey Cards">
@@ -447,5 +445,34 @@
             <Image url="@../imgs/game-elements/cards/card_question.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="boxToken" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000AA;" visible="false">
+         <children>
+            <ImageView fx:id="token1" fitHeight="150.0" fitWidth="200.0" layoutX="453.0" layoutY="223.0" onMouseClicked="#onToken1" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/game-elements/tokens/token-tactic.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="token4" fitHeight="150.0" fitWidth="200.0" layoutX="647.0" layoutY="393.0" onMouseClicked="#onToken4" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/game-elements/tokens/token-back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="token3" fitHeight="150.0" fitWidth="200.0" layoutX="451.0" layoutY="393.0" onMouseClicked="#onToken3" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/game-elements/tokens/token-decoration.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="token2" fitHeight="150.0" fitWidth="200.0" layoutX="645.0" layoutY="223.0" onMouseClicked="#onToken2" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/game-elements/tokens/token-science.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelToken" layoutX="411.0" layoutY="154.0" text="CHOOSE YOUR PROGRESS TOKEN" textFill="WHITE">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

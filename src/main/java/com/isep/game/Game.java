@@ -172,7 +172,12 @@ public class Game
                             cardsToPick++;
 
                         if(player.getHand().containsTwoIdenticalScienceSymbols() || player.getHand().containsThreeDifferentScienceSymbols())
+                        {
+                            StageLoader.askToken = true;
                             player.addProgressToken(this.inputParser.fetchProgressTokenFromStack(this.progressTokenStack));
+                            player.getHand().discardTwoIdenticalGreenCards();
+                            player.getHand().discardThreeDifferentGreenCards();
+                        }
                     }
                     else if(pickedCard instanceof RedCard)
                     {
@@ -189,6 +194,7 @@ public class Game
                             this.resolveBattle();
                     }
                 }
+                StageLoader.rotate = true;
             }
         }
 

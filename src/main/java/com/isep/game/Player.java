@@ -113,7 +113,7 @@ public class Player implements Comparable<Player>
      */
     public void addVictoryPoints(int victoryPoints)
     {
-        if(victoryPoints < 1)
+        if(victoryPoints < 0)
             throw new RuntimeException("The amount of victory points to add needs to be greater than 0 !");
         this.victoryPoints += victoryPoints;
     }

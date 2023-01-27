@@ -2,8 +2,10 @@ package com.isep.utils;
 
 import com.isep.game.Main;
 //import com.isep.game.Player;
+import com.isep.game.Player;
 import com.isep.game.cards.Card;
 import com.isep.game.cards.Hand;
+import com.isep.game.tokens.ProgressToken;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 
 import javafx.stage.Stage;
@@ -54,7 +57,10 @@ public class StageLoader
     public static boolean isActionFinished = false;
     public static int playerCount= 0;
     public static Card centralCard, leftCard, rightCard;
-    public static int choosedCard;
+    public static boolean rotate = false, askToken = false, isRightEmpty = false, isLeftEmpty = false;
+    public static String[] tokens = new String[3];
+    public static int choosedCard,choosedToken;
+
 
     public static Hand hand;
     public static ArrayList<Player> playerList = new ArrayList<>();

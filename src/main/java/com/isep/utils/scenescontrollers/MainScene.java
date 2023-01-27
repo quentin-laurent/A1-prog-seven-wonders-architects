@@ -60,6 +60,13 @@ public class MainScene {
     @FXML
     private ImageView imageStone,imageWood,imageClay,imageScroll,imageWater,imageGold,imageWar1,imageWar2,imageWar3,imageBlue1,imageBlue2,imageCompass,imageWheel,imageTablet;
 
+    @FXML
+    private Label labelToken;
+    @FXML
+    private ImageView token1,token2,token3,token4;
+    @FXML
+    private AnchorPane boxToken;
+
     // -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- GLOBAL VARIABLES -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
     private float coeff_button = 10;
     private int button_font_size = 13;
@@ -69,6 +76,8 @@ public class MainScene {
 
     private ArrayList<AnchorPane> playersBox = new ArrayList<>();
     private ArrayList<Label> labelList = new ArrayList<>();
+
+    private ArrayList<ImageView> tokenList = new ArrayList<>();
 
     public MainScene() throws LineUnavailableException {
     }
@@ -114,6 +123,7 @@ public class MainScene {
         setupArrays();
 
         soundButton.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/MesloLGS-NF.ttf"), 34));
+        labelToken.setFont(Font.loadFont(GUIParser.class.getResourceAsStream("/fonts/Helenium-bold.ttf"), 29));
         if(!StageLoader.sound)
             soundButton.setText("\uF026");
 
@@ -130,15 +140,41 @@ public class MainScene {
             if(gameStart)
                 gameStart = false;
             else
-                rotateTable();
+                if(StageLoader.rotate)
+                {
+                    rotateTable();
+                    StageLoader.rotate = false;
+                }
+
+            if(StageLoader.askToken)
+            {
+                for(int i=0;i<3;i++)
+                {
+                    tokenList.get(i).setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/tokens/token-"+StageLoader.tokens[i]+".png").toExternalForm()));
+                }
+                tokenList.get(3).setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/tokens/token-back.png").toExternalForm()));
+                boxToken.setVisible(true);
+            }
+            else
+            {
+                boxToken.setVisible(false);
+            }
 
             updateInventory();
+            updateWonder();
+
 
             String leftCard = getCardType(StageLoader.leftCard);
             String rightCard = getCardType(StageLoader.rightCard);
 
-            deckGauche.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/cards/"+leftCard).toExternalForm()));
-            deckDroite.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/cards/"+rightCard).toExternalForm()));
+            if(!StageLoader.isLeftEmpty)
+                deckGauche.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/cards/"+leftCard).toExternalForm()));
+            else
+                deckGauche.setVisible(false);
+            if(!StageLoader.isRightEmpty)
+                deckDroite.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/cards/"+rightCard).toExternalForm()));
+            else
+                deckDroite.setVisible(false);
 
             this.thread.interrupt();
         });
@@ -170,80 +206,80 @@ public class MainScene {
                 case "Ephesus":
                     c = StageLoader.ephese;
                     if(c>=1)
-                        ephese1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_ephese_1f.png").toExternalForm()));
+                        ephese1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/ephese/wonder_ephese_1f.png").toExternalForm()));
                     if(c>=2)
-                        ephese2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_ephese_2f.png").toExternalForm()));
+                        ephese2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/ephese/wonder_ephese_2f.png").toExternalForm()));
                     if(c>=3)
-                        ephese3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_ephese_3f.png").toExternalForm()));
+                        ephese3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/ephese/wonder_ephese_3f.png").toExternalForm()));
                     if(c>=4)
-                        ephese4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_ephese_4f.png").toExternalForm()));
+                        ephese4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/ephese/wonder_ephese_4f.png").toExternalForm()));
                     if(c>=5)
-                        ephese5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_ephese_5f.png").toExternalForm()));
+                        ephese5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/ephese/wonder_ephese_5f.png").toExternalForm()));
                     break;
                 case "Babylon":
                     c = StageLoader.babylon;
                     if(c>=1)
-                        babylon1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_babylon_1f.png").toExternalForm()));
+                        babylon1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/babylon/wonder_babylon_1f.png").toExternalForm()));
                     if(c>=2)
-                        babylon2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_babylon_2f.png").toExternalForm()));
+                        babylon2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/babylon/wonder_babylon_2f.png").toExternalForm()));
                     if(c>=3)
-                        babylon3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_babylon_3f.png").toExternalForm()));
+                        babylon3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/babylon/wonder_babylon_3f.png").toExternalForm()));
                     if(c>=4)
-                        babylon4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_babylon_4f.png").toExternalForm()));
+                        babylon4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/babylon/wonder_babylon_4f.png").toExternalForm()));
                     if(c>=5)
-                        babylon5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_babylon_5f.png").toExternalForm()));
+                        babylon5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/babylon/wonder_babylon_5f.png").toExternalForm()));
                     break;
                 case "Rhodes":
                     c = StageLoader.rhodes;
                     if(c>=1)
-                        alexandria1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_rhodes_1f.png").toExternalForm()));
+                        alexandria1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/rhodes/wonder_rhodes_1f.png").toExternalForm()));
                     if(c>=2)
-                        alexandria2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_rhodes_2f.png").toExternalForm()));
+                        alexandria2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/rhodes/wonder_rhodes_2f.png").toExternalForm()));
                     if(c>=3)
-                        alexandria3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_rhodes_3f.png").toExternalForm()));
+                        alexandria3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/rhodes/wonder_rhodes_3f.png").toExternalForm()));
                     if(c>=4)
-                        alexandria4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_rhodes_4f.png").toExternalForm()));
+                        alexandria4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/rhodes/wonder_rhodes_4f.png").toExternalForm()));
                     if(c>=5)
-                        alexandria5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_rhodes_5f.png").toExternalForm()));
+                        alexandria5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/rhodes/wonder_rhodes_5f.png").toExternalForm()));
                     break;
                 case "Olympia":
                     c = StageLoader.olympie;
                     if(c>=1)
-                        olympie1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_olympie_1f.png").toExternalForm()));
+                        olympie1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_1f.png").toExternalForm()));
                     if(c>=2)
-                        olympie2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_olympie_2f.png").toExternalForm()));
+                        olympie2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_2f.png").toExternalForm()));
                     if(c>=3)
-                        olympie3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_olympie_3f.png").toExternalForm()));
+                        olympie3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_3f.png").toExternalForm()));
                     if(c>=4)
-                        olympie4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_olympie_4f.png").toExternalForm()));
+                        olympie4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_4f.png").toExternalForm()));
                     if(c>=5)
-                        olympie5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_olympie_5f.png").toExternalForm()));
+                        olympie5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/olympie/wonder_olympie_5f.png").toExternalForm()));
                     break;
                 case "Giza":
                     c = StageLoader.gizeh;
                     if(c>=1)
-                        gizeh1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_gizeh_1f.png").toExternalForm()));
+                        gizeh1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/gizeh/wonder_gizeh_1f.png").toExternalForm()));
                     if(c>=2)
-                        gizeh2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_gizeh_2f.png").toExternalForm()));
+                        gizeh2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/gizeh/wonder_gizeh_2f.png").toExternalForm()));
                     if(c>=3)
-                        gizeh3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_gizeh_3f.png").toExternalForm()));
+                        gizeh3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/gizeh/wonder_gizeh_3f.png").toExternalForm()));
                     if(c>=4)
-                        gizeh4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_gizeh_4f.png").toExternalForm()));
+                        gizeh4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/gizeh/wonder_gizeh_4f.png").toExternalForm()));
                     if(c>=5)
-                        gizeh5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_gizeh_5f.png").toExternalForm()));
+                        gizeh5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/gizeh/wonder_gizeh_5f.png").toExternalForm()));
                     break;
                 case "Halicarnassus":
                     c = StageLoader.halicarnas;
                     if(c>=1)
-                        halicarnas1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_halicarnas_1f.png").toExternalForm()));
+                        halicarnas1.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/halicarnas/wonder_halicarnas_1f.png").toExternalForm()));
                     if(c>=2)
-                        halicarnas2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_halicarnas_2f.png").toExternalForm()));
+                        halicarnas2.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/halicarnas/wonder_halicarnas_2f.png").toExternalForm()));
                     if(c>=3)
-                        halicarnas3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_halicarnas_3f.png").toExternalForm()));
+                        halicarnas3.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/halicarnas/wonder_halicarnas_3f.png").toExternalForm()));
                     if(c>=4)
-                        halicarnas4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_halicarnas_4f.png").toExternalForm()));
+                        halicarnas4.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/halicarnas/wonder_halicarnas_4f.png").toExternalForm()));
                     if(c>=5)
-                        halicarnas5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/alexandria/wonder_halicarnas_5f.png").toExternalForm()));
+                        halicarnas5.setImage(new Image(GUIParser.class.getResource("/imgs/game-elements/halicarnas/wonder_halicarnas_5f.png").toExternalForm()));
                     break;
             }
         }
@@ -411,6 +447,11 @@ public class MainScene {
         labelList.add(labelBlue1);
         labelList.add(labelBlue2);
         labelList.add(labelGold);
+
+        tokenList.add(token1);
+        tokenList.add(token2);
+        tokenList.add(token3);
+        tokenList.add(token4);
     }
     private void setupEvents()
     {
@@ -448,6 +489,14 @@ public class MainScene {
         imageWheel.setOnMouseExited(event -> reduceImage(imageWheel));
         imageTablet.setOnMouseEntered(event -> expendImage(imageTablet));
         imageTablet.setOnMouseExited(event -> reduceImage(imageTablet));
+        token1.setOnMouseEntered(event -> expendImage(token1));
+        token1.setOnMouseExited(event -> reduceImage(token1));
+        token2.setOnMouseEntered(event -> expendImage(token2));
+        token2.setOnMouseExited(event -> reduceImage(token2));
+        token3.setOnMouseEntered(event -> expendImage(token3));
+        token3.setOnMouseExited(event -> reduceImage(token3));
+        token4.setOnMouseEntered(event -> expendImage(token4));
+        token4.setOnMouseExited(event -> reduceImage(token4));
     }
 
     private void setupWonders()
@@ -801,6 +850,35 @@ public class MainScene {
     protected void onRightDeck()
     {
         StageLoader.choosedCard = 2;
+        StageLoader.isActionFinished = true;
+        update();
+    }
+
+    @FXML
+    protected void onToken1()
+    {
+       StageLoader.choosedToken = 1;
+       StageLoader.isActionFinished = true;
+       update();
+    }
+    @FXML
+    protected void onToken2()
+    {
+        StageLoader.choosedToken = 2;
+        StageLoader.isActionFinished = true;
+        update();
+    }
+    @FXML
+    protected void onToken3()
+    {
+        StageLoader.choosedToken = 3;
+        StageLoader.isActionFinished = true;
+        update();
+    }
+    @FXML
+    protected void onToken4()
+    {
+        StageLoader.choosedToken = 4;
         StageLoader.isActionFinished = true;
         update();
     }

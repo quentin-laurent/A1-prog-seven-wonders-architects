@@ -530,4 +530,29 @@ public class Hand
         return(this.cards.equals(hand.getCards()));
     }
 
+    public void discardThreeDifferentGreenCards()
+    {
+        HashMap<Card, Integer> cardsToRemove = new HashMap<>();
+        int differentGreenCards = 0;
+        for(var entry: this.cards.entrySet())
+        {
+            if(differentGreenCards >= 3)
+                break;
+            if(entry.getKey() instanceof GreenCard)
+            {
+                cardsToRemove.put(entry.getKey(), 1);
+                differentGreenCards++;
+            }
+        }
+
+        for(var entry: cardsToRemove.entrySet())
+            this.removeCard(entry.getKey());
+    }
+
+    public void discardTwoIdenticalGreenCards()
+    {
+        this.cards.entrySet().removeIf(entry -> entry.getKey() instanceof GreenCard && entry.getValue() == 2);
+    }
+
+
 }
