@@ -56,7 +56,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxEphese" layoutX="18.0" layoutY="384.0" prefHeight="225.0" prefWidth="225.0" rotate="-300.0">
+            <AnchorPane fx:id="boxEphese" layoutX="46.0" layoutY="395.0" prefHeight="225.0" prefWidth="225.0" rotate="-306.0">
                <children>
                   <ImageView fx:id="ephese1" fitHeight="62.0" fitWidth="200.0" layoutX="9.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,7 +85,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxBabylon" layoutX="476.0" layoutY="375.0" prefHeight="225.0" prefWidth="225.0" rotate="-60.0">
+            <AnchorPane fx:id="boxBabylon" layoutX="489.0" layoutY="196.0" prefHeight="225.0" prefWidth="225.0" rotate="-102.0">
                <children>
                   <ImageView fx:id="babylon1" fitHeight="62.0" fitWidth="200.0" layoutX="9.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -114,7 +114,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxGizeh" layoutX="245.0" layoutY="10.0" prefHeight="225.0" prefWidth="225.0" rotate="-180.0">
+            <AnchorPane fx:id="boxGizeh" layoutX="148.0" layoutY="21.0" prefHeight="225.0" prefWidth="225.0" rotate="-204.0">
                <children>
                   <ImageView fx:id="gizeh1" fitHeight="62.0" fitWidth="200.0" layoutX="13.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -143,7 +143,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxHalicarnas" layoutX="447.0" layoutY="130.0" prefHeight="225.0" prefWidth="225.0" rotate="-120.0">
+            <AnchorPane fx:id="boxHalicarnas" layoutX="361.0" layoutY="26.0" prefHeight="225.0" prefWidth="225.0" rotate="-153.0">
                <children>
                   <ImageView fx:id="halicarnas1" fitHeight="35.0" fitWidth="175.0" layoutX="36.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -172,7 +172,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxRhodes" layoutX="46.0" layoutY="135.0" prefHeight="225.0" prefWidth="225.0" rotate="-240.0">
+            <AnchorPane fx:id="boxRhodes" layoutX="9.0" layoutY="184.0" prefHeight="225.0" prefWidth="225.0" rotate="-255.0">
                <children>
                   <ImageView fx:id="rhodes1" fitHeight="38.0" fitWidth="75.0" layoutX="29.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -201,7 +201,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boxOlympie" layoutX="465.0" layoutY="411.0" prefHeight="225.0" prefWidth="225.0" rotate="-51.0" visible="false">
+            <AnchorPane fx:id="boxOlympie" layoutX="438.0" layoutY="404.0" prefHeight="225.0" prefWidth="225.0" rotate="-51.0">
                <children>
                   <ImageView fx:id="olympie1" fitHeight="63.0" fitWidth="161.0" layoutX="32.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
                      <image>

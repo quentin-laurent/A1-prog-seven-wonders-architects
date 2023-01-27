@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.ArrayList;
 
 
@@ -39,7 +38,7 @@ public class GameMenu {
     private ImageView image1,image2,image3,image4,image5,image6,image7;
 
     @FXML
-    private Label labelSlider, labelTitle;
+    private Label labelSlider, labelTitle, labelError;
     @FXML
     private Slider slider;
     @FXML
@@ -309,7 +308,10 @@ public class GameMenu {
                 Wonder wonder = null;
                 LocalDate birthday = dateArray.get(i).getValue();
                 if(birthday == null)
+                {
+                    labelError.setVisible(true);
                     return;
+                }
                 switch ((String) menuArray.get(i).getValue())
                 {
                     case "Alexandrie":
