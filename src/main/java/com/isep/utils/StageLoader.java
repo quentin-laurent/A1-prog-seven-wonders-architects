@@ -1,7 +1,7 @@
 package com.isep.utils;
 
 import com.isep.game.Main;
-import com.isep.game.Player;
+//import com.isep.game.Player;
 import com.isep.game.cards.Card;
 import com.isep.game.cards.Hand;
 import javafx.application.Platform;
@@ -59,6 +59,8 @@ public class StageLoader
     public static Hand hand;
     public static ArrayList<Player> playerList = new ArrayList<>();
 
+    public static int alexandria=0,babylon=0,ephese=0,gizeh=0,halicarnas=0,rhodes=0,olympie=0;
+
     public static int numberPlayer = 0;
     public static Clip clip;
 
@@ -68,6 +70,35 @@ public class StageLoader
             Thread.sleep(n);
         } catch (InterruptedException e) {
             // Handle the exception
+        }
+    }
+
+
+    public static void updateWonder(String name)
+    {
+        switch(name)
+        {
+            case "Alexandria":
+                alexandria++;
+                break;
+            case "Ephesus":
+                ephese++;
+                break;
+            case "Babylon":
+                babylon++;
+                break;
+            case "Rhodes":
+                rhodes++;
+                break;
+            case "Olympia":
+                olympie++;
+                break;
+            case "Giza":
+                gizeh++;
+                break;
+            case "Halicarnassus":
+                halicarnas++;
+                break;
         }
     }
 }

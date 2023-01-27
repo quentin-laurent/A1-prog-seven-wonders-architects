@@ -120,6 +120,10 @@ public class Game
                         player.getWonder().buildStage(stagesReadyToBuild.get(0), player.getHand(), this.discard, player.hasProgressTokenEffect(ProgressToken.Effect.ECONOMY), player.hasProgressTokenEffect(ProgressToken.Effect.ENGINEERING));
                         player.addVictoryPoints(stagesReadyToBuild.get(0).getVictoryPoints());
                         this.outputManager.displayStageBuilt(player, stagesReadyToBuild.get(0), player.getWonder());
+                        if(inputParser instanceof GUIParser)
+                        {
+                            StageLoader.updateWonder(player.getWonder().getName());
+                        }
 
                         this.onePlayerBuiltItsWonder = player.getWonder().isConstructed();
                     }
